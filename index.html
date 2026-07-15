@@ -398,7 +398,7 @@
     display:flex;align-items:center;gap:16px;
   }
   .partner-head::after{content:"";flex:1;height:1px;background:var(--line)}
-  .partner-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+  .partner-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:18px}
   .partner-tile{
     border-radius:var(--r);padding:26px 30px;display:flex;align-items:center;gap:20px;
     background:var(--tile);border:1px solid var(--line);transition:.25s;
@@ -737,6 +737,13 @@
           <div>
             <h5>Conviction 2026</h5>
             <span data-i18n="conv-desc">Large-scale tech event — home of the Grand Finale</span>
+          </div>
+        </a>
+        <a class="partner-tile" href="https://integriumllc.com" target="_blank" rel="noopener">
+          <img src="logos/pt-integrium.png" alt="Integrium LLC">
+          <div>
+            <h5>Integrium LLC</h5>
+            <span data-i18n="integrium-desc">Professional financial advisory</span>
           </div>
         </a>
       </div>
@@ -1191,6 +1198,7 @@ var I18N_VI = {
   'tier-media': 'Đối tác truyền thông — Media Partners',
   'sihub-desc': 'Trung tâm khởi nghiệp đổi mới sáng tạo TP.HCM',
   'conv-desc': 'Sự kiện công nghệ quy mô lớn — nơi diễn ra vòng chung kết',
+  'integrium-desc': 'Tư vấn tài chính chuyên nghiệp',
 
   's3-title': '<em>Nhà đầu tư</em> tham dự',
   's3-lead': '20+ quỹ đầu tư VC, corporate VC và angel investors từ Việt Nam &amp; quốc tế — trực tiếp nghe pitch và xem xét đầu tư, ticket size lên đến $1M.',
