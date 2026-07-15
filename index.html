@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fund the Future — AI Builders x Investors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a09;
+    --tile:#141210;
+    --tile-2:#1b1815;
+    --line:rgba(255,255,255,.08);
+    --line-2:rgba(255,255,255,.15);
+    --ink:#f5f1ea;
+    --muted:#9b968d;
+    --dim:#5d5950;
+    --org:#ff5c00;
+    --org-2:#ff8a3c;
+    --org-3:#ff3800;
+    --glow:rgba(255,92,0,.35);
+    --grad:linear-gradient(115deg,var(--org-2),var(--org-3));
+    --r:22px;
+    --disp:'Unbounded',sans-serif;
+    --body:'Be Vietnam Pro',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  ::selection{background:var(--org);color:#000}
+  body{
+    font-family:var(--body);background:var(--bg);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:var(--disp);font-weight:600}
+
+  /* nhiễu hạt film phủ toàn trang */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== nền chuyển động: quầng sáng cam trôi + lưới chấm dịch chuyển ===== */
+  .bg-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .bg-fx::before{
+    content:"";position:absolute;inset:-60px;opacity:.55;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:30px 30px;
+    animation:gridDrift 60s linear infinite;
+  }
+  @keyframes gridDrift{to{transform:translate(30px,30px)}}
+  .bg-blob{position:absolute;border-radius:50%;filter:blur(90px);will-change:transform}
+  .bg-b1{
+    width:560px;height:560px;top:-16%;left:-10%;
+    background:radial-gradient(circle,rgba(255,92,0,.17),transparent 65%);
+    animation:blob1 26s ease-in-out infinite;
+  }
+  .bg-b2{
+    width:480px;height:480px;top:34%;right:-14%;
+    background:radial-gradient(circle,rgba(255,56,0,.14),transparent 65%);
+    animation:blob2 32s ease-in-out infinite;
+  }
+  .bg-b3{
+    width:620px;height:620px;bottom:-24%;left:26%;
+    background:radial-gradient(circle,rgba(255,138,60,.11),transparent 65%);
+    animation:blob3 38s ease-in-out infinite;
+  }
+  @keyframes blob1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(110px,70px) scale(1.15)}}
+  @keyframes blob2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-90px,-80px) scale(.9)}}
+  @keyframes blob3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-70px,-90px) scale(1.1)}}
+
+  /* ===== NAV ===== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,10,9,.75);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1180px;margin:0 auto;padding:0 20px;height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.02em;display:flex;align-items:center;gap:11px}
+  .brand-dot{
+    width:12px;height:12px;border-radius:50%;background:var(--org);
+    box-shadow:0 0 0 4px rgba(255,92,0,.2), 0 0 18px var(--glow);
+    animation:beacon 2.4s ease-in-out infinite;
+  }
+  @keyframes beacon{0%,100%{box-shadow:0 0 0 4px rgba(255,92,0,.2),0 0 14px var(--glow)}50%{box-shadow:0 0 0 7px rgba(255,92,0,.08),0 0 26px var(--glow)}}
+  .nav-links{display:flex;gap:26px}
+  .nav-links a{font-size:13px;font-weight:500;color:var(--muted);transition:.2s}
+  .nav-links a:hover{color:var(--org-2)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;border:none;
+    font-family:var(--body);font-weight:600;font-size:13.5px;border-radius:12px;padding:12px 22px;transition:.22s;
+  }
+  .btn-org{background:var(--org);color:#0a0500}
+  .btn-org:hover{background:var(--org-2);transform:translateY(-2px);box-shadow:0 10px 30px var(--glow)}
+  .btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2)}
+  .btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--org);color:var(--org-2)}
+  .btn-lg{padding:16px 30px;font-size:15px;border-radius:14px}
+  .btn .arr{transition:transform .2s}
+  .btn:hover .arr{transform:translateX(4px)}
+  .nav-actions{display:flex;gap:10px;align-items:center}
+  .lang-btn{padding:11px 14px;font-size:12px;font-weight:700;letter-spacing:.1em}
+
+  /* ===== BENTO HERO ===== */
+  .hero{padding:100px 0 30px}
+  .bento{
+    display:grid;gap:14px;
+    grid-template-columns:repeat(12,1fr);
+    grid-auto-rows:96px;
+  }
+  .tile{
+    background:var(--tile);border:1px solid var(--line);border-radius:var(--r);
+    position:relative;overflow:hidden;transition:border-color .3s;
+  }
+  .tile:hover{border-color:var(--line-2)}
+
+  /* tile: hero chính — text trái, spline bên phải */
+  .t-main{
+    grid-column:span 12;grid-row:span 6;min-height:620px;
+    display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;
+    padding:70px 56px;
+  }
+  .t-main .spl{position:absolute;top:0;right:0;bottom:0;width:62%;z-index:0;opacity:.95}
+  .t-main .spl iframe{position:absolute;inset:0;width:100%;height:100%;border:0;pointer-events:none}
+  /* overlay: tối dần về trái để chữ nổi, spline lộ rõ bên phải */
+  .t-main .spl::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(90deg, var(--tile) 0%, rgba(20,18,16,.9) 22%, rgba(20,18,16,.35) 55%, rgba(20,18,16,.05) 100%),
+      linear-gradient(180deg, rgba(11,10,9,.25), transparent 25%, transparent 75%, rgba(11,10,9,.35));
+  }
+  .t-main>*:not(.spl){position:relative;z-index:2}
+  .t-main .pill{
+    display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;color:var(--org-2);
+    background:rgba(255,92,0,.12);border:1px solid rgba(255,92,0,.32);border-radius:999px;padding:9px 18px;
+    width:max-content;margin-bottom:30px;backdrop-filter:blur(6px);
+  }
+  .ldot{width:7px;height:7px;border-radius:50%;background:var(--org);animation:beacon 2s ease-in-out infinite}
+  .t-main h1{
+    font-size:clamp(42px,6.6vw,88px);line-height:1.02;letter-spacing:-.01em;font-weight:800;
+    max-width:700px;text-shadow:0 10px 60px rgba(11,10,9,.8);
+  }
+  .t-main h1 em{
+    font-style:normal;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .t-main .slogan{
+    margin-top:20px;font-size:clamp(14px,1.6vw,18px);font-weight:600;letter-spacing:.36em;text-transform:uppercase;color:var(--ink);
+  }
+  .t-main .slogan b{color:var(--org)}
+  .t-main p{color:var(--muted);font-size:16px;max-width:560px;margin-top:18px}
+  .t-main .btns{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}
+  .t-main .cap{
+    position:absolute;right:22px;bottom:18px;z-index:2;font-size:11px;font-weight:600;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+    background:rgba(11,10,9,.55);backdrop-filter:blur(8px);border:1px solid var(--line);
+    border-radius:999px;padding:7px 14px;
+  }
+  @keyframes sweep{0%{left:-15%}55%,100%{left:115%}}
+
+  /* tile: countdown — card riêng full hàng */
+  .t-cd{
+    grid-column:span 12;grid-row:span 2;padding:28px 44px;
+    display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:34px;
+    background:linear-gradient(120deg,rgba(255,92,0,.16),var(--tile) 55%);border-color:rgba(255,92,0,.35);
+  }
+  .t-cd .lbl{font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--org-2);max-width:280px;line-height:1.7}
+  .cd-row{display:flex;gap:14px;align-items:center}
+  .cd-cell{text-align:center;min-width:76px}
+  .cd-cell b{
+    font-family:var(--disp);display:block;font-size:clamp(30px,4vw,50px);font-weight:700;line-height:1.1;
+    color:var(--ink);font-variant-numeric:tabular-nums;transition:transform .18s, color .18s;
+  }
+  .cd-cell b.tick{transform:translateY(-4px);color:var(--org-2)}
+  .cd-cell span{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+  .cd-sep{font-family:var(--disp);color:var(--org);font-size:30px;font-weight:700;animation:beacon 1s step-end infinite;line-height:.8;padding-bottom:18px}
+
+  /* tiles: stats */
+  .t-stat{grid-column:span 4;grid-row:span 2;padding:28px 30px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .t-stat .num{font-family:var(--disp);font-size:clamp(38px,4.2vw,54px);font-weight:700;line-height:1;letter-spacing:-.01em}
+  .t-stat .num i{font-style:normal;color:var(--org)}
+  .t-stat .cap2{font-size:14px;color:var(--muted);font-weight:500;line-height:1.5;max-width:220px}
+  .t-stat.hotline{background:linear-gradient(140deg,var(--tile),rgba(255,92,0,.1))}
+  /* sparkline */
+  .spark{position:absolute;right:18px;bottom:20px;width:86px;height:34px;opacity:.9}
+  .spark path{stroke:var(--org);stroke-width:2;fill:none;stroke-linecap:round;
+    stroke-dasharray:200;stroke-dashoffset:200;animation:draw 2.4s ease forwards 1s}
+  @keyframes draw{to{stroke-dashoffset:0}}
+
+  /* tile: date chip */
+  .t-date{grid-column:span 4;grid-row:span 2;padding:24px 26px;display:flex;flex-direction:column;justify-content:space-between}
+  .t-date .d{font-family:var(--disp);font-size:clamp(22px,2.4vw,30px);font-weight:700;color:var(--org)}
+  .t-date .l{font-size:12px;color:var(--muted)}
+
+  /* ===== SECTION HEADER kiểu editorial ===== */
+  section{padding:110px 0;position:relative}
+  .sec-head{display:flex;align-items:flex-end;gap:24px;margin-bottom:16px}
+  .sec-no{
+    font-family:var(--disp);font-size:clamp(50px,7vw,86px);font-weight:800;line-height:.8;
+    color:transparent;-webkit-text-stroke:1px rgba(255,92,0,.5);flex:none;
+  }
+  h2.title{font-size:clamp(24px,3.4vw,40px);line-height:1.15;letter-spacing:-.01em;max-width:640px}
+  .title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{color:var(--muted);font-size:15.5px;max-width:560px;margin-top:16px}
+
+  .rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.6,.2,1),transform .8s cubic-bezier(.2,.6,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .rv-d1{transition-delay:.12s}.rv-d2{transition-delay:.24s}
+
+  /* ===== WHY: hàng ngang số to ===== */
+  .why-rows{margin-top:54px;border-top:1px solid var(--line)}
+  .wrow{
+    display:grid;grid-template-columns:110px 1fr 1.2fr;gap:30px;align-items:center;
+    padding:34px 10px;border-bottom:1px solid var(--line);transition:.25s;position:relative;
+  }
+  .wrow:hover{background:linear-gradient(90deg,rgba(255,92,0,.06),transparent 70%);padding-left:26px}
+  .wrow .no{font-family:var(--disp);font-size:40px;font-weight:800;color:transparent;-webkit-text-stroke:1px var(--dim);transition:.25s}
+  .wrow:hover .no{-webkit-text-stroke:1px var(--org);color:rgba(255,92,0,.12)}
+  .wrow h3{font-size:19px;line-height:1.3}
+  .wrow p{color:var(--muted);font-size:14px}
+
+  /* ===== PARTNER TIERS (grid tĩnh, phân tầng như Conviction) ===== */
+  .tier{margin-top:44px}
+  .tier-head{
+    font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--org-2);
+    display:flex;align-items:center;gap:16px;margin-bottom:18px;
+  }
+  .tier-head::after{content:"";flex:1;height:1px;background:var(--line)}
+  .lgrid{display:flex;flex-wrap:wrap;gap:12px}
+  .lg-tile{
+    flex:1 1 156px;max-width:210px;height:86px;display:grid;place-items:center;padding:16px;
+    background:var(--tile);border:1px solid var(--line);border-radius:14px;transition:.25s;
+  }
+  .lg-tile:hover{transform:translateY(-3px);border-color:rgba(255,92,0,.35)}
+  .lg-tile img{
+    max-height:46px;max-width:130px;object-fit:contain;transition:.25s;
+    filter:grayscale(1) invert(1) brightness(2.2) contrast(1.05);opacity:1;
+  }
+  .lg-tile img.keep{filter:grayscale(1) brightness(1.9)}
+  .lg-tile:hover img{filter:none;opacity:1}
+  .lgrid.sm .lg-tile{height:70px;flex:1 1 128px;max-width:170px}
+  /* logo media của Conviction vốn là bản trắng — KHÔNG invert, sáng sẵn */
+  .lgrid.sm .lg-tile img{
+    max-height:36px;max-width:108px;
+    filter:grayscale(1) brightness(1.9);opacity:1;
+  }
+  /* hover: phóng to + tile glow cam (thay cho đổi màu) */
+  .lgrid.sm .lg-tile:hover img{filter:grayscale(1) brightness(2.2);transform:scale(1.14)}
+  .lgrid.sm .lg-tile:hover{
+    transform:translateY(-4px);border-color:rgba(255,92,0,.55);
+    box-shadow:0 12px 28px rgba(255,92,0,.16);
+  }
+  .lg-word{
+    font-family:var(--disp);font-weight:800;font-size:17px;letter-spacing:.12em;color:var(--ink);opacity:.75;
+  }
+  .lg-tile:hover .lg-word{opacity:1}
+
+  /* ===== VC GRID — logo trắng đen, không nền ===== */
+  .vc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:54px}
+  .vc-tile{
+    border-radius:16px;overflow:hidden;transition:.28s;position:relative;
+    border:1px solid var(--line);background:transparent;
+    display:flex;flex-direction:column;
+  }
+  .vc-tile:hover{transform:translateY(-4px);border-color:rgba(255,92,0,.4)}
+  .vc-logo{aspect-ratio:16/9;display:grid;place-items:center;padding:16px}
+  /* box cố định + object-fit:contain → mọi logo cùng cỡ, căn giữa tuyệt đối */
+  /* B&W: grayscale + invert → logo tối thành trắng nhưng GIỮ chi tiết bên trong */
+  .vc-logo img{
+    width:62%;height:48px;object-fit:contain;transition:.3s;
+    filter:grayscale(1) invert(1) brightness(2.2) contrast(1.05);opacity:1;
+  }
+  /* logo vốn có phần trắng/sáng (không được invert, sẽ mất chữ) */
+  .vc-logo img.keep{filter:grayscale(1) brightness(1.9)}
+  .vc-tile:hover .vc-logo img{filter:none;opacity:1;transform:scale(1.05)}
+  .vc-name{
+    padding:10px 12px;text-align:center;font-size:11.5px;font-weight:600;color:var(--muted);
+    letter-spacing:.04em;border-top:1px solid var(--line);
+  }
+  .vc-word{font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:.1em;color:var(--ink);opacity:.85}
+  .vc-ph{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .vc-note{margin-top:24px;font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:10px}
+  .vc-note::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--org);animation:beacon 1.6s ease-in-out infinite}
+
+  /* ===== ROUNDS: mỗi vòng một section, khối stage full-width ===== */
+  .stage{
+    margin-top:46px;border-radius:var(--r);position:relative;overflow:hidden;
+    background:var(--tile);border:1px solid var(--line);
+    padding:48px 46px;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;
+  }
+  .stage.hot{border-color:rgba(255,92,0,.4);background:linear-gradient(150deg,rgba(255,92,0,.13),var(--tile) 58%)}
+  /* chung kết: viền gradient + glow thở */
+  .stage.final{
+    border:1px solid transparent;
+    background:
+      linear-gradient(155deg,rgba(255,92,0,.2),var(--tile-2) 55%) padding-box,
+      linear-gradient(120deg,var(--org-2),rgba(255,220,180,.35),var(--org-3)) border-box;
+    animation:finalGlow 4s ease-in-out infinite;
+  }
+  @keyframes finalGlow{
+    0%,100%{box-shadow:0 20px 60px rgba(255,56,0,.14)}
+    50%{box-shadow:0 26px 90px rgba(255,92,0,.3)}
+  }
+  .round-tag{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .stage.hot .round-tag,.stage.final .round-tag{color:var(--org-2)}
+  .stage h3{font-family:var(--disp);font-size:clamp(22px,2.6vw,32px);margin:16px 0 12px}
+  .stage p{font-size:14px;color:var(--muted);max-width:440px}
+  .stage .big-ghost{
+    position:absolute;right:-16px;top:-30px;font-family:var(--disp);font-size:190px;font-weight:800;line-height:1;
+    color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07);pointer-events:none;
+  }
+  .stage.hot .big-ghost{-webkit-text-stroke:1px rgba(255,92,0,.16)}
+  .stage.final .big-ghost{-webkit-text-stroke:1px rgba(255,92,0,.22)}
+  /* cột phải: ngày lớn */
+  .stage .side{position:relative;z-index:2;text-align:center}
+  .stage-date{
+    font-family:var(--disp);font-size:clamp(48px,6vw,80px);font-weight:800;line-height:1;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stage-date small{display:block;font-family:var(--body);font-size:14px;color:var(--dim);font-weight:500;margin-top:8px;-webkit-text-fill-color:var(--dim)}
+  .stage-venue{
+    margin-top:16px;padding:12px 16px;border-radius:12px;font-size:12.5px;line-height:1.6;color:var(--muted);
+    background:rgba(0,0,0,.28);border:1px solid var(--line);text-align:left;
+    display:flex;gap:10px;align-items:flex-start;
+  }
+  .stage-venue .pin{color:var(--org);flex:none;margin-top:2px}
+  .stage-venue b{color:var(--ink);display:block;font-size:13px}
+  .stage-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .s-chip{
+    padding:8px 16px;border-radius:999px;background:rgba(0,0,0,.32);border:1px solid var(--line-2);
+    font-size:12.5px;color:var(--muted);font-weight:500;
+  }
+  .s-chip b{color:var(--org-2)}
+  .mini-cd{display:flex;gap:8px;margin-top:22px;justify-content:center}
+  .mini-cd .mc{
+    min-width:64px;text-align:center;padding:11px 6px;border-radius:12px;
+    background:rgba(0,0,0,.3);border:1px solid var(--line);
+  }
+  .mini-cd b{font-family:var(--disp);display:block;font-size:20px;font-weight:700;color:var(--org-2);font-variant-numeric:tabular-nums}
+  .mini-cd span{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:600}
+
+  /* ===== ORGANIZERS ===== */
+  /* glyph + role chip cho tile ban tổ chức (compact như partner) */
+  .org-glyph{
+    flex:none;width:44px;height:44px;display:grid;place-items:center;color:#fff;border-radius:12px;
+    filter:grayscale(1) brightness(1.6);opacity:.9;transition:.25s;
+  }
+  .partner-tile:hover .org-glyph{filter:none;opacity:1}
+  .org-glyph.main{background:var(--grad);box-shadow:0 6px 18px var(--glow)}
+  .org-glyph.edge{
+    width:38px;height:38px;margin:3px;border-radius:6px;color:#14213d;
+    background:linear-gradient(135deg,#f4e2a1,#c9992e);transform:rotate(45deg);
+  }
+  .org-glyph.edge svg{transform:rotate(-45deg)}
+  .role-chip{
+    display:inline-block;margin-left:8px;padding:3px 10px;border-radius:999px;vertical-align:2px;
+    font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  }
+  .role-chip.hot{background:var(--org);color:#0a0500}
+  .role-chip.gold{background:#d4af37;color:#14213d}
+
+  .org-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:54px}
+  .org-card{
+    border-radius:var(--r);padding:38px 36px;position:relative;overflow:hidden;
+    background:var(--tile);border:1px solid var(--line);transition:.28s;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .org-card:hover{transform:translateY(-4px)}
+  .org-role{
+    width:max-content;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+    padding:7px 14px;border-radius:999px;
+  }
+  .org-card.main{border-color:rgba(255,92,0,.4);background:linear-gradient(155deg,rgba(255,92,0,.13),var(--tile) 58%)}
+  .org-card.main:hover{box-shadow:0 20px 50px rgba(255,56,0,.14)}
+  .org-card.main .org-role{background:var(--org);color:#0a0500}
+  /* The Edge — navy & gold theo brand */
+  .org-card.edge{border-color:rgba(212,175,55,.35);background:linear-gradient(155deg,rgba(24,38,66,.85),var(--tile) 70%)}
+  .org-card.edge:hover{box-shadow:0 20px 50px rgba(212,175,55,.12)}
+  .org-card.edge .org-role{background:#d4af37;color:#14213d}
+  .org-mark{
+    font-family:var(--disp);font-size:clamp(24px,3vw,34px);font-weight:800;line-height:1.1;display:flex;align-items:center;gap:12px;
+    filter:grayscale(1) brightness(1.8);opacity:.95;transition:.3s;
+  }
+  .org-card:hover .org-mark{filter:none;opacity:1}
+  .org-card.main .org-mark{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .org-card.main .org-mark .glyph{
+    width:44px;height:44px;border-radius:12px;flex:none;display:grid;place-items:center;
+    background:var(--grad);color:#fff;box-shadow:0 8px 22px var(--glow);
+  }
+  .org-card.edge .org-mark{color:#e8d48b;letter-spacing:.08em}
+  .org-card.edge .org-mark .glyph{
+    width:44px;height:44px;flex:none;display:grid;place-items:center;color:#14213d;
+    background:linear-gradient(135deg,#f4e2a1,#c9992e);border-radius:6px;
+    transform:rotate(45deg);box-shadow:0 8px 22px rgba(212,175,55,.3);
+  }
+  .org-card.edge .org-mark .glyph svg{transform:rotate(-45deg)}
+  /* partners row */
+  .partner-head{
+    margin-top:34px;font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);
+    display:flex;align-items:center;gap:16px;
+  }
+  .partner-head::after{content:"";flex:1;height:1px;background:var(--line)}
+  .partner-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+  .partner-tile{
+    border-radius:var(--r);padding:26px 30px;display:flex;align-items:center;gap:20px;
+    background:var(--tile);border:1px solid var(--line);transition:.25s;
+  }
+  .partner-tile:hover{transform:translateY(-3px);border-color:rgba(255,92,0,.35)}
+  .partner-tile img{
+    height:52px;width:auto;max-width:140px;object-fit:contain;
+    filter:grayscale(1) invert(1) brightness(2.1) contrast(1.05);opacity:1;transition:.25s;
+  }
+  .partner-tile:hover img{filter:none;opacity:1}
+  .partner-tile .pt-mark{
+    font-family:var(--disp);font-weight:800;font-size:22px;letter-spacing:.06em;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .partner-tile h5{font-size:15px;font-weight:600;margin-bottom:3px}
+  .partner-tile span{font-size:12.5px;color:var(--muted)}
+  .org-sub{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+  .org-card p{font-size:13.5px;color:var(--muted)}
+  .org-link{
+    margin-top:auto;width:max-content;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:8px;
+    color:var(--org-2);transition:.2s;
+  }
+  .org-card.edge .org-link{color:#e8d48b}
+  .org-link:hover{gap:12px}
+  .org-card .halo{
+    position:absolute;width:190px;height:190px;border-radius:50%;right:-60px;top:-60px;pointer-events:none;
+    background:radial-gradient(circle,rgba(255,92,0,.16),transparent 70%);
+  }
+  .org-card.edge .halo{background:radial-gradient(circle,rgba(212,175,55,.18),transparent 70%)}
+
+  /* ===== PRICING: vé thật có răng cưa ===== */
+  .prices{display:grid;grid-template-columns:1fr 1.18fr;gap:18px;margin-top:54px;align-items:stretch}
+  .aud-split{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;margin-top:54px;align-items:center}
+  .aud-welcome{font-size:15px;color:var(--muted);line-height:1.7}
+  .aud-welcome b{color:var(--org-2)}
+  .aud-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .aud-tag{
+    padding:9px 17px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--muted);
+    background:var(--tile);border:1px solid var(--line);
+  }
+  .aud-tag b{color:var(--org-2)}
+  .ticket.aud{background:linear-gradient(160deg,rgba(255,92,0,.1),var(--tile-2) 55%)}
+  .ticket .invite-note{
+    margin-top:14px;padding:12px 14px;border-radius:12px;font-size:12.5px;line-height:1.55;color:var(--org-2);
+    background:rgba(255,92,0,.08);border:1px dashed rgba(255,92,0,.35);
+  }
+  .ticket{
+    position:relative;padding:38px 36px;display:flex;flex-direction:column;
+    background:var(--tile-2);border-radius:var(--r);
+    /* lỗ đục 2 bên như vé sự kiện */
+    -webkit-mask:radial-gradient(circle 13px at 0 68%, transparent 98%, #000) left,
+                 radial-gradient(circle 13px at 100% 68%, transparent 98%, #000) right;
+    -webkit-mask-composite:source-in;
+            mask:radial-gradient(circle 13px at 0 68%, transparent 98%, #000) left,
+                 radial-gradient(circle 13px at 100% 68%, transparent 98%, #000) right;
+            mask-composite:intersect;
+  }
+  .ticket .tear{
+    border-top:2px dashed rgba(255,255,255,.14);margin:26px -36px 24px;
+  }
+  .ticket.dead{opacity:.52}
+  .ticket.dead .stamp{
+    position:absolute;top:34%;left:50%;transform:translate(-50%,-50%) rotate(-14deg);
+    font-family:var(--disp);font-size:22px;font-weight:800;letter-spacing:.2em;color:rgba(255,255,255,.16);
+    border:3px solid rgba(255,255,255,.16);border-radius:10px;padding:10px 22px;pointer-events:none;
+  }
+  .ticket.live{background:linear-gradient(160deg,rgba(255,92,0,.16),var(--tile-2) 55%);box-shadow:0 24px 60px rgba(255,56,0,.12)}
+  .t-flag{
+    position:absolute;top:24px;right:24px;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    padding:7px 14px;border-radius:999px;
+  }
+  .t-flag.gray{background:rgba(255,255,255,.07);color:var(--dim)}
+  .t-flag.hot{background:var(--org);color:#0a0500}
+  .t-name{font-family:var(--disp);font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .t-amt{font-family:var(--disp);font-size:54px;font-weight:800;margin:16px 0 2px;line-height:1}
+  .ticket.live .t-amt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .t-amt s{font-size:20px;color:var(--dim);margin-left:10px;font-weight:500;-webkit-text-fill-color:var(--dim)}
+  .t-note{font-size:12.5px;color:var(--muted)}
+  .t-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+  .t-list li{display:flex;gap:12px;font-size:14px;color:#d6d1c8;align-items:flex-start}
+  .t-list .x{color:var(--dim)}
+  .chk{
+    flex:none;width:19px;height:19px;border-radius:50%;margin-top:2px;display:grid;place-items:center;
+    font-size:10px;color:#0a0500;background:var(--org);font-weight:700;
+  }
+  .chk.off{background:rgba(255,255,255,.1);color:var(--dim)}
+  .ticket .btn{margin-top:auto;width:100%}
+  .btn-dead{background:rgba(255,255,255,.06);color:var(--dim);cursor:not-allowed}
+  .btn-dead:hover{transform:none;box-shadow:none}
+
+  /* ===== FAQ ===== */
+  .faq{max-width:760px;margin:54px 0 0}
+  .fq{border-bottom:1px solid var(--line);transition:.2s}
+  .fq:first-child{border-top:1px solid var(--line)}
+  .fq-q{
+    width:100%;background:none;border:none;color:var(--ink);cursor:pointer;text-align:left;
+    font-family:var(--body);font-size:16px;font-weight:600;padding:22px 6px;
+    display:flex;justify-content:space-between;align-items:center;gap:18px;
+  }
+  .fq-no{font-family:var(--disp);font-size:12px;color:var(--org);margin-right:14px;flex:none}
+  .fq-q .txt{flex:1}
+  .fq-ic{
+    flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+    border:1px solid var(--line-2);color:var(--muted);font-size:15px;transition:.3s;
+  }
+  .fq.open .fq-ic{transform:rotate(45deg);background:var(--org);border-color:var(--org);color:#0a0500}
+  .fq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .fq-a p{padding:0 46px 22px 32px;font-size:14px;color:var(--muted)}
+
+  /* ===== CTA ===== */
+  .cta{
+    margin:0 20px;border-radius:32px;padding:96px 40px;text-align:center;position:relative;overflow:hidden;
+    background:linear-gradient(165deg,rgba(255,92,0,.16),var(--tile) 62%);border:1px solid rgba(255,92,0,.3);
+  }
+  .cta::before{
+    content:"";position:absolute;top:-50%;bottom:-50%;width:120px;transform:rotate(16deg);
+    background:linear-gradient(90deg,transparent,rgba(255,140,60,.09),transparent);
+    animation:sweep 5.5s ease-in-out infinite;
+  }
+  .cta h2{font-size:clamp(26px,4.4vw,48px);line-height:1.1}
+  .cta h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .cta p{color:var(--muted);font-size:15px;max-width:440px;margin:18px auto 34px}
+
+  footer{margin-top:110px;border-top:1px solid var(--line)}
+  .foot{max-width:1180px;margin:0 auto;padding:30px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+  .foot small{color:var(--dim);font-size:12.5px}
+  .foot small a{color:var(--org-2)}
+  .foot-r{display:flex;gap:18px;color:var(--muted)}
+  .foot-r a:hover{color:var(--org-2)}
+
+  /* ===== MODAL FORM ĐĂNG KÝ ===== */
+  .mask{
+    position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;
+    background:rgba(11,10,9,.72);backdrop-filter:blur(10px);overflow-y:auto;padding:40px 16px;
+  }
+  .mask.show{display:flex}
+  .modal{
+    width:100%;max-width:580px;margin:auto 0;position:relative;
+    background:var(--tile-2);border:1px solid rgba(255,92,0,.3);border-radius:var(--r);padding:38px 34px;
+  }
+  .modal h3{font-family:var(--disp);font-size:22px;margin-bottom:6px}
+  .modal .sub{font-size:13.5px;color:var(--muted);margin-bottom:26px}
+  .m-close{
+    position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;cursor:pointer;
+    background:none;border:1px solid var(--line-2);color:var(--muted);font-size:15px;transition:.2s;
+  }
+  .m-close:hover{border-color:var(--org);color:var(--org-2)}
+  .f-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .f-field{display:flex;flex-direction:column;gap:7px}
+  .f-field.full{grid-column:1/-1}
+  .f-field label{font-size:12px;font-weight:600;letter-spacing:.05em;color:var(--muted)}
+  .f-field label b{color:var(--org)}
+  .f-field input,.f-field select,.f-field textarea{
+    font-family:var(--body);font-size:14px;color:var(--ink);width:100%;
+    background:rgba(0,0,0,.3);border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;
+    outline:none;transition:border-color .2s;
+  }
+  .f-field select{cursor:pointer}
+  .f-field select option{background:var(--tile-2);color:var(--ink)}
+  .f-field textarea{resize:vertical;min-height:88px}
+  .f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--org)}
+  .f-field input::placeholder,.f-field textarea::placeholder{color:var(--dim)}
+  .modal .btn{width:100%;margin-top:22px}
+  .modal .btn[disabled]{opacity:.6;cursor:wait;transform:none;box-shadow:none}
+  .f-privacy{margin-top:14px;font-size:11.5px;color:var(--dim);text-align:center}
+  .f-ok{display:none;text-align:center;padding:26px 0 10px}
+  .f-ok .big{font-size:44px;margin-bottom:14px}
+  .f-ok h3{margin-bottom:8px}
+  .f-ok p{font-size:14px;color:var(--muted);max-width:400px;margin:0 auto}
+  .modal.sent form{display:none}
+  .modal.sent .f-ok{display:block}
+  @media(max-width:640px){
+    .f-grid{grid-template-columns:1fr}
+    .modal{padding:30px 22px}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .rv{opacity:1;transform:none}
+  }
+  @media(max-width:960px){
+    .nav-links{display:none}
+    .bento{grid-auto-rows:auto}
+    .t-main{grid-column:span 12;grid-row:auto;min-height:520px;padding:40px 28px}
+    .t-main .spl::after{
+      background:
+        linear-gradient(180deg, rgba(20,18,16,.9) 30%, rgba(20,18,16,.55) 60%, rgba(20,18,16,.2) 100%);
+    }
+    .t-cd{grid-column:span 12;flex-direction:column;align-items:flex-start;gap:18px;padding:26px 24px}
+    .cd-cell{min-width:56px}
+    .t-stat{grid-column:span 6}
+    .t-date{grid-column:span 12;flex-direction:row;align-items:center;gap:14px}
+    .stage{grid-template-columns:1fr;gap:30px;padding:34px 26px}
+    .stage .side{text-align:left}
+    .stage .mini-cd{justify-content:flex-start}
+    .wrow{grid-template-columns:60px 1fr;gap:16px}
+    .wrow p{grid-column:2}
+    .vc-grid{grid-template-columns:repeat(3,1fr)}
+    .prices,.org-grid,.partner-row,.aud-split{grid-template-columns:1fr}
+    .t-main{min-height:560px;padding:60px 24px 90px}
+    .vc-grid{grid-template-columns:repeat(2,1fr)}
+    section{padding:70px 0}
+    .sec-no{font-size:44px}
+  }
+</style>
+</head>
+<body>
+
+<!-- BG ANIMATION -->
+<div class="bg-fx" aria-hidden="true">
+  <div class="bg-blob bg-b1"></div>
+  <div class="bg-blob bg-b2"></div>
+  <div class="bg-blob bg-b3"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-in">
+    <a href="#" class="brand"><span class="brand-dot"></span>FUND THE FUTURE</a>
+    <div class="nav-links">
+      <a href="#funds" data-i18n="nav-funds">Investors</a>
+      <a href="#rounds" data-i18n="nav-rounds">Roadmap</a>
+      <a href="#organizers" data-i18n="nav-org">Organizers</a>
+      <a href="#pricing" data-i18n="nav-tickets">Tickets</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-ghost lang-btn" id="langBtn" type="button" aria-label="Switch language">VI</button>
+      <a href="#pricing" class="btn btn-org" data-reg="startup" data-i18n="nav-reg">Register <span class="arr">→</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- BENTO HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="bento">
+
+      <div class="tile t-main">
+        <div class="spl" aria-hidden="true">
+          <iframe src="https://my.spline.design/retrofuturismbganimation-UpB9MU9EvxWPMBD5shWb5BKk/" title="3D background" loading="lazy"></iframe>
+        </div>
+        <span class="pill" data-i18n="hero-pill"><span class="ldot"></span>Applications now open</span>
+        <h1>Fund the <em>Future</em></h1>
+        <div class="slogan">AI Builders <b>×</b> Investors</div>
+        <p data-i18n="hero-p">A real-deal fundraising arena for AI startups — pitch live in front of 20+ Vietnamese &amp; international investment funds, with the finale on the Conviction stage.</p>
+        <div class="btns">
+          <a href="#pricing" class="btn btn-org btn-lg" data-reg="startup" data-i18n="hero-btn-reg">Register to attend <span class="arr">→</span></a>
+          <a href="#rounds" class="btn btn-ghost btn-lg" data-i18n="hero-btn-rounds">View roadmap</a>
+        </div>
+      </div>
+
+      <div class="tile t-cd">
+        <div class="lbl" data-i18n="cd-lbl">Countdown to the Audition — 08.08.2026</div>
+        <div class="cd-row">
+          <div class="cd-cell"><b data-cd="d">--</b><span data-i18n="cd-d">Days</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-cell"><b data-cd="h">--</b><span data-i18n="cd-h">Hours</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-cell"><b data-cd="m">--</b><span data-i18n="cd-m">Mins</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-cell"><b data-cd="s">--</b><span data-i18n="cd-s">Secs</span></div>
+        </div>
+      </div>
+
+      <div class="tile t-stat hotline">
+        <div class="num">60<i>+</i></div>
+        <div class="cap2" data-i18n="stat-1">Startups already registered</div>
+        <svg class="spark" viewBox="0 0 86 34"><path d="M2 30 C16 30 18 18 30 18 C42 18 44 24 54 16 C64 8 70 10 84 4"/></svg>
+      </div>
+
+      <div class="tile t-stat">
+        <div class="num">20<i>+</i></div>
+        <div class="cap2" data-i18n="stat-2">Vietnamese &amp; international investment funds</div>
+      </div>
+
+      <div class="tile t-stat">
+        <div class="num"><i>$</i>1M</div>
+        <div class="cap2" data-i18n="stat-3">Maximum ticket size per deal</div>
+      </div>
+
+    </div>
+  </div>
+
+</header>
+
+<!-- 01 BAN TỔ CHỨC -->
+<section id="organizers">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">01</span>
+      <h2 class="title" data-i18n="s1-title">The <em>Organizers</em></h2>
+    </div>
+    <p class="lead rv rv-d1" data-i18n="s1-lead">Fund the Future is created by pioneers in AI together with Vietnam's finance &amp; corporate-governance community.</p>
+
+    <div class="partner-row" style="margin-top:54px">
+      <a class="partner-tile rv" href="https://snappp.ai" target="_blank" rel="noopener">
+        <span class="org-glyph main"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l7 7-1.4 1.4L13 7.83V20h-2V7.83l-4.6 4.57L5 11z"/></svg></span>
+        <div>
+          <h5>Snappp AI <span class="role-chip hot" data-i18n="org-role-1">Organizer</span></h5>
+          <span>AI Training for Business · snappp.ai</span>
+        </div>
+      </a>
+      <div class="partner-tile rv rv-d1">
+        <span class="org-glyph edge"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 20 12 12 22 4 12Z"/></svg></span>
+        <div>
+          <h5>THE EDGE <span class="role-chip gold" data-i18n="org-role-1">Organizer</span></h5>
+          <span>Empowering · Driving · Governing Excellence</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 PARTNERS -->
+<section id="partners" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">02</span>
+      <h2 class="title" data-i18n="s2-title">Partners &amp; <em>Sponsors</em></h2>
+    </div>
+    <p class="lead rv rv-d1" data-i18n="s2-lead">Fund the Future is joined by main partners, strategic sponsors and 20+ media channels within the framework of Conviction 2026.</p>
+
+    <div class="tier rv rv-d1">
+      <div class="tier-head" data-i18n="tier-main">Main Partners</div>
+      <div class="partner-row" style="margin-top:0">
+        <a class="partner-tile" href="https://sihub.gov.vn" target="_blank" rel="noopener">
+          <img src="logos/org-sihub.png" alt="SIHUB — Saigon Innovation Hub">
+          <div>
+            <h5>SIHUB — Saigon Innovation Hub</h5>
+            <span data-i18n="sihub-desc">Ho Chi Minh City's innovation &amp; startup hub</span>
+          </div>
+        </a>
+        <a class="partner-tile" href="https://www.conviction.vn/en" target="_blank" rel="noopener">
+          <span class="pt-mark">CONVICTION</span>
+          <div>
+            <h5>Conviction 2026</h5>
+            <span data-i18n="conv-desc">Large-scale tech event — home of the Grand Finale</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="tier rv">
+      <div class="tier-head" data-i18n="tier-strategic">Strategic Sponsors</div>
+      <div class="lgrid">
+        <a class="lg-tile" style="height:100px;max-width:280px" href="https://lotteventures.vn" target="_blank" rel="noopener"><img class="keep" style="max-height:50px;max-width:190px" src="logos/vc-lotte.png" alt="Lotte"></a>
+        <a class="lg-tile" style="height:100px;max-width:280px" href="https://www.novaland.com.vn" target="_blank" rel="noopener"><img style="max-height:60px" src="logos/sp-nova.png" alt="Nova Group"></a>
+      </div>
+    </div>
+
+    <div class="tier rv">
+      <div class="tier-head" data-i18n="tier-sponsors">Sponsors</div>
+      <div class="lgrid">
+        <a class="lg-tile" href="https://apify.com" target="_blank" rel="noopener"><img src="logos/sp-apify.png" alt="Apify"></a>
+        <a class="lg-tile" href="https://qwen.ai/home" target="_blank" rel="noopener"><img src="logos/sp-qwen.png" alt="Qwen AI"></a>
+        <span class="lg-tile"><img src="logos/sp-nvidia.png" alt="NVIDIA"></span>
+        <span class="lg-tile"><img src="logos/sp-aws.png" alt="AWS"></span>
+        <span class="lg-tile"><img src="logos/sp-jdi.png" alt="JDI"></span>
+        <a class="lg-tile" href="https://nic.gov.vn" target="_blank" rel="noopener"><img src="logos/sp-nic.png" alt="NIC — National Innovation Center"></a>
+        <span class="lg-tile"><img src="logos/sp-seedance.png" alt="Seedance"></span>
+        <span class="lg-tile"><img class="keep" src="logos/sp-haravan2.png" alt="Haravan"></span>
+        <span class="lg-tile"><span class="lg-word">ZAFAGO</span></span>
+      </div>
+    </div>
+
+    <div class="tier rv">
+      <div class="tier-head" data-i18n="tier-media">Media Partners</div>
+      <div class="lgrid sm">
+        <span class="lg-tile"><img src="logos/vtv-money.svg" alt="VTV Money"></span>
+        <span class="lg-tile"><img src="logos/media-1.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-2.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-3.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-4.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-5.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-6.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-7.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-8.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-9.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-10.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-11.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-12.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-13.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-14.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-15.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-16.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-17.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-18.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-19.png" alt="Media partner"></span>
+        <span class="lg-tile"><img src="logos/media-20.png" alt="Media partner"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 NHÀ ĐẦU TƯ -->
+<section id="funds" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">03</span>
+      <h2 class="title" data-i18n="s3-title">Participating <em>Investors</em></h2>
+    </div>
+    <p class="lead rv rv-d1" data-i18n="s3-lead">20+ VC funds, corporate VCs and angel investors from Vietnam &amp; abroad — hearing pitches live and considering deals with ticket sizes up to $1M.</p>
+
+    <div class="vc-grid rv rv-d2">
+      <div class="vc-tile"><div class="vc-logo"><span class="vc-word">ARYON</span></div><div class="vc-name">Aryon</div></div>
+      <div class="vc-tile"><div class="vc-logo"><img src="logos/vc-genai.png" alt="Gen AI Fund"></div><div class="vc-name">Gen AI Fund</div></div>
+      <div class="vc-tile"><div class="vc-logo"><img class="keep" src="logos/vc-eureka.png" alt="Eureka International"></div><div class="vc-name">Eureka International</div></div>
+      <div class="vc-tile"><div class="vc-logo"><img src="logos/vc-doventures.png" alt="Do Ventures"></div><div class="vc-name">Do Ventures</div></div>
+      <div class="vc-tile"><div class="vc-logo"><img src="logos/vc-asiafdn.png" alt="The Asia Foundation"></div><div class="vc-name">The Asia Foundation</div></div>
+      <div class="vc-tile"><div class="vc-logo"><img src="logos/vc-block71.png" alt="BLOCK71 Vietnam"></div><div class="vc-name">BLOCK71 Vietnam</div></div>
+      <div class="vc-tile"><div class="vc-logo"><img src="logos/vc-goldengate.png" alt="Golden Gate Ventures"></div><div class="vc-name">Golden Gate Ventures</div></div>
+      <div class="vc-tile"><div class="vc-logo"><img class="keep" src="logos/vc-lotte.png" alt="Lotte Ventures"></div><div class="vc-name">Lotte Ventures</div></div>
+      <div class="vc-tile"><div class="vc-logo"><img src="logos/vc-monkshill.svg" alt="Monk's Hill Ventures"></div><div class="vc-name">Monk's Hill Ventures</div></div>
+      <div class="vc-tile"><div class="vc-logo"><img src="logos/vc-vic.png" alt="VIC Partners"></div><div class="vc-name">VIC Partners</div></div>
+    </div>
+    <div class="vc-note rv rv-d2" data-i18n="vc-note">The fund list keeps being updated</div>
+  </div>
+</section>
+
+<!-- 04 HÀNH TRÌNH HỖ TRỢ -->
+<section id="why" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">04</span>
+      <h2 class="title" data-i18n="s4-title">Fundraising shouldn't be a <em>lonely journey</em></h2>
+    </div>
+    <p class="lead rv rv-d1" data-i18n="s4-lead">Startups get end-to-end support from before the pitch until after the program — 4 steps by your side.</p>
+
+    <div class="why-rows rv rv-d2">
+      <div class="wrow">
+        <span class="no">B1</span>
+        <h3 data-i18n="w1-h">Pitch deck coaching</h3>
+        <p data-i18n="w1-p">1-on-1 mentors help you build and refine an investor-ready pitch deck — from storytelling and metrics to valuation.</p>
+      </div>
+      <div class="wrow">
+        <span class="no">B2</span>
+        <h3 data-i18n="w2-h">Pitch to VCs at the Audition</h3>
+        <p data-i18n="w2-p">Take the stage and pitch live before 20+ Vietnamese &amp; international funds — real feedback, real chances to close a deal.</p>
+      </div>
+      <div class="wrow">
+        <span class="no">B3</span>
+        <h3 data-i18n="w3-h">Pitch at the Conviction finale</h3>
+        <p data-i18n="w3-p">Winning startups step onto the finale stage at Conviction in front of 60,000 attendees — reach a startup could hardly create on its own.</p>
+      </div>
+      <div class="wrow">
+        <span class="no">B4</span>
+        <h3 data-i18n="w4-h">Post-program support</h3>
+        <p data-i18n="w4-p">Coverage across Conviction channels &amp; 20+ media partners, follow-up meetings with interested funds and Due Diligence support all the way to an investment round.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUND 1: AUDITION -->
+<section id="rounds" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">05</span>
+      <h2 class="title" data-i18n="s5-title">Round 1 — <em>Audition</em></h2>
+    </div>
+    <p class="lead rv rv-d1" data-i18n="s5-lead">Where every startup begins: apply, get approved by the organizers and take the stage to pitch before the investor panel.</p>
+
+    <div class="stage hot rv rv-d1">
+      <span class="big-ghost">01</span>
+      <div>
+        <span class="round-tag" data-i18n="r1-tag">● Applications open</span>
+        <h3 data-i18n="r1-h">Take the stage — pitch to 20+ funds</h3>
+        <p data-i18n="r1-p">Every approved startup gets a live pitch slot before the investor panel. Applications stay open until the Audition on 08.08.2026 — apply early to get more prep time with your mentor.</p>
+        <div class="stage-chips">
+          <span class="s-chip" data-i18n="r1-chip1"><b>20+</b> funds on the panel</span>
+          <span class="s-chip" data-i18n="r1-chip2">Pitch deck support + <b>1-on-1</b> coaching</span>
+        </div>
+      </div>
+      <div class="side">
+        <div class="stage-date">08.08<small>2026</small></div>
+        <div class="stage-venue">
+          <span class="pin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></span>
+          <div data-i18n="r1-venue"><b>SIHUB — Saigon Innovation Hub</b>123 Truong Dinh Street, Xuan Hoa Ward, Ho Chi Minh City</div>
+        </div>
+        <div class="mini-cd">
+          <div class="mc"><b data-cd="d">--</b><span data-i18n="cd-d">Days</span></div>
+          <div class="mc"><b data-cd="h">--</b><span data-i18n="cd-h">Hours</span></div>
+          <div class="mc"><b data-cd="m">--</b><span data-i18n="cd-m">Mins</span></div>
+          <div class="mc"><b data-cd="s">--</b><span data-i18n="cd-s">Secs</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUND 2: GRAND FINALE -->
+<section id="finale" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">06</span>
+      <h2 class="title" data-i18n="s6-title">Final Round — <em>Grand Finale</em></h2>
+    </div>
+    <p class="lead rv rv-d1" data-i18n="s6-lead">The ultimate destination: Audition winners compete on Conviction's main stage.</p>
+
+    <div class="stage final rv rv-d1">
+      <span class="big-ghost">02</span>
+      <div>
+        <span class="round-tag" data-i18n="r2-tag">🏆 Main stage — Conviction</span>
+        <h3 data-i18n="r2-h">Shine in front of 60,000 people</h3>
+        <p data-i18n="r2-p">The Grand Finale takes place within Conviction at THISO MALL SALA, Thu Duc City — where your startup appears before Vietnam's largest tech community and connects directly with funds toward an investment round.</p>
+        <div class="stage-chips">
+          <span class="s-chip" data-i18n="r2-chip1"><b>60,000</b> Conviction attendees</span>
+          <span class="s-chip" data-i18n="r2-chip2">Coverage on <b>20+</b> media channels</span>
+          <span class="s-chip" data-i18n="r2-chip3">Prizes &amp; investor connections</span>
+        </div>
+      </div>
+      <div class="side">
+        <div class="stage-date">15.08<small>2026</small></div>
+        <div class="stage-venue">
+          <span class="pin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></span>
+          <div data-i18n="r2-venue"><b>THISO MALL SALA — inside Conviction</b>10 Mai Chi Tho Street, Thu Thiem Ward, Thu Duc City, Ho Chi Minh City</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">07</span>
+      <h2 class="title" data-i18n="s7-title">Startup Ticket — <em>pitch-slot confirmation fee</em></h2>
+    </div>
+    <p class="lead rv rv-d1" data-i18n="s7-lead">Registered startups are <b style="color:var(--org-2)">reviewed and invited</b> by the organizers. The ticket is not a pay-to-play fee — it is a <b style="color:var(--org-2)">confirmation fee</b> to hold your pitch slot and secure your commitment.</p>
+
+    <div class="prices">
+      <div class="ticket dead rv">
+        <span class="stamp" data-i18n="tk1-stamp">CLOSED</span>
+        <span class="t-flag gray" data-i18n="tk1-flag">Ended 12.07</span>
+        <div class="t-name">Startup · Early Bird</div>
+        <div class="t-amt">$99</div>
+        <div class="t-note" data-i18n="tk1-note">Early-bird confirmation fee — now closed</div>
+        <div class="tear"></div>
+        <ul class="t-list">
+          <li class="x"><span class="chk off">✓</span><span data-i18n="tk1-li1">Pitch slot at the Audition round</span></li>
+          <li class="x"><span class="chk off">✓</span><span data-i18n="tk1-li2">1-on-1 pitch deck coaching</span></li>
+          <li class="x"><span class="chk off">✓</span><span data-i18n="tk1-li3">Post-program support</span></li>
+        </ul>
+        <button class="btn btn-dead" disabled data-i18n="tk1-btn">Registration closed</button>
+      </div>
+
+      <div class="ticket live rv rv-d1">
+        <span class="t-flag hot" data-i18n="tk2-flag">Confirmations open</span>
+        <div class="t-name">Startup Package</div>
+        <div class="t-amt">$149</div>
+        <div class="t-note" data-i18n="tk2-note">For approved startups — confirmations open until the Audition on 08.08.2026</div>
+        <div class="invite-note" data-i18n="tk2-invite">Pitch slots are reserved for startups approved through the application form. The $149 fee confirms your commitment — it holds your pitch slot and activates the 1-on-1 support program.</div>
+        <div class="tear"></div>
+        <ul class="t-list">
+          <li><span class="chk">✓</span><span data-i18n="tk2-li1">Guaranteed pitch slot at the Audition round</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tk2-li2">1-on-1 pitch deck &amp; fundraising strategy coaching</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tk2-li3">Pitch to 20+ funds — ticket sizes up to $1M</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tk2-li4">A shot at the Grand Finale at Conviction</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tk2-li5">Media coverage &amp; Due Diligence support after the program</span></li>
+        </ul>
+        <a href="#" class="btn btn-org btn-lg" data-reg="startup" data-i18n="tk2-btn">Confirm your slot — $149 <span class="arr">→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 08 VÉ AUDIENCE -->
+<section id="audience" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">08</span>
+      <h2 class="title" data-i18n="s8-title"><em>Audience</em> Ticket — watch &amp; join the ride</h2>
+    </div>
+
+    <div class="aud-split">
+      <div class="rv rv-d1">
+        <p class="aud-welcome" data-i18n="aud-welcome">Fund the Future <b>welcomes young people</b> and <b>startup communities</b> to watch live: hear startups pitch before the investor panel, learn how investors ask questions, and soak in the atmosphere of the finale at Conviction.</p>
+        <div class="aud-tags">
+          <span class="aud-tag" data-i18n="aud-tag1">🎓 Students &amp; startup-loving young people</span>
+          <span class="aud-tag" data-i18n="aud-tag2">🚀 Startup &amp; builder communities</span>
+          <span class="aud-tag" data-i18n="aud-tag3">🤝 Future founders seeking inspiration</span>
+          <span class="aud-tag" data-i18n="aud-tag4">💡 Anyone into investing &amp; tech</span>
+        </div>
+      </div>
+
+      <div class="ticket aud rv rv-d2">
+        <span class="t-flag hot" data-i18n="tk3-flag">On sale now</span>
+        <div class="t-name">Audience Pass</div>
+        <div class="t-amt">$7</div>
+        <div class="t-note" data-i18n="tk3-note">One ticket — the full journey alongside the startups</div>
+        <div class="tear"></div>
+        <ul class="t-list">
+          <li><span class="chk">✓</span><span data-i18n="tk3-li1">Watch startups pitch live at the Audition 08.08</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tk3-li2">Attend the Grand Finale at Conviction 15.08</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tk3-li3">Connect with founders, builders &amp; investors</span></li>
+        </ul>
+        <a href="#" class="btn btn-org btn-lg" style="width:100%;margin-top:auto" data-reg="audience" data-i18n="tk3-btn">Buy Audience ticket — $7 <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-no">09</span>
+      <h2 class="title" data-i18n="faq-title">Frequently asked <em>questions</em></h2>
+    </div>
+
+    <div class="faq rv rv-d1">
+      <div class="fq"><button class="fq-q"><span class="fq-no">Q1</span><span class="txt" data-i18n="q1">Can I still buy the $99 Early Bird ticket?</span><span class="fq-ic">+</span></button>
+        <div class="fq-a"><p data-i18n="a1">Unfortunately, Early Bird ended on 12.07.2026. You can still confirm your slot with the $149 Startup Package — with the full set of participation benefits.</p></div></div>
+      <div class="fq"><button class="fq-q"><span class="fq-no">Q2</span><span class="txt" data-i18n="q2">What do I get right after registering?</span><span class="fq-ic">+</span></button>
+        <div class="fq-a"><p data-i18n="a2">A guaranteed pitch slot at the Audition on 08.08.2026, plus pitch deck support and a 1-on-1 mentoring session before the event.</p></div></div>
+      <div class="fq"><button class="fq-q"><span class="fq-no">Q3</span><span class="txt" data-i18n="q3">Is it too late to apply now?</span><span class="fq-ic">+</span></button>
+        <div class="fq-a"><p data-i18n="a3">Not at all! Applications stay open until the Audition on 08.08.2026. Apply early to get more prep time with your mentor.</p></div></div>
+      <div class="fq"><button class="fq-q"><span class="fq-no">Q4</span><span class="txt" data-i18n="q4">How do I get into the Grand Finale?</span><span class="fq-ic">+</span></button>
+        <div class="fq-a"><p data-i18n="a4">Winning startups from the Audition compete in the finale on 15.08.2026, held within Conviction with 60,000 attendees.</p></div></div>
+      <div class="fq"><button class="fq-q"><span class="fq-no">Q5</span><span class="txt" data-i18n="q5">Who is on the investor panel?</span><span class="fq-ic">+</span></button>
+        <div class="fq-a"><p data-i18n="a5">20+ Vietnamese and international funds — including VCs, corporate VCs and angel investors active across Southeast Asia.</p></div></div>
+      <div class="fq"><button class="fq-q"><span class="fq-no">Q6</span><span class="txt" data-i18n="q6">What media benefits do winners get?</span><span class="fq-ic">+</span></button>
+        <div class="fq-a"><p data-i18n="a6">Coverage across Conviction channels and a network of 20+ media partners, plus certification and investor connections after the program.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:0">
+  <div class="cta rv">
+    <h2 data-i18n="cta-h">Ready to <em>raise?</em></h2>
+    <p data-i18n="cta-p">Hold your pitch slot at Fund the Future today — make 08.08 the day your AI startup takes off.</p>
+    <a href="#pricing" class="btn btn-org btn-lg" data-reg="startup" data-i18n="cta-btn">Register to attend <span class="arr">→</span></a>
+  </div>
+</section>
+
+<!-- MODAL ĐĂNG KÝ STARTUP -->
+<div class="mask" id="maskStartup" role="dialog" aria-modal="true" aria-labelledby="stTitle">
+  <div class="modal">
+    <button class="m-close" type="button" aria-label="Close">✕</button>
+    <h3 id="stTitle" data-i18n="st-title">Register — Startup Package</h3>
+    <p class="sub" data-i18n="st-sub">For AI startups that want to pitch for funding at the Audition on 08.08.2026 — the organizers review and reply by email within 48 hours.</p>
+
+    <form data-gform="startup">
+      <div class="f-grid">
+        <div class="f-field">
+          <label for="sName" data-i18n="f-rep-label">Representative's full name <b>*</b></label>
+          <input id="sName" name="name" required placeholder="Your full name" data-i18n-ph="f-name-ph">
+        </div>
+        <div class="f-field">
+          <label for="sEmail">Email <b>*</b></label>
+          <input id="sEmail" name="email" type="email" required placeholder="you@startup.com" data-i18n-ph="f-email-ph-st">
+        </div>
+        <div class="f-field">
+          <label for="sPhone" data-i18n="f-phone-label">Phone number (Zalo) <b>*</b></label>
+          <input id="sPhone" name="phone" type="tel" required placeholder="09xx xxx xxx">
+        </div>
+        <div class="f-field">
+          <label for="sStartup" data-i18n="f-startup-label">Startup name <b>*</b></label>
+          <input id="sStartup" name="startup" required placeholder="Company / project name" data-i18n-ph="f-startup-ph">
+        </div>
+        <div class="f-field">
+          <label for="sStage" data-i18n="f-stage-label">Fundraising stage <b>*</b></label>
+          <select id="sStage" name="stage" required>
+            <option value="" data-i18n="f-stage-opt0">— Select stage —</option>
+            <option value="Not raised yet" data-i18n="f-stage-opt1">Not raised yet</option>
+            <option value="Pre-seed">Pre-seed</option>
+            <option value="Seed">Seed</option>
+            <option value="Series A and above" data-i18n="f-stage-opt4">Series A and above</option>
+          </select>
+        </div>
+        <div class="f-field full">
+          <label for="sDesc" data-i18n="f-desc-label">Short description of your AI product (2–3 sentences) <b>*</b></label>
+          <textarea id="sDesc" name="desc" required placeholder="What problem does it solve, for whom, and what results so far?" data-i18n-ph="f-desc-ph"></textarea>
+        </div>
+        <div class="f-field full">
+          <label for="sDeck" data-i18n="f-deck-label">Pitch deck link (Drive/DocSend — can be added later)</label>
+          <input id="sDeck" name="deck" type="url" placeholder="https://drive.google.com/...">
+        </div>
+      </div>
+      <button class="btn btn-org btn-lg" type="submit" data-i18n="st-submit">Submit application <span class="arr">→</span></button>
+      <p class="f-privacy" data-i18n="f-privacy-st">Your information is only used for review &amp; contact by the Fund the Future organizers.</p>
+    </form>
+
+    <div class="f-ok">
+      <div class="big">🚀</div>
+      <h3 data-i18n="st-ok-h">Application received!</h3>
+      <p data-i18n="st-ok-p">Thank you! The organizers will review and email you instructions to confirm your pitch slot within 48 hours — remember to check your Spam/Promotions folders too.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL VÉ AUDIENCE -->
+<div class="mask" id="maskAudience" role="dialog" aria-modal="true" aria-labelledby="auTitle">
+  <div class="modal">
+    <button class="m-close" type="button" aria-label="Close">✕</button>
+    <h3 id="auTitle" data-i18n="au-title">Book an Audience ticket — $7</h3>
+    <p class="sub" data-i18n="au-sub">Watch startups pitch live and attend the Grand Finale at Conviction — the organizers will email payment instructions &amp; your e-ticket.</p>
+
+    <form data-gform="audience">
+      <div class="f-grid">
+        <div class="f-field">
+          <label for="aName" data-i18n="f-name-label">Full name <b>*</b></label>
+          <input id="aName" name="name" required placeholder="Your full name" data-i18n-ph="f-name-ph">
+        </div>
+        <div class="f-field">
+          <label for="aEmail">Email <b>*</b></label>
+          <input id="aEmail" name="email" type="email" required placeholder="you@email.com" data-i18n-ph="f-email-ph-au">
+        </div>
+        <div class="f-field">
+          <label for="aPhone" data-i18n="f-phone-label">Phone number (Zalo) <b>*</b></label>
+          <input id="aPhone" name="phone" type="tel" required placeholder="09xx xxx xxx">
+        </div>
+        <div class="f-field">
+          <label for="aGroup" data-i18n="f-group-label">Which group are you in? <b>*</b></label>
+          <select id="aGroup" name="group" required>
+            <option value="" data-i18n="f-group-opt0">— Select group —</option>
+            <option value="Student" data-i18n="f-group-opt1">Student</option>
+            <option value="Founder / Builder">Founder / Builder</option>
+            <option value="Investor" data-i18n="f-group-opt3">Investor</option>
+            <option value="Other" data-i18n="f-group-opt4">Other</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-org btn-lg" type="submit" data-i18n="au-submit">Book ticket — $7 <span class="arr">→</span></button>
+      <p class="f-privacy" data-i18n="f-privacy-au">Your information is only used for ticket delivery &amp; contact by the Fund the Future organizers.</p>
+    </form>
+
+    <div class="f-ok">
+      <div class="big">🎟️</div>
+      <h3 data-i18n="au-ok-h">Booking received!</h3>
+      <p data-i18n="au-ok-p">Thank you! The organizers will email payment instructions and your e-ticket within 24 hours — remember to check your Spam/Promotions folders too.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot">
+    <small data-i18n="foot-copy">© Fund the Future 2026 · AI Builders × Investors · Organized by <a href="https://snappp.ai" target="_blank" rel="noopener">Snappp.AI</a> &amp; THE EDGE · Audition 08.08 @ SIHUB, 123 Truong Dinh · Finale 15.08 @ THISO MALL SALA within <a href="https://www.conviction.vn/en" target="_blank" rel="noopener">Conviction</a></small>
+    <div class="foot-r">
+      <a href="#" aria-label="GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .3.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
+      <a href="#" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM0 8h5v16H0V8Zm7.5 0h4.8v2.2h.1c.7-1.3 2.3-2.6 4.7-2.6 5 0 6 3.3 6 7.6V24h-5v-7.6c0-1.8 0-4.1-2.5-4.1s-2.9 2-2.9 4V24h-5V8Z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ---- luôn mở trang ở đầu web (không nhảy theo hash/vị trí scroll cũ) ----
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+window.scrollTo(0, 0);
+window.addEventListener('load', function(){ window.scrollTo(0, 0); });
+
+// ---- i18n: English là mặc định trong HTML; bấm nút VI/EN để chuyển ngôn ngữ ----
+// Bản EN được "chụp" lại từ HTML lúc load; bản VI nằm trong từ điển dưới đây.
+var I18N_VI = {
+  'nav-funds': 'Quỹ đầu tư',
+  'nav-rounds': 'Lộ trình',
+  'nav-org': 'Ban tổ chức',
+  'nav-tickets': 'Vé',
+  'nav-reg': 'Đăng ký <span class="arr">→</span>',
+
+  'hero-pill': '<span class="ldot"></span>Đang mở đơn đăng ký',
+  'hero-p': 'Sân gọi vốn thực chiến cho startup AI — pitch trực tiếp trước 20+ quỹ đầu tư Việt Nam &amp; quốc tế, chung kết trên sân khấu Conviction.',
+  'hero-btn-reg': 'Đăng ký tham dự <span class="arr">→</span>',
+  'hero-btn-rounds': 'Xem lộ trình',
+
+  'cd-lbl': 'Đếm ngược tới Audition — 08.08.2026',
+  'cd-d': 'Ngày', 'cd-h': 'Giờ', 'cd-m': 'Phút', 'cd-s': 'Giây',
+
+  'stat-1': 'Startup đã đăng ký tham gia',
+  'stat-2': 'Quỹ đầu tư Việt Nam &amp; quốc tế',
+  'stat-3': 'Ticket size tối đa mỗi thương vụ',
+
+  's1-title': '<em>Ban tổ chức</em>',
+  's1-lead': 'Fund the Future được kiến tạo bởi những đơn vị tiên phong về AI và cộng đồng tài chính – quản trị doanh nghiệp tại Việt Nam.',
+  'org-role-1': 'Ban tổ chức',
+  'org-role-2': 'Đồng tổ chức',
+  'snappp-p': 'Đơn vị đào tạo AI cho doanh nghiệp theo giáo trình chuẩn Singapore (Đại học NUS) — giúp doanh nghiệp giảm chi phí vận hành, tăng khả năng kiểm soát, hiệu quả đo lường được bằng số liệu.',
+  'edge-p': 'Cộng đồng tài chính &amp; quản trị doanh nghiệp dành cho lãnh đạo doanh nghiệp ecommerce &amp; global business — kết nối chuyên gia, hệ sinh thái vốn và chuẩn quản trị quốc tế.',
+
+  's2-title': 'Đối tác &amp; <em>Nhà tài trợ</em>',
+  's2-lead': 'Đồng hành cùng Fund the Future là các đối tác chính, nhà tài trợ chiến lược và 20+ kênh truyền thông trong khuôn khổ Conviction 2026.',
+  'tier-main': 'Đối tác chính — Main Partners',
+  'tier-strategic': 'Nhà tài trợ chiến lược — Strategic Sponsors',
+  'tier-sponsors': 'Nhà tài trợ — Sponsors',
+  'tier-media': 'Đối tác truyền thông — Media Partners',
+  'sihub-desc': 'Trung tâm khởi nghiệp đổi mới sáng tạo TP.HCM',
+  'conv-desc': 'Sự kiện công nghệ quy mô lớn — nơi diễn ra vòng chung kết',
+
+  's3-title': '<em>Nhà đầu tư</em> tham dự',
+  's3-lead': '20+ quỹ đầu tư VC, corporate VC và angel investors từ Việt Nam &amp; quốc tế — trực tiếp nghe pitch và xem xét đầu tư, ticket size lên đến $1M.',
+  'vc-note': 'Danh sách quỹ đang tiếp tục được cập nhật',
+
+  's4-title': 'Gọi vốn không nên là <em>hành trình đơn độc</em>',
+  's4-lead': 'Startup được hỗ trợ trọn vẹn từ trước khi pitch cho đến sau chương trình — 4 bước đồng hành cùng bạn.',
+  'w1-h': 'Tư vấn pitch deck',
+  'w1-p': 'Cố vấn 1-1 giúp xây dựng và tinh chỉnh pitch deck chuẩn nhà đầu tư — từ storytelling, số liệu đến định giá.',
+  'w2-h': 'Pitch với VC tại Audition',
+  'w2-p': 'Lên sân khấu pitch trực tiếp trước 20+ quỹ đầu tư Việt Nam &amp; quốc tế — phản hồi thật, cơ hội chốt deal thật.',
+  'w3-h': 'Pitch ở chung kết Conviction',
+  'w3-p': 'Startup đạt giải bước lên sân khấu chung kết trong sự kiện Conviction trước 60.000 người tham dự — độ phủ mà startup khó tự tạo ra.',
+  'w4-h': 'Hỗ trợ sau chương trình',
+  'w4-p': 'Truyền thông trên hệ thống kênh Conviction &amp; 20+ media partners, follow-up meeting với các quỹ quan tâm và hỗ trợ Due Diligence để đi đến vòng rót vốn.',
+
+  's5-title': 'Vòng 1 — <em>Audition</em>',
+  's5-lead': 'Điểm khởi đầu của mọi startup: đăng ký, được BTC xét duyệt và bước lên sân khấu pitch trước hội đồng quỹ đầu tư.',
+  'r1-tag': '● Đang mở đơn đăng ký',
+  'r1-h': 'Lên sân khấu, pitch trước 20+ quỹ',
+  'r1-p': 'Mỗi startup được xét duyệt đều có suất pitch trực tiếp trước hội đồng quỹ đầu tư. Cổng đăng ký mở đến trước ngày Audition 08.08.2026 — đăng ký sớm để có nhiều thời gian chuẩn bị cùng mentor.',
+  'r1-chip1': '<b>20+</b> quỹ ngồi ghế hội đồng',
+  'r1-chip2': 'Hỗ trợ pitch deck + tư vấn <b>1-1</b>',
+  'r1-venue': '<b>SIHUB — Saigon Innovation Hub</b>123 Đường Trương Định, Phường Xuân Hòa, TP. Hồ Chí Minh',
+
+  's6-title': 'Vòng chung kết — <em>Grand Finale</em>',
+  's6-lead': 'Đích đến cao nhất: các startup đạt giải Audition tranh tài trên sân khấu chính của Conviction.',
+  'r2-tag': '🏆 Sân khấu chính — Conviction',
+  'r2-h': 'Toả sáng trước 60.000 người',
+  'r2-p': 'Vòng chung kết tổ chức trong khuôn khổ sự kiện Conviction tại THISO MALL SALA, TP. Thủ Đức — nơi startup của bạn xuất hiện trước cộng đồng công nghệ lớn nhất Việt Nam và kết nối trực tiếp với các quỹ để tiến tới vòng đầu tư.',
+  'r2-chip1': '<b>60.000</b> người tham dự Conviction',
+  'r2-chip2': 'Truyền thông <b>20+</b> kênh media',
+  'r2-chip3': 'Giải thưởng &amp; kết nối đầu tư',
+  'r2-venue': '<b>THISO MALL SALA — trong sự kiện Conviction</b>Số 10 Đường Mai Chí Thọ, Phường Thủ Thiêm, TP. Thủ Đức, TP. Hồ Chí Minh',
+
+  's7-title': 'Vé Startup — <em>phí xác nhận suất pitch</em>',
+  's7-lead': 'Startup đăng ký sẽ được BTC <b style="color:var(--org-2)">xét duyệt và mời</b> tham dự. Phí vé không phải chi phí mua suất — đây là <b style="color:var(--org-2)">phí xác nhận</b> để giữ suất pitch và đảm bảo cam kết tham gia.',
+  'tk1-stamp': 'ĐÃ ĐÓNG',
+  'tk1-flag': 'Kết thúc 12.07',
+  'tk1-note': 'Phí xác nhận tham gia đợt sớm — đã đóng cổng',
+  'tk1-li1': 'Suất pitch tại vòng Audition',
+  'tk1-li2': 'Tư vấn pitch deck 1-1',
+  'tk1-li3': 'Hỗ trợ sau chương trình',
+  'tk1-btn': 'Hết hạn đăng ký',
+  'tk2-flag': 'Đang nhận xác nhận',
+  'tk2-note': 'Dành cho startup được duyệt tham dự — mở xác nhận đến trước ngày Audition 08.08.2026',
+  'tk2-invite': 'Suất pitch dành cho startup đã được BTC xét duyệt qua đơn đăng ký. Phí $149 là phí xác nhận cam kết tham gia — giữ suất pitch của bạn và kích hoạt chương trình hỗ trợ 1-1.',
+  'tk2-li1': 'Suất pitch đảm bảo tại vòng Audition',
+  'tk2-li2': 'Tư vấn pitch deck &amp; chiến lược gọi vốn 1-1',
+  'tk2-li3': 'Pitch trước 20+ quỹ — ticket size đến $1M',
+  'tk2-li4': 'Cơ hội vào chung kết tại Conviction',
+  'tk2-li5': 'Truyền thông &amp; hỗ trợ Due Diligence sau chương trình',
+  'tk2-btn': 'Xác nhận tham gia — $149 <span class="arr">→</span>',
+
+  's8-title': 'Vé <em>Audience</em> — đến xem &amp; đồng hành',
+  'aud-welcome': 'Fund the Future <b>chào đón các bạn trẻ</b> và <b>các cộng đồng khởi nghiệp</b> đến xem trực tiếp: nghe các startup pitch trước hội đồng quỹ đầu tư, học cách nhà đầu tư đặt câu hỏi, và hoà mình vào không khí của vòng chung kết tại Conviction.',
+  'aud-tag1': '🎓 Sinh viên &amp; bạn trẻ yêu khởi nghiệp',
+  'aud-tag2': '🚀 Cộng đồng startup &amp; builder',
+  'aud-tag3': '🤝 Founder tương lai tìm cảm hứng',
+  'aud-tag4': '💡 Người quan tâm đầu tư &amp; công nghệ',
+  'tk3-flag': 'Đang mở bán',
+  'tk3-note': 'Một tấm vé — trọn vẹn hành trình cùng các startup',
+  'tk3-li1': 'Nghe startup pitch trực tiếp tại Audition 08.08',
+  'tk3-li2': 'Tham dự vòng chung kết tại Conviction 15.08',
+  'tk3-li3': 'Kết nối cộng đồng founder, builder &amp; nhà đầu tư',
+  'tk3-btn': 'Mua vé Audience — $7 <span class="arr">→</span>',
+
+  'faq-title': 'Câu hỏi <em>thường gặp</em>',
+  'q1': 'Vé Early Bird $99 còn mua được không?',
+  'a1': 'Rất tiếc, Early Bird đã kết thúc từ ngày 12.07.2026. Bạn vẫn xác nhận tham gia được với Startup Package $149 — đầy đủ toàn bộ quyền lợi tham dự.',
+  'q2': 'Đăng ký xong tôi được gì ngay?',
+  'a2': 'Một suất pitch đảm bảo tại vòng Audition ngày 08.08.2026, kèm hỗ trợ pitch deck và buổi tư vấn 1-1 với mentor trước sự kiện.',
+  'q3': 'Bây giờ nộp đơn còn kịp không?',
+  'a3': 'Còn! Cổng đăng ký mở đến trước vòng Audition 08.08.2026. Đăng ký sớm để có nhiều thời gian chuẩn bị cùng mentor.',
+  'q4': 'Làm sao để vào vòng chung kết?',
+  'a4': 'Các startup đạt giải tại Audition sẽ tranh tài ở chung kết ngày 15.08.2026, tổ chức trong sự kiện Conviction với 60.000 người tham dự.',
+  'q5': 'Hội đồng đầu tư gồm những ai?',
+  'a5': '20+ quỹ đầu tư Việt Nam và quốc tế — bao gồm VC, corporate VC và angel investors hoạt động tích cực tại Đông Nam Á.',
+  'q6': 'Quyền lợi truyền thông khi đạt giải gồm gì?',
+  'a6': 'Truyền thông trên hệ thống kênh Conviction và mạng lưới 20+ media partners, cùng chứng nhận và kết nối đầu tư sau chương trình.',
+
+  'cta-h': 'Sẵn sàng <em>gọi vốn?</em>',
+  'cta-p': 'Giữ suất pitch tại Fund the Future ngay hôm nay — biến 08.08 thành ngày startup AI của bạn cất cánh.',
+  'cta-btn': 'Đăng ký tham dự <span class="arr">→</span>',
+
+  'st-title': 'Đăng ký Startup Package',
+  'st-sub': 'Dành cho startup AI muốn pitch gọi vốn tại vòng Audition 08.08.2026 — BTC xét duyệt và phản hồi qua email trong vòng 48 giờ.',
+  'f-rep-label': 'Họ tên người đại diện <b>*</b>',
+  'f-name-label': 'Họ tên <b>*</b>',
+  'f-name-ph': 'Nguyễn Văn A',
+  'f-email-ph-st': 'ban@startup.vn',
+  'f-email-ph-au': 'ban@email.com',
+  'f-phone-label': 'Số điện thoại (Zalo) <b>*</b>',
+  'f-startup-label': 'Tên startup <b>*</b>',
+  'f-startup-ph': 'Tên công ty / dự án',
+  'f-stage-label': 'Giai đoạn gọi vốn <b>*</b>',
+  'f-stage-opt0': '— Chọn giai đoạn —',
+  'f-stage-opt1': 'Chưa gọi vốn',
+  'f-stage-opt4': 'Series A trở lên',
+  'f-desc-label': 'Mô tả ngắn sản phẩm AI (2–3 câu) <b>*</b>',
+  'f-desc-ph': 'Sản phẩm giải quyết vấn đề gì, cho ai, đã có kết quả gì?',
+  'f-deck-label': 'Link pitch deck (Drive/DocSend — có thể bổ sung sau)',
+  'st-submit': 'Gửi đăng ký <span class="arr">→</span>',
+  'f-privacy-st': 'Thông tin chỉ dùng cho việc xét duyệt &amp; liên hệ của BTC Fund the Future.',
+  'st-ok-h': 'Đã nhận đăng ký!',
+  'st-ok-p': 'Cảm ơn bạn. BTC sẽ xét duyệt và gửi email hướng dẫn xác nhận suất pitch trong vòng 48 giờ — nhớ kiểm tra cả hộp thư Spam/Promotions.',
+
+  'au-title': 'Đặt vé Audience — $7',
+  'au-sub': 'Đến xem startup pitch trực tiếp và tham dự vòng chung kết tại Conviction — BTC sẽ gửi hướng dẫn thanh toán &amp; vé điện tử qua email.',
+  'f-group-label': 'Bạn thuộc nhóm nào <b>*</b>',
+  'f-group-opt0': '— Chọn nhóm —',
+  'f-group-opt1': 'Sinh viên',
+  'f-group-opt3': 'Nhà đầu tư',
+  'f-group-opt4': 'Khác',
+  'au-submit': 'Đặt vé — $7 <span class="arr">→</span>',
+  'f-privacy-au': 'Thông tin chỉ dùng cho việc gửi vé &amp; liên hệ của BTC Fund the Future.',
+  'au-ok-h': 'Đã nhận đặt vé!',
+  'au-ok-p': 'Cảm ơn bạn. BTC sẽ gửi email hướng dẫn thanh toán và vé điện tử trong vòng 24 giờ — nhớ kiểm tra cả hộp thư Spam/Promotions.',
+
+  'foot-copy': '© Fund the Future 2026 · AI Builders × Investors · Tổ chức bởi <a href="https://snappp.ai" target="_blank" rel="noopener">Snappp.AI</a> &amp; THE EDGE · Audition 08.08 @ SIHUB, 123 Trương Định · Chung kết 15.08 @ THISO MALL SALA trong khuôn khổ <a href="https://www.conviction.vn/en" target="_blank" rel="noopener">Conviction</a>'
+};
+
+// chuỗi động dùng trong JS (trạng thái gửi form, thông báo lỗi)
+var I18N_MSG = {
+  en: { sending: 'Sending…', fail: 'Submission failed — please check your connection and try again.' },
+  vi: { sending: 'Đang gửi…', fail: 'Gửi không thành công — vui lòng kiểm tra kết nối mạng và thử lại.' }
+};
+
+window.FTF_LANG = 'en';
+
+(function(){
+  // chụp lại bản EN từ HTML để quay về được sau khi chuyển sang VI
+  var EN = {}, ENP = {};
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if(!(k in EN)) EN[k] = el.innerHTML;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+    var k = el.getAttribute('data-i18n-ph');
+    if(!(k in ENP)) ENP[k] = el.getAttribute('placeholder');
+  });
+
+  var btn = document.getElementById('langBtn');
+
+  function apply(lang){
+    window.FTF_LANG = lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k = el.getAttribute('data-i18n');
+      var v = lang === 'vi' ? I18N_VI[k] : EN[k];
+      if(v != null) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+      var k = el.getAttribute('data-i18n-ph');
+      var v = lang === 'vi' ? I18N_VI[k] : ENP[k];
+      if(v != null) el.setAttribute('placeholder', v);
+    });
+    btn.textContent = lang === 'vi' ? 'EN' : 'VI';
+    // đóng FAQ đang mở vì chiều cao nội dung thay đổi theo ngôn ngữ
+    document.querySelectorAll('.fq.open').forEach(function(i){
+      i.classList.remove('open'); i.querySelector('.fq-a').style.maxHeight = null;
+    });
+    try{ localStorage.setItem('ftf-lang', lang); }catch(e){}
+  }
+
+  btn.addEventListener('click', function(){
+    apply(window.FTF_LANG === 'vi' ? 'en' : 'vi');
+  });
+
+  // mặc định English; nhớ lựa chọn của khách ở lần truy cập sau
+  var saved = null;
+  try{ saved = localStorage.getItem('ftf-lang'); }catch(e){}
+  if(saved === 'vi') apply('vi');
+})();
+
+// ---- countdown to Audition 08.08.2026 (mọi vị trí [data-cd], nhún nhẹ khi đổi số) ----
+(function(){
+  var target = new Date('2026-08-08T09:00:00+07:00').getTime();
+  var els = {
+    d: document.querySelectorAll('[data-cd="d"]'),
+    h: document.querySelectorAll('[data-cd="h"]'),
+    m: document.querySelectorAll('[data-cd="m"]'),
+    s: document.querySelectorAll('[data-cd="s"]')
+  };
+  function pad(n){return n<10?'0'+n:''+n}
+  function set(k,v){
+    els[k].forEach(function(el){
+      if(el.textContent !== v){
+        el.textContent = v;
+        el.classList.add('tick');
+        setTimeout(function(){ el.classList.remove('tick'); },180);
+      }
+    });
+  }
+  function tick(){
+    var d = target - Date.now();
+    if(d<0)d=0;
+    set('d', pad(Math.floor(d/864e5)));
+    set('h', pad(Math.floor(d/36e5)%24));
+    set('m', pad(Math.floor(d/6e4)%60));
+    set('s', pad(Math.floor(d/1e3)%60));
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+// ---- reveal on scroll ----
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+})();
+
+// ---- FAQ accordion ----
+document.querySelectorAll('.fq-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    var item = q.parentElement, a = item.querySelector('.fq-a');
+    var open = item.classList.contains('open');
+    document.querySelectorAll('.fq').forEach(function(i){
+      i.classList.remove('open'); i.querySelector('.fq-a').style.maxHeight = null;
+    });
+    if(!open){ item.classList.add('open'); a.style.maxHeight = a.scrollHeight+'px'; }
+  });
+});
+
+// ---- 2 FORM ĐĂNG KÝ → 2 Google Form riêng ----
+// CẤU HÌNH: tạo 2 Google Form (Startup / Audience) rồi thay FORM_ID_* và các entry.XXXXXXXXX.
+// Cách lấy entry: mở Google Form → ⋮ → "Get pre-filled link" → điền thử mỗi ô một giá trị
+// → "Get link" → trong URL sẽ có các tham số entry.XXXXXXXXX ứng với từng câu hỏi.
+// LƯU Ý: đáp án các câu trắc nghiệm (Giai đoạn gọi vốn / Nhóm) trong Google Form
+// phải trùng khớp từng chữ với VALUE của <option> trong form tương ứng trên trang
+// (value cố định bằng tiếng Anh, không đổi theo ngôn ngữ hiển thị).
+var GFORMS = {
+  startup: {
+    action: 'https://docs.google.com/forms/d/e/1FAIpQLSddktrAFpBbizz6Vg2hP--pzngBBbmqG3fwRf3PkRX9-QEOSg/formResponse',
+    map: {
+      name:    'entry.2012471327', // Họ tên người đại diện
+      email:   'entry.264871760',  // Email
+      phone:   'entry.411435232',  // Số điện thoại (Zalo)
+      startup: 'entry.1608953852', // Tên Startup
+      desc:    'entry.1841826410'  // Mô tả sản phẩm
+    },
+    // Google Form CHƯA có câu hỏi riêng cho: Giai đoạn gọi vốn, Link pitch deck
+    // → tạm gộp có nhãn vào ô "Mô tả sản phẩm" để không mất dữ liệu.
+    // Khi bổ sung 2 câu hỏi đó: thêm entry vào map (stage/deck) rồi xoá hàm compose này.
+    compose: function(form, v){
+      v.desc = [
+        'Giai đoạn gọi vốn: ' + form.elements.stage.value,
+        form.elements.deck.value.trim() ? 'Pitch deck: ' + form.elements.deck.value.trim() : '',
+        '--- Mô tả sản phẩm ---',
+        form.elements.desc.value.trim()
+      ].filter(Boolean).join('\n');
+      return v;
+    }
+  },
+  audience: {
+    action: 'https://docs.google.com/forms/d/e/FORM_ID_AUDIENCE/formResponse', // TODO: thay FORM_ID_AUDIENCE
+    map: {
+      name:  'entry.2000001', // Họ tên
+      email: 'entry.2000002', // Email
+      phone: 'entry.2000003', // Số điện thoại (Zalo)
+      group: 'entry.2000004'  // Nhóm (trắc nghiệm)
+    }
+  }
+};
+
+(function(){
+  var masks = {
+    startup:  document.getElementById('maskStartup'),
+    audience: document.getElementById('maskAudience')
+  };
+
+  function open(kind){
+    masks[kind].querySelector('.modal').classList.remove('sent');
+    masks[kind].classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAll(){
+    Object.keys(masks).forEach(function(k){ masks[k].classList.remove('show'); });
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-reg]').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      open(btn.getAttribute('data-reg'));
+    });
+  });
+  document.querySelectorAll('.m-close').forEach(function(b){ b.addEventListener('click', closeAll); });
+  Object.keys(masks).forEach(function(k){
+    masks[k].addEventListener('click', function(e){ if(e.target === masks[k]) closeAll(); });
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAll(); });
+
+  document.querySelectorAll('form[data-gform]').forEach(function(form){
+    var cfg = GFORMS[form.getAttribute('data-gform')];
+    var btn = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.reportValidity()) return;
+      var values = {};
+      Object.keys(cfg.map).forEach(function(k){
+        var el = form.elements[k];
+        if(el) values[k] = el.value.trim();
+      });
+      if(cfg.compose) values = cfg.compose(form, values);
+      var fd = new FormData();
+      Object.keys(values).forEach(function(k){
+        if(cfg.map[k]) fd.append(cfg.map[k], values[k]);
+      });
+      var msg = I18N_MSG[window.FTF_LANG] || I18N_MSG.en;
+      var btnHTML = btn.innerHTML; // chụp theo ngôn ngữ hiện tại
+      btn.disabled = true;
+      btn.textContent = msg.sending;
+      // mode:'no-cors' — Google Forms không trả CORS header nên response là opaque;
+      // coi như thành công nếu không lỗi mạng.
+      fetch(cfg.action, { method:'POST', mode:'no-cors', body:fd })
+        .then(function(){ form.closest('.modal').classList.add('sent'); form.reset(); })
+        .catch(function(){ alert(msg.fail); })
+        .finally(function(){ btn.disabled = false; btn.innerHTML = btnHTML; });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
