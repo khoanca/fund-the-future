@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fund the Future — Backdrop sân khấu (Demo Day 14.08)</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a09; --tile:#141210; --tile-2:#1b1815;
+    --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+    --ink:#f7f3ec; --muted:#b4afa5; --dim:#6b665d;
+    --org:#ff5c00; --org-2:#ff8a3c; --org-3:#ff3800; --conv:#f4c430;
+    --grad:linear-gradient(115deg,var(--org-2),var(--org-3));
+    --disp:'Unbounded',sans-serif; --body:'Be Vietnam Pro',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--body);background:#080706;color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+  b,strong{font-weight:700}
+
+  /* ══════════ GIAO DIỆN QUẢN LÝ (không xuất ra file in) ══════════ */
+  .ui{max-width:1280px;margin:0 auto;padding:44px 28px 90px}
+  .top{border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:34px}
+  .top h1{font-family:var(--disp);font-size:30px;font-weight:800;letter-spacing:-.01em}
+  .top h1 em{font-style:normal;color:var(--org-2)}
+  .top p{color:var(--muted);font-size:14px;margin-top:10px;max-width:820px}
+  .sect{margin-top:52px}
+  .sect>h2{font-family:var(--disp);font-size:19px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--org-2);display:flex;align-items:center;gap:14px}
+  .sect>h2::before{content:"";width:30px;height:2px;background:var(--org)}
+  .sect>.hint{color:var(--dim);font-size:13px;margin-top:9px;max-width:820px;line-height:1.6}
+  .card{margin-top:26px;background:#0e0d0c;border:1px solid var(--line);border-radius:18px;padding:18px}
+  .card .meta{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:14px;flex-wrap:wrap}
+  .card .meta h3{font-family:var(--disp);font-size:15.5px;font-weight:700}
+  .card .meta h3 small{display:block;font-family:var(--body);font-size:12px;font-weight:500;color:var(--dim);letter-spacing:.05em;margin-top:5px}
+  .card .meta p{font-size:12.5px;color:var(--muted);max-width:620px;margin-top:7px;line-height:1.55}
+  .open{flex:none;font-size:12.5px;font-weight:600;color:#0a0500;background:var(--org-2);border-radius:999px;padding:9px 17px;text-decoration:none;white-space:nowrap}
+  .open:hover{background:var(--org)}
+  .frame{position:relative;overflow:hidden;border-radius:12px;background:#000}
+  .frame>.board{transform-origin:top left}
+
+  /* ══════════ NỀN CHUNG ══════════ */
+  .board{position:relative;overflow:hidden;flex:none;color:var(--ink);font-family:var(--body);line-height:1.5;
+    background:
+      radial-gradient(2600px 1500px at 84% -22%, rgba(255,92,0,.085), transparent 60%),
+      linear-gradient(180deg,#0e0c0b 0%, #0b0a09 62%, #090807 100%);
+  }
+  .board *{box-sizing:border-box}
+  .fx{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .fx::before{content:"";position:absolute;inset:-120px;opacity:.5;
+    background-image:radial-gradient(rgba(255,255,255,.05) 3px,transparent 3px);background-size:84px 84px}
+  .blob{position:absolute;border-radius:50%;filter:blur(220px)}
+  .b1{width:1500px;height:1500px;top:-30%;left:-8%;background:radial-gradient(circle,rgba(255,92,0,.25),transparent 65%)}
+  .b2{width:1300px;height:1300px;bottom:-36%;right:-6%;background:radial-gradient(circle,rgba(255,56,0,.2),transparent 65%)}
+  .b3{width:1600px;height:1600px;bottom:-48%;left:32%;background:radial-gradient(circle,rgba(255,138,60,.12),transparent 65%)}
+  .ghost{position:absolute;font-family:var(--disp);font-weight:800;color:transparent;line-height:1;user-select:none;z-index:1;white-space:nowrap}
+
+  .in{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .in .main{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%}
+  .eyebrow{font-family:var(--disp);font-weight:700;text-transform:uppercase;color:var(--org-2);display:flex;align-items:center;gap:34px;width:max-content}
+  .eyebrow::before,.eyebrow::after{content:"";width:90px;height:4px;background:var(--org);flex:none}
+  .wm{font-family:var(--disp);font-weight:800;letter-spacing:-.018em;line-height:1;white-space:nowrap}
+  .wm em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .slogan{font-weight:600;text-transform:uppercase;color:var(--ink)}
+  .slogan b{color:var(--org)}
+  .chips{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}
+  .chip{display:inline-flex;align-items:center;gap:22px;font-weight:600;border-radius:999px;background:rgba(255,92,0,.11);border:2px solid rgba(255,92,0,.34);color:var(--ink);white-space:nowrap}
+  .chip .dot{border-radius:50%;background:var(--org);box-shadow:0 0 30px var(--org);flex:none}
+  .chip.cv{background:rgba(244,196,48,.1);border-color:rgba(244,196,48,.36)}
+  .chip.cv .dot{background:var(--conv);box-shadow:0 0 30px var(--conv)}
+
+  /* ── HÀNG TỔ CHỨC NỔI BẬT: Snappp AI · The Edge Alliance · Expand VN · Conviction ── */
+  .orgrow{display:flex;align-items:center;justify-content:center;gap:90px}
+  .mark{display:flex;align-items:center;gap:26px;text-align:left}
+  .mark .gg{width:88px;height:88px;border-radius:24px;display:grid;place-items:center;flex:none;
+    background:rgba(255,92,0,.13);border:3px solid rgba(255,92,0,.45);color:var(--org-2)}
+  .mark .gg svg{width:44px;height:44px}
+  .mark.gold .gg{background:rgba(244,196,48,.1);border-color:rgba(244,196,48,.45);color:var(--conv)}
+  .mark.mono .gg{background:rgba(247,243,236,.07);border-color:rgba(247,243,236,.35);color:var(--ink)}
+  .mark .tx{font-family:var(--disp);font-weight:700;font-size:44px;line-height:1.12;letter-spacing:.02em;white-space:nowrap}
+  .mark .tx i{font-style:normal;color:var(--org)}
+  .mark .tx small{display:block;font-family:var(--body);font-size:19px;font-weight:500;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-top:6px}
+  .mark img{height:64px;width:auto;filter:grayscale(1) brightness(1.9);mix-blend-mode:screen}
+  .mark img.ex{height:84px;filter:none;mix-blend-mode:normal}
+  .mark img.c98{height:92px;filter:none;mix-blend-mode:normal}
+
+  /* ── DẢI LOGO PHÂN TẦNG: quỹ BGK / đồng hành / tài trợ ── */
+  .logobar{display:flex;align-items:flex-start;justify-content:center;gap:90px}
+  .lgroup{display:flex;flex-direction:column;align-items:center;gap:24px}
+  .lgroup .lbl{font-family:var(--disp);font-size:22px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+  .lgroup .logos{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:34px 48px;max-width:3000px}
+  .mono-lg{display:inline-flex;align-items:center;gap:15px;font-family:var(--disp);font-weight:600;font-size:25px;color:var(--ink);letter-spacing:.03em;white-space:nowrap}
+  .mono-lg i{font-style:normal;width:54px;height:54px;border:3px solid rgba(247,243,236,.45);border-radius:14px;display:grid;place-items:center;font-size:21px;font-weight:700;color:var(--ink)}
+  .lgroup img{height:60px;width:auto;max-width:250px;object-fit:contain}
+  .lgroup img.keep{filter:grayscale(1) brightness(1.9);mix-blend-mode:screen}
+  .lgroup img.tall{height:110px}
+  .vline{width:2px;align-self:stretch;background:var(--line-2);flex:none}
+  .lgroup .fnames{font-weight:600;font-size:25px;color:var(--muted);text-align:center;line-height:1.9;max-width:2900px}
+  .logobar.lb2{border-top:0 !important;padding-top:0 !important;margin-top:34px !important}
+  .communities{align-self:stretch;margin-top:32px;padding-top:28px;border-top:2px solid var(--line);color:var(--dim);font-size:22px;line-height:1.9;text-align:center}
+  .communities b{color:var(--muted);font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:8px}
+  .oplabel{font-size:20px;color:var(--dim);letter-spacing:.08em}
+
+  /* ══ 1 · GLOW TỐI GIẢN — 6m × 3m (3600×1800) ══ */
+  .bd-main{width:3600px;height:1800px}
+  .bd-main .ghost{right:80px;top:56px;font-size:280px;-webkit-text-stroke:3px rgba(255,92,0,.14)}
+  .bd-main .in{padding:110px 220px 90px;justify-content:space-between}
+  .bd-main .eyebrow{font-size:50px;letter-spacing:.32em}
+  .bd-main .wm{font-size:235px;margin-top:32px}
+  .bd-main .slogan{font-size:54px;letter-spacing:.42em;margin-top:40px}
+  .bd-main .chips{margin-top:44px}
+  .bd-main .chip{font-size:42px;padding:24px 52px}
+  .bd-main .chip .dot{width:22px;height:22px}
+  .bd-main .orgrow{margin-top:40px;padding-top:36px;border-top:2px solid var(--line);align-self:stretch}
+  .bd-main .logobar{margin-top:32px;padding-top:32px;border-top:2px solid var(--line);align-self:stretch}
+  .bd-main .lgroup img{height:54px;max-width:220px}
+  .bd-main .lgroup img.tall{height:100px}
+
+  /* ══ 2 · ÁNH ĐÈN SÂN KHẤU — 6m × 3m ══ */
+  .bd-beam{width:3600px;height:1800px;
+    background:
+      radial-gradient(2000px 900px at 50% 118%, rgba(255,92,0,.32), transparent 70%),
+      linear-gradient(180deg,#0c0a09 0%, #0b0a09 55%, #120c07 100%)}
+  .bd-beam .beams{position:absolute;inset:0;z-index:0;overflow:hidden}
+  .bd-beam .beam{position:absolute;bottom:-14%;left:50%;width:230px;height:135%;transform-origin:bottom center;
+    background:linear-gradient(180deg,transparent 0%,rgba(255,138,60,.04) 34%,rgba(255,92,0,.2) 100%);filter:blur(30px)}
+  .bd-beam .beam:nth-child(1){transform:translateX(-50%) rotate(-38deg)}
+  .bd-beam .beam:nth-child(2){transform:translateX(-50%) rotate(-19deg)}
+  .bd-beam .beam:nth-child(3){transform:translateX(-50%) rotate(0deg);background:linear-gradient(180deg,transparent 0%,rgba(255,138,60,.06) 34%,rgba(255,120,30,.26) 100%)}
+  .bd-beam .beam:nth-child(4){transform:translateX(-50%) rotate(19deg)}
+  .bd-beam .beam:nth-child(5){transform:translateX(-50%) rotate(38deg)}
+  .bd-beam .floor{position:absolute;left:0;right:0;bottom:0;height:12px;z-index:4;
+    background:linear-gradient(90deg,transparent,var(--org) 18%,var(--org-2) 50%,var(--org) 82%,transparent);
+    box-shadow:0 -8px 60px rgba(255,92,0,.55)}
+  .bd-beam .in{padding:120px 220px 100px;justify-content:space-between}
+  .bd-beam .eyebrow{font-size:50px;letter-spacing:.32em}
+  .bd-beam .wm{font-size:240px;margin-top:36px;
+    text-shadow:0 0 120px rgba(255,92,0,.35)}
+  .bd-beam .slogan{font-size:54px;letter-spacing:.42em;margin-top:42px}
+  .bd-beam .chips{margin-top:46px}
+  .bd-beam .chip{font-size:42px;padding:24px 52px;background:rgba(11,10,9,.55);backdrop-filter:blur(6px)}
+  .bd-beam .chip .dot{width:22px;height:22px}
+  .bd-beam .band{align-self:stretch;margin-top:40px;background:rgba(11,10,9,.66);border:2px solid var(--line);border-radius:30px;padding:44px 70px 50px;backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:40px}
+  .bd-beam .orgrow{gap:80px}
+  .bd-beam .mark .gg{width:78px;height:78px}
+  .bd-beam .mark .tx{font-size:40px}
+  .bd-beam .mark img{height:58px}
+  .bd-beam .logobar{gap:80px;border-top:2px solid var(--line);padding-top:38px}
+  .bd-beam .lgroup img{height:52px;max-width:210px}
+  .bd-beam .lgroup img.tall{height:92px}
+
+  /* ══ 3 · BENTO GRID — 6m × 3m ══ */
+  .bd-bento{width:3600px;height:1800px}
+  .bd-bento .gridlines{position:absolute;inset:0;z-index:0;opacity:.7;
+    background-image:linear-gradient(rgba(255,255,255,.04) 2px,transparent 2px),linear-gradient(90deg,rgba(255,255,255,.04) 2px,transparent 2px);
+    background-size:150px 150px}
+  .bd-bento .in{padding:110px 190px 100px;text-align:left;align-items:stretch}
+  .bd-bento .cols{flex:1;display:flex;gap:80px;align-items:center}
+  .bd-bento .lcol{flex:1.55;min-width:0}
+  .bd-bento .eyebrow{font-size:46px;letter-spacing:.3em}
+  .bd-bento .eyebrow::after{display:none}
+  .bd-bento .wm{font-size:310px;line-height:1.02;margin-top:44px;white-space:normal}
+  .bd-bento .slogan{font-size:54px;letter-spacing:.34em;margin-top:50px}
+  .bd-bento .rcol{flex:1;display:flex;flex-direction:column;gap:26px;min-width:0}
+  .bd-bento .bcard{background:rgba(20,18,16,.85);border:2px solid var(--line);border-radius:26px;padding:36px 44px;display:flex;align-items:center;gap:30px}
+  .bd-bento .bcard .ic{width:70px;height:70px;border-radius:18px;background:rgba(255,92,0,.13);border:2px solid rgba(255,92,0,.4);display:grid;place-items:center;flex:none;color:var(--org-2);font-family:var(--disp);font-weight:800;font-size:30px}
+  .bd-bento .bcard b{display:block;font-family:var(--disp);font-size:37px;font-weight:700;line-height:1.2}
+  .bd-bento .bcard span{display:block;font-size:26px;color:var(--muted);margin-top:6px}
+  .bd-bento .bcard.gold{border-color:rgba(244,196,48,.4)}
+  .bd-bento .bcard.gold .ic{background:rgba(244,196,48,.1);border-color:rgba(244,196,48,.4);color:var(--conv)}
+  .bd-bento .orgrow{justify-content:flex-start;gap:70px;margin-top:56px;padding-top:50px;border-top:2px solid var(--line)}
+  .bd-bento .mark .gg{width:80px;height:80px}
+  .bd-bento .mark .tx{font-size:40px}
+  .bd-bento .mark img{height:58px}
+  .bd-bento .logobar{justify-content:flex-start;margin-top:42px;padding-top:42px;border-top:2px solid var(--line);gap:80px}
+  .bd-bento .lgroup{align-items:flex-start}
+  .bd-bento .lgroup img{height:52px;max-width:210px}
+  .bd-bento .lgroup img.tall{height:94px}
+
+  /* ══ 4 · GEOMETRIC CHÉO — 6m × 3m ══ */
+  .bd-geo{width:3600px;height:1800px;background:linear-gradient(180deg,#0e0c0b,#0a0908)}
+  .bd-geo .slab{position:absolute;top:0;bottom:0;right:-40px;width:44%;z-index:1;
+    background:linear-gradient(160deg,var(--org-2) 0%,var(--org) 46%,var(--org-3) 100%);
+    clip-path:polygon(30% 0,100% 0,100% 100%,0 100%)}
+  .bd-geo .slab::before{content:"";position:absolute;inset:0;opacity:.16;
+    background-image:radial-gradient(rgba(10,5,0,.9) 7px,transparent 7px);background-size:52px 52px}
+  .bd-geo .slab .big{position:absolute;right:80px;top:170px;font-family:var(--disp);font-weight:800;font-size:300px;line-height:.92;color:rgba(10,5,0,.82);text-align:right}
+  .bd-geo .slab .big small{display:block;font-size:60px;font-weight:700;letter-spacing:.3em;margin-top:26px;color:rgba(10,5,0,.7)}
+  .bd-geo .edge2{position:absolute;top:0;bottom:0;right:-40px;width:44%;z-index:1;
+    background:var(--conv);clip-path:polygon(26.2% 0,27.8% 0,1.6% 100%,0 100%);opacity:.9}
+  .bd-geo .in{padding:120px 200px 100px;text-align:left;align-items:flex-start}
+  .bd-geo .main{align-items:flex-start;justify-content:center}
+  .bd-geo .eyebrow{font-size:48px;letter-spacing:.3em}
+  .bd-geo .eyebrow::after{display:none}
+  .bd-geo .wm{font-size:300px;line-height:1.02;margin-top:44px;white-space:normal}
+  .bd-geo .slogan{font-size:50px;letter-spacing:.36em;margin-top:46px}
+  .bd-geo .chips{justify-content:flex-start;margin-top:56px}
+  .bd-geo .chip{font-size:40px;padding:23px 48px;background:rgba(11,10,9,.72)}
+  .bd-geo .chip .dot{width:21px;height:21px}
+  .bd-geo .band{align-self:stretch;position:relative;z-index:5;background:rgba(11,10,9,.82);border:2px solid var(--line-2);border-radius:30px;padding:42px 66px 48px;backdrop-filter:blur(10px);display:flex;flex-direction:column;gap:38px}
+  .bd-geo .orgrow{gap:76px}
+  .bd-geo .mark .gg{width:76px;height:76px}
+  .bd-geo .mark .tx{font-size:38px}
+  .bd-geo .mark img{height:56px}
+  .bd-geo .logobar{gap:76px;border-top:2px solid var(--line);padding-top:36px}
+  .bd-geo .lgroup img{height:50px;max-width:200px}
+  .bd-geo .lgroup img.tall{height:90px}
+
+  /* ══ 5 · MÀN LED 16:9 — 3840×2160 ══ */
+  .bd-led{width:3840px;height:2160px}
+  .bd-led .ghost{left:50%;transform:translateX(-50%);bottom:-90px;font-size:560px;-webkit-text-stroke:3px rgba(255,92,0,.12)}
+  .bd-led .in{padding:130px 240px 110px;justify-content:space-between}
+  .bd-led .eyebrow{font-size:56px;letter-spacing:.32em}
+  .bd-led .wm{font-size:260px;margin-top:48px}
+  .bd-led .slogan{font-size:62px;letter-spacing:.42em;margin-top:60px}
+  .bd-led .chips{margin-top:60px}
+  .bd-led .chip{font-size:48px;padding:28px 60px}
+  .bd-led .chip .dot{width:25px;height:25px}
+  .bd-led .orgrow{margin-top:56px;padding-top:44px;border-top:2px solid var(--line);align-self:stretch}
+  .bd-led .logobar{margin-top:36px;padding-top:36px;border-top:2px solid var(--line);align-self:stretch;gap:80px}
+  .bd-led .lgroup img{height:56px;max-width:220px}
+  .bd-led .lgroup img.tall{height:100px}
+
+  /* ══ 6 · STANDEE CÁNH GÀ 0.8m × 1.8m — 960×2160 ══ */
+  .bd-standee{width:960px;height:2160px}
+  .bd-standee .fx::before{background-size:56px 56px;background-image:radial-gradient(rgba(255,255,255,.05) 2px,transparent 2px)}
+  .bd-standee .blob{filter:blur(140px)}
+  .bd-standee .b1{width:700px;height:700px;top:-12%;left:-30%}
+  .bd-standee .b2{width:640px;height:640px;bottom:-14%;right:-32%}
+  .bd-standee .b3{display:none}
+  .bd-standee .in{padding:90px 70px 70px;justify-content:space-between}
+  .bd-standee .eyebrow{font-size:26px;letter-spacing:.26em;gap:18px}
+  .bd-standee .eyebrow::before,.bd-standee .eyebrow::after{width:40px;height:3px}
+  .bd-standee .wm{white-space:normal;font-size:130px;line-height:1.04;margin-top:38px}
+  .bd-standee .slogan{font-size:25px;letter-spacing:.32em;margin-top:34px}
+  .bd-standee .infos{display:flex;flex-direction:column;gap:16px;margin-top:38px;align-self:stretch}
+  .bd-standee .chip{font-size:24px;padding:15px 24px;justify-content:center;gap:16px}
+  .bd-standee .chip .dot{width:13px;height:13px}
+  .bd-standee .orgrow{flex-wrap:wrap;gap:20px 34px;margin-top:36px;padding-top:28px;border-top:2px solid var(--line);align-self:stretch}
+  .bd-standee .mark{gap:14px}
+  .bd-standee .mark .gg{width:46px;height:46px;border-radius:13px;border-width:2px}
+  .bd-standee .mark .gg svg{width:24px;height:24px}
+  .bd-standee .mark .tx{font-size:22px}
+  .bd-standee .mark .tx small{display:none}
+  .bd-standee .mark img{height:32px}
+  .bd-standee .mark img.ex{height:36px}
+  .bd-standee .mark img.c98{height:44px}
+  .bd-standee .logobar{flex-direction:column;gap:24px;margin-top:28px;padding-top:24px;border-top:2px solid var(--line);align-self:stretch}
+  .bd-standee .lgroup{gap:13px}
+  .bd-standee .lgroup .lbl{font-size:14px}
+  .bd-standee .lgroup .logos{flex-wrap:wrap;justify-content:center;gap:18px 26px}
+  .bd-standee .lgroup img{height:32px;max-width:150px}
+  .bd-standee .mono-lg{font-size:14px;gap:8px}
+  .bd-standee .mono-lg i{width:30px;height:30px;border-width:2px;border-radius:8px;font-size:12px}
+  .bd-standee .vline{display:none}
+  .bd-standee .lgroup .fnames{font-size:13.5px;line-height:1.75;max-width:100%}
+  .bd-standee .logobar.lb2{margin-top:20px !important}
+  .bd-standee .communities{font-size:12px;margin-top:20px;padding-top:16px;line-height:1.75}
+  .bd-standee .communities b{font-size:11.5px;margin-bottom:5px}
+  .bd-standee .lgroup img.tall{height:58px}
+
+  html.export,html.export body{background:#000}
+  html.export .board{position:fixed;top:0;left:0}
+</style>
+</head>
+<body>
+<div class="ui">
+  <div class="top">
+    <h1>Backdrop sân khấu — <em>Demo Day pitching 14.08</em></h1>
+    <p>4 phương án style cho bạt 6×3m + màn LED 16:9 + standee cánh gà. Hàng logo nổi bật: <b>Snappp AI · The Edge Alliance · Expand VN · Conviction (Ninety Eight)</b>; kèm dải logo các quỹ đầu tư trong Ban Giám khảo (BLOCK71, Golden Gate, Do Ventures, Eureka, Lotte Ventures, VIC Partners, GenAI Fund, NIC).</p>
+  </div>
+
+  <!-- ═══ 1 · GLOW TỐI GIẢN ═══ -->
+  <section class="sect">
+    <h2>Style A · Glow tối giản — 6m × 3m</h2>
+    <p class="hint">Hướng OpenAI DevDay / Stripe Sessions: nền tối, quầng cam, chữ lớn căn giữa. An toàn nhất khi in bạt, lên hình gọn khi quay cận người pitching.</p>
+    <div class="card">
+      <div class="meta">
+        <div><h3>bd-main<small>3600 × 1800 · tỷ lệ 2:1</small></h3></div>
+        <a class="open" href="?only=bd-main" target="_blank">Mở 1:1 ↗</a>
+      </div>
+      <div class="frame" data-w="3600" data-h="1800">
+        <div class="board bd-main" id="bd-main">
+          <div class="fx"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+          <div class="ghost">14.08</div>
+          <div class="in">
+            <div class="main">
+              <div class="eyebrow">Demo Day &amp; Audition — Pitching Arena</div>
+              <div class="wm">FUND THE <em>FUTURE</em></div>
+              <div class="slogan">AI Builders <b>×</b> Investors</div>
+              
+            </div>
+            <div class="orgrow">
+              <div class="mark">
+                <span class="tx">SNAPPP <i>AI</i><small>AI Training for Business</small></span>
+              </div>
+              <div class="mark gold">
+                <span class="tx">THE EDGE<br>ALLIANCE</span>
+              </div>
+              <div class="mark"><img class="ex" src="logos/w/org-expand.png" alt="Expand VN — Kitchen as a Service"></div>
+              <div class="mark"><img class="c98" src="logos/org-coin98.png" alt="Coin98 — Ninety Eight"></div>
+            </div>
+            <div class="logobar">
+              <div class="lgroup">
+                <span class="lbl">Đồng hành</span>
+                <div class="logos">
+                  <img class="tall" src="logos/w/org-sihub.png" alt="SIHUB">
+                  <img src="logos/w/sp-nova.png" alt="Nova Group">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Tài trợ</span>
+                <div class="logos">
+                  <img src="logos/w/sp-nvidia.png" alt="NVIDIA">
+                  <img src="logos/w/sp-aws.png" alt="AWS">
+                  <img class="keep" src="logos/byteplus.svg" alt="BytePlus">
+                  <img src="logos/w/sp-qwen.png" alt="Qwen AI">
+                  <img src="logos/w/sp-apify.png" alt="Apify">
+                  <img src="logos/w/sp-haravan2.png" alt="Haravan">
+                  <span class="mono-lg"><i>Z</i>ZAFAGO</span>
+                  <img src="logos/w/sp-novaconsumer.png" alt="Nova Consumer">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Đối tác giáo dục</span>
+                <div class="logos">
+                  <img class="keep" src="logos/uni-fpt.svg" alt="FPT University">
+                  <img class="keep" src="logos/uni-ngoaithuong.svg" alt="ĐH Ngoại Thương">
+                  <img class="keep" src="logos/uni-ntt.svg" alt="ĐH Nguyễn Tất Thành">
+                  <img class="keep" src="logos/uni-vanlang.svg" alt="ĐH Văn Lang">
+                </div>
+              </div>
+            </div>
+            <div class="logobar lb2">
+              <div class="lgroup">
+                <span class="lbl">Quỹ đầu tư — Ban Giám khảo</span>
+                <div class="logos">
+                  <img src="logos/w/vc-block71.png" alt="BLOCK71 Vietnam">
+                  <img src="logos/w/vc-goldengate.png" alt="Golden Gate Ventures">
+                  <img src="logos/w/vc-doventures.png" alt="Do Ventures">
+                  <img src="logos/w/vc-eureka.png" alt="Eureka">
+                  <img src="logos/w/vc-lotte.png" alt="Lotte Ventures">
+                  <img src="logos/w/vc-vic.png" alt="VIC Partners">
+                  <img src="logos/w/vc-genai.png" alt="GenAI Fund">
+                  <img src="logos/w/sp-nic.png" alt="NIC">
+                  <img src="logos/w/fund-agile.png" alt="Agile Dynamics">
+                  <img src="logos/w/fund-viifm.png" alt="VIIFM">
+                  <img src="logos/w/fund-expara.png" alt="Expara Ventures">
+                  <img src="logos/w/fund-taiwania.png" alt="Taiwania Capital">
+                  <img src="logos/w/fund-touchstone.png" alt="Touchstone Partners">
+                  <img src="logos/w/fund-equitix.png" alt="Equitix Investing">
+                  <img src="logos/w/fund-maestro.png" alt="Maestro Equity Partners">
+                  <img src="logos/w/fund-iec.png" alt="IEC">
+                  <img src="logos/w/fund-kido.png" alt="KIDO Group">
+                  <span class="mono-lg"><i>MC</i>Maples Capital</span>
+                  <span class="mono-lg"><i>EC</i>Eric Capital</span>
+                  <span class="mono-lg"><i>QE</i>Q Eye</span>
+                  <span class="mono-lg"><i>GB</i>GBehub</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="communities"><b>Cộng đồng đồng hành</b>Claude Code Việt Nam / Chill cùng AI · Dev x AI Việt Nam · AI Research Insider · N8n AI Automation Việt Nam · SDVN — Cộng Đồng AI Art · VN Startup Community · Táo Khởi Nghiệp · BeginGuru · Tìm Kiếm Cofounder VN · Founder Up · VCCA - NextGen · Future Builder · Deep Tech Founder · CAIO Network Vietnam · Founder X · Antigravity 2.0 · JuNo Okyo J2Team · ShopX Community · Build Stuff SG · CSMO Vietnam · EO Vietnam · AI Edtech Founder · UAN Vietnam · AI Content Creator Vietnam · NghienAI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 2 · ÁNH ĐÈN SÂN KHẤU ═══ -->
+  <section class="sect">
+    <h2>Style B · Ánh đèn sân khấu — 6m × 3m</h2>
+    <p class="hint">5 luồng đèn quét từ chân sân khấu + dải sáng cam sát mép dưới, mô phỏng ánh đèn thật — hợp không khí "arena". Khối logo đặt trong band mờ để luôn đọc được trên nền đèn.</p>
+    <div class="card">
+      <div class="meta">
+        <div><h3>bd-beam<small>3600 × 1800 · tỷ lệ 2:1</small></h3></div>
+        <a class="open" href="?only=bd-beam" target="_blank">Mở 1:1 ↗</a>
+      </div>
+      <div class="frame" data-w="3600" data-h="1800">
+        <div class="board bd-beam" id="bd-beam">
+          <div class="beams"><i class="beam"></i><i class="beam"></i><i class="beam"></i><i class="beam"></i><i class="beam"></i></div>
+          <div class="floor"></div>
+          <div class="in">
+            <div class="main">
+              <div class="eyebrow">Demo Day &amp; Audition — Pitching Arena</div>
+              <div class="wm">FUND THE <em>FUTURE</em></div>
+              <div class="slogan">AI Builders <b>×</b> Investors</div>
+              
+            </div>
+            <div class="band">
+              <div class="orgrow">
+                <div class="mark">
+                  <span class="tx">SNAPPP <i>AI</i></span>
+                </div>
+                <div class="mark gold">
+                  <span class="tx">THE EDGE<br>ALLIANCE</span>
+                </div>
+                <div class="mark"><img class="ex" src="logos/w/org-expand.png" alt="Expand VN — Kitchen as a Service"></div>
+                <div class="mark"><img class="c98" src="logos/org-coin98.png" alt="Coin98 — Ninety Eight"></div>
+              </div>
+              <div class="logobar">
+              <div class="lgroup">
+                <span class="lbl">Đồng hành</span>
+                <div class="logos">
+                  <img class="tall" src="logos/w/org-sihub.png" alt="SIHUB">
+                  <img src="logos/w/sp-nova.png" alt="Nova Group">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Tài trợ</span>
+                <div class="logos">
+                  <img src="logos/w/sp-nvidia.png" alt="NVIDIA">
+                  <img src="logos/w/sp-aws.png" alt="AWS">
+                  <img class="keep" src="logos/byteplus.svg" alt="BytePlus">
+                  <img src="logos/w/sp-qwen.png" alt="Qwen AI">
+                  <img src="logos/w/sp-apify.png" alt="Apify">
+                  <img src="logos/w/sp-haravan2.png" alt="Haravan">
+                  <span class="mono-lg"><i>Z</i>ZAFAGO</span>
+                  <img src="logos/w/sp-novaconsumer.png" alt="Nova Consumer">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Đối tác giáo dục</span>
+                <div class="logos">
+                  <img class="keep" src="logos/uni-fpt.svg" alt="FPT University">
+                  <img class="keep" src="logos/uni-ngoaithuong.svg" alt="ĐH Ngoại Thương">
+                  <img class="keep" src="logos/uni-ntt.svg" alt="ĐH Nguyễn Tất Thành">
+                  <img class="keep" src="logos/uni-vanlang.svg" alt="ĐH Văn Lang">
+                </div>
+              </div>
+            </div>
+            <div class="logobar lb2">
+              <div class="lgroup">
+                <span class="lbl">Quỹ đầu tư — Ban Giám khảo</span>
+                <div class="logos">
+                  <img src="logos/w/vc-block71.png" alt="BLOCK71 Vietnam">
+                  <img src="logos/w/vc-goldengate.png" alt="Golden Gate Ventures">
+                  <img src="logos/w/vc-doventures.png" alt="Do Ventures">
+                  <img src="logos/w/vc-eureka.png" alt="Eureka">
+                  <img src="logos/w/vc-lotte.png" alt="Lotte Ventures">
+                  <img src="logos/w/vc-vic.png" alt="VIC Partners">
+                  <img src="logos/w/vc-genai.png" alt="GenAI Fund">
+                  <img src="logos/w/sp-nic.png" alt="NIC">
+                  <img src="logos/w/fund-agile.png" alt="Agile Dynamics">
+                  <img src="logos/w/fund-viifm.png" alt="VIIFM">
+                  <img src="logos/w/fund-expara.png" alt="Expara Ventures">
+                  <img src="logos/w/fund-taiwania.png" alt="Taiwania Capital">
+                  <img src="logos/w/fund-touchstone.png" alt="Touchstone Partners">
+                  <img src="logos/w/fund-equitix.png" alt="Equitix Investing">
+                  <img src="logos/w/fund-maestro.png" alt="Maestro Equity Partners">
+                  <img src="logos/w/fund-iec.png" alt="IEC">
+                  <img src="logos/w/fund-kido.png" alt="KIDO Group">
+                  <span class="mono-lg"><i>MC</i>Maples Capital</span>
+                  <span class="mono-lg"><i>EC</i>Eric Capital</span>
+                  <span class="mono-lg"><i>QE</i>Q Eye</span>
+                  <span class="mono-lg"><i>GB</i>GBehub</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="communities"><b>Cộng đồng đồng hành</b>Claude Code Việt Nam / Chill cùng AI · Dev x AI Việt Nam · AI Research Insider · N8n AI Automation Việt Nam · SDVN — Cộng Đồng AI Art · VN Startup Community · Táo Khởi Nghiệp · BeginGuru · Tìm Kiếm Cofounder VN · Founder Up · VCCA - NextGen · Future Builder · Deep Tech Founder · CAIO Network Vietnam · Founder X · Antigravity 2.0 · JuNo Okyo J2Team · ShopX Community · Build Stuff SG · CSMO Vietnam · EO Vietnam · AI Edtech Founder · UAN Vietnam · AI Content Creator Vietnam · NghienAI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3 · BENTO GRID ═══ -->
+  <section class="sect">
+    <h2>Style C · Bento grid — 6m × 3m</h2>
+    <p class="hint">Hướng Figma Config / Vercel Ship: lưới mô-đun, tiêu đề căn trái, thông tin xếp thẻ bên phải — nhìn "tech" và đọc thông tin nhanh nhất trong 3 style.</p>
+    <div class="card">
+      <div class="meta">
+        <div><h3>bd-bento<small>3600 × 1800 · tỷ lệ 2:1</small></h3></div>
+        <a class="open" href="?only=bd-bento" target="_blank">Mở 1:1 ↗</a>
+      </div>
+      <div class="frame" data-w="3600" data-h="1800">
+        <div class="board bd-bento" id="bd-bento">
+          <div class="fx"><div class="blob b1"></div><div class="blob b2"></div></div>
+          <div class="gridlines"></div>
+          <div class="in">
+            <div class="cols">
+              <div class="lcol">
+                <div class="eyebrow">Demo Day &amp; Audition — 14.08.2026</div>
+                <div class="wm">FUND THE<br><em>FUTURE</em></div>
+                <div class="slogan">AI Builders <b>×</b> Investors</div>
+              </div>
+              
+            </div>
+            <div class="orgrow">
+              <div class="mark">
+                <span class="tx">SNAPPP <i>AI</i></span>
+              </div>
+              <div class="mark gold">
+                <span class="tx">THE EDGE<br>ALLIANCE</span>
+              </div>
+              <div class="mark"><img class="ex" src="logos/w/org-expand.png" alt="Expand VN — Kitchen as a Service"></div>
+              <div class="mark"><img class="c98" src="logos/org-coin98.png" alt="Coin98 — Ninety Eight"></div>
+            </div>
+            <div class="logobar">
+              <div class="lgroup">
+                <span class="lbl">Đồng hành</span>
+                <div class="logos">
+                  <img class="tall" src="logos/w/org-sihub.png" alt="SIHUB">
+                  <img src="logos/w/sp-nova.png" alt="Nova Group">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Tài trợ</span>
+                <div class="logos">
+                  <img src="logos/w/sp-nvidia.png" alt="NVIDIA">
+                  <img src="logos/w/sp-aws.png" alt="AWS">
+                  <img class="keep" src="logos/byteplus.svg" alt="BytePlus">
+                  <img src="logos/w/sp-qwen.png" alt="Qwen AI">
+                  <img src="logos/w/sp-apify.png" alt="Apify">
+                  <img src="logos/w/sp-haravan2.png" alt="Haravan">
+                  <span class="mono-lg"><i>Z</i>ZAFAGO</span>
+                  <img src="logos/w/sp-novaconsumer.png" alt="Nova Consumer">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Đối tác giáo dục</span>
+                <div class="logos">
+                  <img class="keep" src="logos/uni-fpt.svg" alt="FPT University">
+                  <img class="keep" src="logos/uni-ngoaithuong.svg" alt="ĐH Ngoại Thương">
+                  <img class="keep" src="logos/uni-ntt.svg" alt="ĐH Nguyễn Tất Thành">
+                  <img class="keep" src="logos/uni-vanlang.svg" alt="ĐH Văn Lang">
+                </div>
+              </div>
+            </div>
+            <div class="logobar lb2">
+              <div class="lgroup">
+                <span class="lbl">Quỹ đầu tư — Ban Giám khảo</span>
+                <div class="logos">
+                  <img src="logos/w/vc-block71.png" alt="BLOCK71 Vietnam">
+                  <img src="logos/w/vc-goldengate.png" alt="Golden Gate Ventures">
+                  <img src="logos/w/vc-doventures.png" alt="Do Ventures">
+                  <img src="logos/w/vc-eureka.png" alt="Eureka">
+                  <img src="logos/w/vc-lotte.png" alt="Lotte Ventures">
+                  <img src="logos/w/vc-vic.png" alt="VIC Partners">
+                  <img src="logos/w/vc-genai.png" alt="GenAI Fund">
+                  <img src="logos/w/sp-nic.png" alt="NIC">
+                  <img src="logos/w/fund-agile.png" alt="Agile Dynamics">
+                  <img src="logos/w/fund-viifm.png" alt="VIIFM">
+                  <img src="logos/w/fund-expara.png" alt="Expara Ventures">
+                  <img src="logos/w/fund-taiwania.png" alt="Taiwania Capital">
+                  <img src="logos/w/fund-touchstone.png" alt="Touchstone Partners">
+                  <img src="logos/w/fund-equitix.png" alt="Equitix Investing">
+                  <img src="logos/w/fund-maestro.png" alt="Maestro Equity Partners">
+                  <img src="logos/w/fund-iec.png" alt="IEC">
+                  <img src="logos/w/fund-kido.png" alt="KIDO Group">
+                  <span class="mono-lg"><i>MC</i>Maples Capital</span>
+                  <span class="mono-lg"><i>EC</i>Eric Capital</span>
+                  <span class="mono-lg"><i>QE</i>Q Eye</span>
+                  <span class="mono-lg"><i>GB</i>GBehub</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="communities"><b>Cộng đồng đồng hành</b>Claude Code Việt Nam / Chill cùng AI · Dev x AI Việt Nam · AI Research Insider · N8n AI Automation Việt Nam · SDVN — Cộng Đồng AI Art · VN Startup Community · Táo Khởi Nghiệp · BeginGuru · Tìm Kiếm Cofounder VN · Founder Up · VCCA - NextGen · Future Builder · Deep Tech Founder · CAIO Network Vietnam · Founder X · Antigravity 2.0 · JuNo Okyo J2Team · ShopX Community · Build Stuff SG · CSMO Vietnam · EO Vietnam · AI Edtech Founder · UAN Vietnam · AI Content Creator Vietnam · NghienAI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4 · GEOMETRIC CHÉO ═══ -->
+  <section class="sect">
+    <h2>Style D · Geometric chéo — 6m × 3m</h2>
+    <p class="hint">Khối cam chéo bản lớn + vệt vàng Conviction, chấm halftone — nổi bật nhất từ xa và khi chụp ảnh selfie trước sân khấu; in bạt không cần LED vẫn "cháy".</p>
+    <div class="card">
+      <div class="meta">
+        <div><h3>bd-geo<small>3600 × 1800 · tỷ lệ 2:1</small></h3></div>
+        <a class="open" href="?only=bd-geo" target="_blank">Mở 1:1 ↗</a>
+      </div>
+      <div class="frame" data-w="3600" data-h="1800">
+        <div class="board bd-geo" id="bd-geo">
+          <div class="fx"></div>
+          <div class="slab"><div class="big">14.08<small>DEMO DAY</small></div></div>
+          <div class="edge2"></div>
+          <div class="in">
+            <div class="main">
+              <div class="eyebrow">Demo Day &amp; Audition — Pitching Arena</div>
+              <div class="wm">FUND THE<br><em>FUTURE</em></div>
+              <div class="slogan">AI Builders <b>×</b> Investors</div>
+              
+            </div>
+            <div class="band">
+              <div class="orgrow">
+                <div class="mark">
+                  <span class="tx">SNAPPP <i>AI</i></span>
+                </div>
+                <div class="mark gold">
+                  <span class="tx">THE EDGE<br>ALLIANCE</span>
+                </div>
+                <div class="mark"><img class="ex" src="logos/w/org-expand.png" alt="Expand VN — Kitchen as a Service"></div>
+                <div class="mark"><img class="c98" src="logos/org-coin98.png" alt="Coin98 — Ninety Eight"></div>
+              </div>
+              <div class="logobar">
+              <div class="lgroup">
+                <span class="lbl">Đồng hành</span>
+                <div class="logos">
+                  <img class="tall" src="logos/w/org-sihub.png" alt="SIHUB">
+                  <img src="logos/w/sp-nova.png" alt="Nova Group">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Tài trợ</span>
+                <div class="logos">
+                  <img src="logos/w/sp-nvidia.png" alt="NVIDIA">
+                  <img src="logos/w/sp-aws.png" alt="AWS">
+                  <img class="keep" src="logos/byteplus.svg" alt="BytePlus">
+                  <img src="logos/w/sp-qwen.png" alt="Qwen AI">
+                  <img src="logos/w/sp-apify.png" alt="Apify">
+                  <img src="logos/w/sp-haravan2.png" alt="Haravan">
+                  <span class="mono-lg"><i>Z</i>ZAFAGO</span>
+                  <img src="logos/w/sp-novaconsumer.png" alt="Nova Consumer">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Đối tác giáo dục</span>
+                <div class="logos">
+                  <img class="keep" src="logos/uni-fpt.svg" alt="FPT University">
+                  <img class="keep" src="logos/uni-ngoaithuong.svg" alt="ĐH Ngoại Thương">
+                  <img class="keep" src="logos/uni-ntt.svg" alt="ĐH Nguyễn Tất Thành">
+                  <img class="keep" src="logos/uni-vanlang.svg" alt="ĐH Văn Lang">
+                </div>
+              </div>
+            </div>
+            <div class="logobar lb2">
+              <div class="lgroup">
+                <span class="lbl">Quỹ đầu tư — Ban Giám khảo</span>
+                <div class="logos">
+                  <img src="logos/w/vc-block71.png" alt="BLOCK71 Vietnam">
+                  <img src="logos/w/vc-goldengate.png" alt="Golden Gate Ventures">
+                  <img src="logos/w/vc-doventures.png" alt="Do Ventures">
+                  <img src="logos/w/vc-eureka.png" alt="Eureka">
+                  <img src="logos/w/vc-lotte.png" alt="Lotte Ventures">
+                  <img src="logos/w/vc-vic.png" alt="VIC Partners">
+                  <img src="logos/w/vc-genai.png" alt="GenAI Fund">
+                  <img src="logos/w/sp-nic.png" alt="NIC">
+                  <img src="logos/w/fund-agile.png" alt="Agile Dynamics">
+                  <img src="logos/w/fund-viifm.png" alt="VIIFM">
+                  <img src="logos/w/fund-expara.png" alt="Expara Ventures">
+                  <img src="logos/w/fund-taiwania.png" alt="Taiwania Capital">
+                  <img src="logos/w/fund-touchstone.png" alt="Touchstone Partners">
+                  <img src="logos/w/fund-equitix.png" alt="Equitix Investing">
+                  <img src="logos/w/fund-maestro.png" alt="Maestro Equity Partners">
+                  <img src="logos/w/fund-iec.png" alt="IEC">
+                  <img src="logos/w/fund-kido.png" alt="KIDO Group">
+                  <span class="mono-lg"><i>MC</i>Maples Capital</span>
+                  <span class="mono-lg"><i>EC</i>Eric Capital</span>
+                  <span class="mono-lg"><i>QE</i>Q Eye</span>
+                  <span class="mono-lg"><i>GB</i>GBehub</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="communities"><b>Cộng đồng đồng hành</b>Claude Code Việt Nam / Chill cùng AI · Dev x AI Việt Nam · AI Research Insider · N8n AI Automation Việt Nam · SDVN — Cộng Đồng AI Art · VN Startup Community · Táo Khởi Nghiệp · BeginGuru · Tìm Kiếm Cofounder VN · Founder Up · VCCA - NextGen · Future Builder · Deep Tech Founder · CAIO Network Vietnam · Founder X · Antigravity 2.0 · JuNo Okyo J2Team · ShopX Community · Build Stuff SG · CSMO Vietnam · EO Vietnam · AI Edtech Founder · UAN Vietnam · AI Content Creator Vietnam · NghienAI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5 · MÀN LED 16:9 ═══ -->
+  <section class="sect">
+    <h2>Màn LED sân khấu — 16:9</h2>
+    <p class="hint">Nền chờ 4K giữa các lượt pitching, theo style A. Nếu chốt style B/C/D tôi sẽ dựng bản LED tương ứng.</p>
+    <div class="card">
+      <div class="meta">
+        <div><h3>bd-led<small>3840 × 2160 · 16:9</small></h3></div>
+        <a class="open" href="?only=bd-led" target="_blank">Mở 1:1 ↗</a>
+      </div>
+      <div class="frame" data-w="3840" data-h="2160">
+        <div class="board bd-led" id="bd-led">
+          <div class="fx"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+          <div class="ghost">PITCH</div>
+          <div class="in">
+            <div class="main">
+              <div class="eyebrow">Demo Day &amp; Audition — 14.08.2026</div>
+              <div class="wm">FUND THE <em>FUTURE</em></div>
+              <div class="slogan">AI Builders <b>×</b> Investors</div>
+              
+            </div>
+            <div class="orgrow">
+              <div class="mark">
+                <span class="tx">SNAPPP <i>AI</i></span>
+              </div>
+              <div class="mark gold">
+                <span class="tx">THE EDGE<br>ALLIANCE</span>
+              </div>
+              <div class="mark"><img class="ex" src="logos/w/org-expand.png" alt="Expand VN — Kitchen as a Service"></div>
+              <div class="mark"><img class="c98" src="logos/org-coin98.png" alt="Coin98 — Ninety Eight"></div>
+            </div>
+            <div class="logobar">
+              <div class="lgroup">
+                <span class="lbl">Đồng hành</span>
+                <div class="logos">
+                  <img class="tall" src="logos/w/org-sihub.png" alt="SIHUB">
+                  <img src="logos/w/sp-nova.png" alt="Nova Group">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Tài trợ</span>
+                <div class="logos">
+                  <img src="logos/w/sp-nvidia.png" alt="NVIDIA">
+                  <img src="logos/w/sp-aws.png" alt="AWS">
+                  <img class="keep" src="logos/byteplus.svg" alt="BytePlus">
+                  <img src="logos/w/sp-qwen.png" alt="Qwen AI">
+                  <img src="logos/w/sp-apify.png" alt="Apify">
+                  <img src="logos/w/sp-haravan2.png" alt="Haravan">
+                  <span class="mono-lg"><i>Z</i>ZAFAGO</span>
+                  <img src="logos/w/sp-novaconsumer.png" alt="Nova Consumer">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Đối tác giáo dục</span>
+                <div class="logos">
+                  <img class="keep" src="logos/uni-fpt.svg" alt="FPT University">
+                  <img class="keep" src="logos/uni-ngoaithuong.svg" alt="ĐH Ngoại Thương">
+                  <img class="keep" src="logos/uni-ntt.svg" alt="ĐH Nguyễn Tất Thành">
+                  <img class="keep" src="logos/uni-vanlang.svg" alt="ĐH Văn Lang">
+                </div>
+              </div>
+            </div>
+            <div class="logobar lb2">
+              <div class="lgroup">
+                <span class="lbl">Quỹ đầu tư — Ban Giám khảo</span>
+                <div class="logos">
+                  <img src="logos/w/vc-block71.png" alt="BLOCK71 Vietnam">
+                  <img src="logos/w/vc-goldengate.png" alt="Golden Gate Ventures">
+                  <img src="logos/w/vc-doventures.png" alt="Do Ventures">
+                  <img src="logos/w/vc-eureka.png" alt="Eureka">
+                  <img src="logos/w/vc-lotte.png" alt="Lotte Ventures">
+                  <img src="logos/w/vc-vic.png" alt="VIC Partners">
+                  <img src="logos/w/vc-genai.png" alt="GenAI Fund">
+                  <img src="logos/w/sp-nic.png" alt="NIC">
+                  <img src="logos/w/fund-agile.png" alt="Agile Dynamics">
+                  <img src="logos/w/fund-viifm.png" alt="VIIFM">
+                  <img src="logos/w/fund-expara.png" alt="Expara Ventures">
+                  <img src="logos/w/fund-taiwania.png" alt="Taiwania Capital">
+                  <img src="logos/w/fund-touchstone.png" alt="Touchstone Partners">
+                  <img src="logos/w/fund-equitix.png" alt="Equitix Investing">
+                  <img src="logos/w/fund-maestro.png" alt="Maestro Equity Partners">
+                  <img src="logos/w/fund-iec.png" alt="IEC">
+                  <img src="logos/w/fund-kido.png" alt="KIDO Group">
+                  <span class="mono-lg"><i>MC</i>Maples Capital</span>
+                  <span class="mono-lg"><i>EC</i>Eric Capital</span>
+                  <span class="mono-lg"><i>QE</i>Q Eye</span>
+                  <span class="mono-lg"><i>GB</i>GBehub</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="communities"><b>Cộng đồng đồng hành</b>Claude Code Việt Nam / Chill cùng AI · Dev x AI Việt Nam · AI Research Insider · N8n AI Automation Việt Nam · SDVN — Cộng Đồng AI Art · VN Startup Community · Táo Khởi Nghiệp · BeginGuru · Tìm Kiếm Cofounder VN · Founder Up · VCCA - NextGen · Future Builder · Deep Tech Founder · CAIO Network Vietnam · Founder X · Antigravity 2.0 · JuNo Okyo J2Team · ShopX Community · Build Stuff SG · CSMO Vietnam · EO Vietnam · AI Edtech Founder · UAN Vietnam · AI Content Creator Vietnam · NghienAI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6 · STANDEE ═══ -->
+  <section class="sect">
+    <h2>Standee cánh gà — 0.8m × 1.8m</h2>
+    <div class="card">
+      <div class="meta">
+        <div><h3>bd-standee<small>960 × 2160 · standee cuốn 80×180cm</small></h3></div>
+        <a class="open" href="?only=bd-standee" target="_blank">Mở 1:1 ↗</a>
+      </div>
+      <div class="frame" data-w="960" data-h="2160">
+        <div class="board bd-standee" id="bd-standee">
+          <div class="fx"><div class="blob b1"></div><div class="blob b2"></div></div>
+          <div class="in">
+            <div class="main">
+              <div class="eyebrow">Demo Day — Pitching</div>
+              <div class="wm">FUND<br>THE <em>FUTURE</em></div>
+              <div class="slogan">AI Builders <b>×</b> Investors</div>
+              
+            </div>
+            <div class="orgrow">
+              <div class="mark">
+                <span class="tx">SNAPPP <i>AI</i></span>
+              </div>
+              <div class="mark gold">
+                <span class="tx">THE EDGE ALLIANCE</span>
+              </div>
+              <div class="mark"><img class="ex" src="logos/w/org-expand.png" alt="Expand VN — Kitchen as a Service"></div>
+              <div class="mark"><img class="c98" src="logos/org-coin98.png" alt="Coin98 — Ninety Eight"></div>
+            </div>
+            <div class="logobar">
+              <div class="lgroup">
+                <span class="lbl">Đồng hành</span>
+                <div class="logos">
+                  <img class="tall" src="logos/w/org-sihub.png" alt="SIHUB">
+                  <img src="logos/w/sp-nova.png" alt="Nova Group">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Tài trợ</span>
+                <div class="logos">
+                  <img src="logos/w/sp-nvidia.png" alt="NVIDIA">
+                  <img src="logos/w/sp-aws.png" alt="AWS">
+                  <img class="keep" src="logos/byteplus.svg" alt="BytePlus">
+                  <img src="logos/w/sp-qwen.png" alt="Qwen AI">
+                  <img src="logos/w/sp-apify.png" alt="Apify">
+                  <img src="logos/w/sp-haravan2.png" alt="Haravan">
+                  <span class="mono-lg"><i>Z</i>ZAFAGO</span>
+                  <img src="logos/w/sp-novaconsumer.png" alt="Nova Consumer">
+                </div>
+              </div>
+              <div class="vline"></div>
+              <div class="lgroup">
+                <span class="lbl">Đối tác giáo dục</span>
+                <div class="logos">
+                  <img class="keep" src="logos/uni-fpt.svg" alt="FPT University">
+                  <img class="keep" src="logos/uni-ngoaithuong.svg" alt="ĐH Ngoại Thương">
+                  <img class="keep" src="logos/uni-ntt.svg" alt="ĐH Nguyễn Tất Thành">
+                  <img class="keep" src="logos/uni-vanlang.svg" alt="ĐH Văn Lang">
+                </div>
+              </div>
+            </div>
+            <div class="logobar lb2">
+              <div class="lgroup">
+                <span class="lbl">Quỹ đầu tư — Ban Giám khảo</span>
+                <div class="logos">
+                  <img src="logos/w/vc-block71.png" alt="BLOCK71 Vietnam">
+                  <img src="logos/w/vc-goldengate.png" alt="Golden Gate Ventures">
+                  <img src="logos/w/vc-doventures.png" alt="Do Ventures">
+                  <img src="logos/w/vc-eureka.png" alt="Eureka">
+                  <img src="logos/w/vc-lotte.png" alt="Lotte Ventures">
+                  <img src="logos/w/vc-vic.png" alt="VIC Partners">
+                  <img src="logos/w/vc-genai.png" alt="GenAI Fund">
+                  <img src="logos/w/sp-nic.png" alt="NIC">
+                  <img src="logos/w/fund-agile.png" alt="Agile Dynamics">
+                  <img src="logos/w/fund-viifm.png" alt="VIIFM">
+                  <img src="logos/w/fund-expara.png" alt="Expara Ventures">
+                  <img src="logos/w/fund-taiwania.png" alt="Taiwania Capital">
+                  <img src="logos/w/fund-touchstone.png" alt="Touchstone Partners">
+                  <img src="logos/w/fund-equitix.png" alt="Equitix Investing">
+                  <img src="logos/w/fund-maestro.png" alt="Maestro Equity Partners">
+                  <img src="logos/w/fund-iec.png" alt="IEC">
+                  <img src="logos/w/fund-kido.png" alt="KIDO Group">
+                  <span class="mono-lg"><i>MC</i>Maples Capital</span>
+                  <span class="mono-lg"><i>EC</i>Eric Capital</span>
+                  <span class="mono-lg"><i>QE</i>Q Eye</span>
+                  <span class="mono-lg"><i>GB</i>GBehub</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="communities"><b>Cộng đồng đồng hành</b>Claude Code Việt Nam / Chill cùng AI · Dev x AI Việt Nam · AI Research Insider · N8n AI Automation Việt Nam · SDVN — Cộng Đồng AI Art · VN Startup Community · Táo Khởi Nghiệp · BeginGuru · Tìm Kiếm Cofounder VN · Founder Up · VCCA - NextGen · Future Builder · Deep Tech Founder · CAIO Network Vietnam · Founder X · Antigravity 2.0 · JuNo Okyo J2Team · ShopX Community · Build Stuff SG · CSMO Vietnam · EO Vietnam · AI Edtech Founder · UAN Vietnam · AI Content Creator Vietnam · NghienAI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ XUẤT FILE ═══ -->
+  <section class="sect">
+    <h2>Xuất file gửi nhà in</h2>
+    <p class="hint">Bấm <b>Mở 1:1 ↗</b> để duyệt. Xuất PNG ×2 bằng Chrome chạy nền:</p>
+    <div class="card"><pre style="font-family:ui-monospace,Menlo,monospace;font-size:12.5px;color:var(--muted);line-height:1.9;overflow-x:auto">CH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+DIR="$PWD"; mkdir -p img/backdrop
+printf '%s\n' "bd-main 3600 1800" "bd-beam 3600 1800" "bd-bento 3600 1800" \
+  "bd-geo 3600 1800" "bd-led 3840 2160" "bd-standee 960 2160" |
+while read id w h; do
+  "$CH" --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=2 \
+        --virtual-time-budget=8000 --window-size=$w,$h \
+        --screenshot="img/backdrop/$id.png" "file://$DIR/backdrop.html?only=$id"
+done</pre></div>
+    <p class="hint" style="margin-top:14px">Snappp AI · The Edge Alliance · Expand VN đang dùng wordmark dựng theo glyph của landing page vì repo chưa có file logo chính thức — khi có file, thả vào <b>logos/</b> (org-snappp.png, org-edge.png, org-expand.png) và báo tôi thay. Dặn nhà in giữ tông cam <b>#FF5C00/#FF8A3C</b> khi chuyển CMYK.</p>
+  </section>
+</div>
+
+<script>
+(function(){
+  var only = new URLSearchParams(location.search).get('only');
+  if(only){
+    var b = document.getElementById(only);
+    if(b){
+      b.remove();
+      document.documentElement.classList.add('export');
+      document.body.replaceChildren(b);
+      document.title = only;
+      return;
+    }
+  }
+  function fit(){
+    document.querySelectorAll('.frame').forEach(function(f){
+      var w = +f.dataset.w, h = +f.dataset.h, k = f.clientWidth / w;
+      var b = f.firstElementChild;
+      b.style.transform = 'scale(' + k + ')';
+      f.style.height = Math.round(h * k) + 'px';
+    });
+  }
+  addEventListener('resize', fit);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  fit();
+})();
+</script>
+</body>
+</html>

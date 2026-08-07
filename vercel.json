@@ -1,0 +1,19 @@
+{
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/sponsor", "destination": "/slide-proposal.html" },
+    { "source": "/sponsor-en", "destination": "/slide-proposal-en.html" },
+    { "source": "/judge", "destination": "/slide-judges.html" },
+    { "source": "/judge/ma-thanh-danh", "destination": "/slide-judge-ma-thanh-danh.html" },
+    { "source": "/startup", "destination": "/slide-startup.html" },
+    { "source": "/register", "destination": "/slide-startup.html" },
+    { "source": "/partner", "destination": "/slide-judges.html" },
+    { "source": "/colab", "destination": "/slide-colab.html" },
+    { "source": "/bgk", "destination": "/bgk.html" },
+    { "source": "/bgk-en", "destination": "/bgk-en.html" },
+    { "source": "/community", "destination": "/community.html" },
+    { "source": "/community-en", "destination": "/community-en.html" },
+    { "source": "/thu-moi", "destination": "/thu-moi.html" },
+    { "source": "/agenda", "destination": "/agenda.html" }
+  ]
+}

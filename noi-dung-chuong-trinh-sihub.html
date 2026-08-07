@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nội dung chương trình — Demo Day 14.08.2026 (gửi SIHUB)</title>
+<style>
+  :root{ --ink:#111; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:#e8e6e2}
+  body{
+    font-family:"Times New Roman", Times, serif;
+    font-size:14pt; line-height:1.5; color:var(--ink);
+  }
+  .toolbar{
+    position:sticky;top:0;z-index:10;display:flex;gap:10px;align-items:center;
+    background:#1b1815;color:#f5f1ea;padding:10px 18px;
+    font-family:Arial,sans-serif;font-size:13px;
+  }
+  .toolbar button{
+    font-family:Arial,sans-serif;font-size:13px;font-weight:700;cursor:pointer;
+    background:#ff5c00;color:#fff;border:none;border-radius:8px;padding:8px 18px;
+  }
+  .toolbar span{opacity:.75}
+  .page{
+    width:210mm;min-height:297mm;margin:16px auto;background:#fff;
+    padding:20mm 20mm 20mm 30mm;
+    box-shadow:0 2px 18px rgba(0,0,0,.18);
+  }
+  .head{display:flex;justify-content:space-between;gap:24px;text-align:center}
+  .head .l{width:44%}
+  .head .r{width:56%}
+  .head .org{font-weight:700;font-size:13pt;text-transform:uppercase}
+  .head .quoc-hieu{font-weight:700;font-size:13pt;text-transform:uppercase}
+  .head .tieu-ngu{font-weight:700;font-size:14pt}
+  .rule{width:64px;border-bottom:1px solid var(--ink);margin:2px auto 0}
+  .rule-l{width:110px;border-bottom:1px solid var(--ink);margin:2px auto 0}
+  .date{margin-top:12px;font-style:italic;font-size:14pt}
+  .title{
+    text-align:center;margin-top:26px;font-weight:700;font-size:15pt;text-transform:uppercase;
+  }
+  .title-sub{text-align:center;font-weight:700;font-size:14pt;margin-top:2px}
+  .title-note{text-align:center;font-style:italic;font-size:12pt;margin-top:6px}
+  p.body{margin-top:12px;text-align:justify;text-indent:12mm}
+  .muc{margin-top:18px;font-weight:700;font-size:14pt}
+  .muc-sub{margin-top:10px;margin-left:8mm;font-weight:700}
+  ul.info{margin:8px 0 8px 18mm;list-style:none}
+  ul.info li{margin-bottom:5px;text-align:justify}
+  ul.info b{font-weight:700}
+  table.tbl{width:100%;border-collapse:collapse;margin:10px 0;font-size:13pt}
+  table.tbl th,table.tbl td{border:1px solid var(--ink);padding:6px 10px;text-align:left;vertical-align:top}
+  table.tbl th{text-align:center;font-weight:700;background:#f3efe8}
+  .quote{
+    margin:12px 18mm;padding:10px 16px;border-left:3px solid var(--ink);
+    font-style:italic;text-align:justify;
+  }
+  .blank{color:#666}
+  @media print{
+    html{background:#fff}
+    .toolbar{display:none}
+    .page{width:auto;min-height:auto;margin:0;box-shadow:none;padding:10mm 20mm 15mm 30mm}
+    .blank{color:var(--ink)}
+    table.tbl th{background:#f3efe8;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">🖨 In / Lưu PDF</button>
+  <span>Toàn bộ nội dung có thể bấm vào để sửa trực tiếp trước khi in — các chỗ […] cần điền thông tin.</span>
+</div>
+
+<div class="page" contenteditable="true" spellcheck="false">
+
+  <div class="head">
+    <div class="l">
+      <div class="org">Công ty TNHH Fresgen AI</div>
+      <div class="rule-l"></div>
+    </div>
+    <div class="r">
+      <div class="quoc-hieu">Cộng hòa xã hội chủ nghĩa Việt Nam</div>
+      <div class="tieu-ngu">Độc lập — Tự do — Hạnh phúc</div>
+      <div class="rule"></div>
+      <div class="date">TP. Hồ Chí Minh, ngày <span class="blank">…</span> tháng <span class="blank">…</span> năm 2026</div>
+    </div>
+  </div>
+
+  <div class="title">Tài liệu giới thiệu nội dung chương trình</div>
+  <div class="title-sub">“Demo Day” — Buổi chia sẻ kinh nghiệm từ những người gọi vốn thành công</div>
+  <div class="title-note">Kèm theo Công văn số <span class="blank">…</span>/2026/CV-FRESGEN — Kính gửi: Saigon Innovation Hub (SIHUB)</div>
+
+  <div class="muc">1. Chủ đề chương trình</div>
+  <p class="body">
+    <b>“Demo Day — Buổi chia sẻ kinh nghiệm từ những người gọi vốn thành công”</b>: buổi chia sẻ kiến thức và kinh nghiệm gọi vốn dành cho startup, trong đó các startup trình bày sản phẩm như một buổi gọi vốn thực tế, và Ban Giám khảo — những nhà đầu tư, doanh nhân đã trực tiếp gọi vốn thành công — góp ý, phản biện và chia sẻ kinh nghiệm thực chiến.
+  </p>
+  <ul class="info">
+    <li>— <b>Thời gian:</b> 08h00 – 12h00, thứ Sáu ngày 14/08/2026.</li>
+    <li>— <b>Địa điểm (đề xuất):</b> SIHUB — 123 Trương Định, Phường Võ Thị Sáu, Quận 3, TP. Hồ Chí Minh.</li>
+    <li>— <b>Trọng tâm nội dung:</b> startup thuyết trình 07 phút, phản biện 05 phút cùng Ban Giám khảo; sau mỗi phần trình bày, Ban Giám khảo góp ý trực tiếp và chia sẻ kinh nghiệm gọi vốn thực chiến.</li>
+  </ul>
+
+  <div class="muc">2. Thông điệp chương trình</div>
+  <div class="quote">
+    “Gọi vốn thành công là một kỹ năng có thể học — và học nhanh nhất từ những người đã làm được.”
+  </div>
+  <p class="body">
+    Thay vì tiếp cận bằng lý thuyết, chương trình để startup được trải nghiệm không khí của một buổi gọi vốn thật: đứng trên sân khấu trình bày, nhận câu hỏi phản biện thật, và lắng nghe những người đã trực tiếp gọi vốn thành công chỉ ra startup cần chuẩn bị gì, nhà đầu tư nhìn vào điều gì, và những sai lầm thường gặp khi đi gọi vốn.
+  </p>
+
+  <div class="muc">3. Đối tượng mục tiêu hướng tới</div>
+  <table class="tbl">
+    <tr>
+      <th style="width:34%">Nhóm đối tượng</th>
+      <th>Mô tả &amp; vai trò trong chương trình</th>
+    </tr>
+    <tr>
+      <td><b>Startup giai đoạn sớm</b><br><i>(đối tượng trung tâm)</i></td>
+      <td>Các đội khởi nghiệp có sản phẩm ứng dụng công nghệ từ mức MVP trở lên; founder cần rèn luyện kỹ năng pitching và học hỏi kinh nghiệm gọi vốn.</td>
+    </tr>
+    <tr>
+      <td><b>Ban Giám khảo — người chia sẻ</b></td>
+      <td>Các nhà đầu tư, doanh nhân giàu kinh nghiệm đã trực tiếp gọi vốn và đầu tư thành công — tham gia với vai trò phản biện, góp ý và chia sẻ kinh nghiệm thực chiến cho startup.</td>
+    </tr>
+    <tr>
+      <td><b>Cộng đồng khởi nghiệp &amp; sinh viên</b></td>
+      <td>Thành viên các cộng đồng khởi nghiệp, đổi mới sáng tạo — trong đó có hệ sinh thái startup của SIHUB — tham dự để học hỏi kinh nghiệm gọi vốn thực tế.</td>
+    </tr>
+  </table>
+
+  <div class="muc">4. Mục tiêu chương trình (Goal)</div>
+  <p class="body">
+    Chương trình được thiết kế để giải quyết một vấn đề cụ thể: <b>startup giai đoạn sớm thiếu kiến thức và kinh nghiệm gọi vốn thực tế</b> — phần lớn chưa từng được pitch trước nhà đầu tư thật, chưa hiểu nhà đầu tư nhìn vào điều gì và thường mắc những sai lầm cơ bản khi đi gọi vốn. Mục tiêu của chương trình là <b>đào tạo</b>, cụ thể:
+  </p>
+  <ul class="info">
+    <li>— <b>Chia sẻ kỹ năng pitching:</b> startup được thuyết trình và phản biện trong không khí của một buổi gọi vốn thực tế, nhận góp ý trực tiếp về sản phẩm, mô hình kinh doanh và cách kể câu chuyện với nhà đầu tư.</li>
+    <li>— <b>Chia sẻ kiến thức gọi vốn:</b> những người đã gọi vốn thành công chia sẻ kinh nghiệm thực chiến — startup cần chuẩn bị gì, nhà đầu tư nhìn vào điều gì, và những sai lầm thường gặp khi đi gọi vốn.</li>
+    <li>— <b>Lan tỏa tinh thần khởi nghiệp:</b> lan tỏa văn hóa chuẩn bị bài bản khi gọi vốn đến cộng đồng khởi nghiệp của Thành phố; khẳng định vai trò của SIHUB và các đơn vị đồng hành trong việc hỗ trợ, đào tạo cộng đồng startup.</li>
+  </ul>
+
+  <p class="body" style="margin-top:20px">
+    Trân trọng./.
+  </p>
+
+</div>
+
+</body>
+</html>

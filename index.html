@@ -4,6 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fund the Future — AI Builders x Investors</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b0a09">
+<meta name="description" content="A real-deal fundraising arena for AI startups — learn from 20+ Vietnamese & international funds and experienced founders on 14.08, then fundraise live on the Conviction 2026 stage on 15.08.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://theedgealliance.com/">
+<meta property="og:site_name" content="Fund the Future">
+<meta property="og:title" content="Fund the Future — AI Builders × Investors">
+<meta property="og:description" content="A real-deal fundraising arena for AI startups — learn from 20+ Vietnamese & international funds and experienced founders on 14.08, then fundraise live on the Conviction 2026 stage on 15.08.">
+<meta property="og:image" content="https://theedgealliance.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fund the Future — AI Builders × Investors">
+<meta name="twitter:description" content="A real-deal fundraising arena for AI startups — learn from 20+ Vietnamese & international funds and experienced founders on 14.08, then fundraise live on the Conviction 2026 stage on 15.08.">
+<meta name="twitter:image" content="https://theedgealliance.com/img/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -203,7 +220,7 @@
 
   .rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.6,.2,1),transform .8s cubic-bezier(.2,.6,.2,1)}
   .rv.in{opacity:1;transform:none}
-  .rv-d1{transition-delay:.12s}.rv-d2{transition-delay:.24s}
+  .rv-d1{transition-delay:.12s}.rv-d2{transition-delay:.24s}.rv-d3{transition-delay:.36s}
 
   /* ===== WHY: hàng ngang số to ===== */
   .why-rows{margin-top:54px;border-top:1px solid var(--line)}
@@ -329,6 +346,54 @@
     font-size:12.5px;color:var(--muted);font-weight:500;
   }
   .s-chip b{color:var(--org-2)}
+  /* dàn số liệu quy mô Conviction trong card chung kết */
+  .finale-stats{
+    grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    margin-top:6px;position:relative;z-index:2;
+  }
+  .fstat{
+    padding:20px 16px;border-radius:14px;text-align:center;
+    background:rgba(0,0,0,.28);border:1px solid var(--line-2);
+  }
+  .fstat b{
+    display:block;font-family:var(--disp);font-size:clamp(26px,3.2vw,38px);font-weight:800;line-height:1;
+    background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .fstat span{display:block;margin-top:9px;font-size:12px;color:var(--muted);line-height:1.45}
+  a.fstat-link{display:block;transition:.2s;cursor:pointer}
+  a.fstat-link:hover{border-color:rgba(255,92,0,.45);background:rgba(255,92,0,.08);transform:translateY(-2px)}
+  /* ảnh venue trong cột phải */
+  .stage-venue-photo{margin:12px 0 0}
+  .stage-venue-photo img{
+    display:block;width:100%;aspect-ratio:16/9;object-fit:cover;
+    border-radius:12px;border:1px solid var(--line-2);
+  }
+  .stage-venue-photo figcaption{margin-top:8px;font-size:11.5px;color:var(--dim);text-align:left}
+  /* dải ảnh Conviction trong card chung kết */
+  .finale-photos{
+    grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    position:relative;z-index:2;
+  }
+  .fphoto{
+    border-radius:14px;overflow:hidden;margin:0;
+    background:rgba(0,0,0,.28);border:1px solid var(--line-2);transition:.2s;
+  }
+  .fphoto:hover{border-color:rgba(255,92,0,.45);transform:translateY(-2px)}
+  .fphoto img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+  .fphoto figcaption{padding:10px 13px;font-size:12px;color:var(--muted);line-height:1.5}
+  .fphoto figcaption b{color:var(--ink)}
+  /* dải truyền thông trong card chung kết */
+  .finale-media{grid-column:1/-1;margin-top:2px}
+  .fm-label{
+    display:block;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:13px;
+  }
+  .fm-label b{color:var(--org-2)}
+  .fm-logos{display:flex;flex-wrap:wrap;gap:8px}
+  .fm-logos span{
+    padding:7px 14px;border-radius:999px;background:rgba(0,0,0,.28);border:1px solid var(--line-2);
+    font-size:12.5px;color:var(--ink);font-weight:600;
+  }
   .mini-cd{display:flex;gap:8px;margin-top:22px;justify-content:center}
   .mini-cd .mc{
     min-width:64px;text-align:center;padding:11px 6px;border-radius:12px;
@@ -430,7 +495,22 @@
   .org-card.edge .halo{background:radial-gradient(circle,rgba(212,175,55,.18),transparent 70%)}
 
   /* ===== PRICING: vé thật có răng cưa ===== */
-  .prices{display:grid;grid-template-columns:1fr 1.18fr;gap:18px;margin-top:54px;align-items:stretch}
+  .prices{max-width:600px;margin:54px auto 0}
+  /* 07 · form tham dự — 2 cột: các bước bên trái, thẻ xác nhận bên phải */
+  .reg-split{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;margin-top:54px;align-items:center}
+  .reg-how{display:flex;flex-direction:column;gap:26px}
+  .how-step{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start}
+  .how-step em{
+    font-family:var(--disp);font-style:normal;font-size:15px;font-weight:800;color:var(--org-2);
+    width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,138,60,.38);border-radius:13px;background:rgba(255,92,0,.07);
+  }
+  .how-step h4{font-family:var(--disp);font-size:16.5px;font-weight:700}
+  .how-step p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:7px}
+  .how-note{
+    margin-top:6px;padding:14px 16px;border-radius:12px;font-size:12.5px;line-height:1.6;color:var(--muted);
+    background:var(--tile);border:1px solid var(--line);
+  }
   .aud-split{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;margin-top:54px;align-items:center}
   .aud-welcome{font-size:15px;color:var(--muted);line-height:1.7}
   .aud-welcome b{color:var(--org-2)}
@@ -440,6 +520,9 @@
     background:var(--tile);border:1px solid var(--line);
   }
   .aud-tag b{color:var(--org-2)}
+  .tix-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:54px;align-items:stretch}
+  .tix-grid .ticket{height:100%}
+  .tix-foot{margin-top:26px;font-size:12.5px;color:var(--dim);text-align:center}
   .ticket.aud{background:linear-gradient(160deg,rgba(255,92,0,.1),var(--tile-2) 55%)}
   .ticket .invite-note{
     margin-top:14px;padding:12px 14px;border-radius:12px;font-size:12.5px;line-height:1.55;color:var(--org-2);
@@ -476,6 +559,7 @@
   .t-amt{font-family:var(--disp);font-size:54px;font-weight:800;margin:16px 0 2px;line-height:1}
   .ticket.live .t-amt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
   .t-amt s{font-size:20px;color:var(--dim);margin-left:10px;font-weight:500;-webkit-text-fill-color:var(--dim)}
+  .t-amt.date{font-size:clamp(28px,8.6vw,46px)}
   .t-note{font-size:12.5px;color:var(--muted)}
   .t-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
   .t-list li{display:flex;gap:12px;font-size:14px;color:#d6d1c8;align-items:flex-start}
@@ -565,7 +649,10 @@
   .modal .btn[disabled]{opacity:.6;cursor:wait;transform:none;box-shadow:none}
   .f-privacy{margin-top:14px;font-size:11.5px;color:var(--dim);text-align:center}
   .f-ok{display:none;text-align:center;padding:26px 0 10px}
-  .f-ok .big{font-size:44px;margin-bottom:14px}
+  .f-ok .big{
+    width:60px;height:60px;margin:0 auto 18px;display:grid;place-items:center;
+    border-radius:50%;background:var(--org);color:#0a0500;font-size:26px;font-weight:800;
+  }
   .f-ok h3{margin-bottom:8px}
   .f-ok p{font-size:14px;color:var(--muted);max-width:400px;margin:0 auto}
   .modal.sent form{display:none}
@@ -592,12 +679,17 @@
     .t-stat{grid-column:span 6}
     .t-date{grid-column:span 12;flex-direction:row;align-items:center;gap:14px}
     .stage{grid-template-columns:1fr;gap:30px;padding:34px 26px}
+    .ticket{padding:30px 20px}
+    .ticket .tear{margin-left:-20px;margin-right:-20px}
+    .reg-split>*,.aud-split>*,.prices>*{min-width:0}
+    .finale-stats{grid-template-columns:1fr 1fr}
+    .finale-photos{grid-template-columns:1fr 1fr}
     .stage .side{text-align:left}
     .stage .mini-cd{justify-content:flex-start}
     .wrow{grid-template-columns:60px 1fr;gap:16px}
     .wrow p{grid-column:2}
     .vc-grid{grid-template-columns:repeat(3,1fr)}
-    .prices,.org-grid,.partner-row,.aud-split{grid-template-columns:1fr}
+    .prices,.org-grid,.partner-row,.aud-split,.reg-split,.tix-grid{grid-template-columns:1fr}
     .t-main{min-height:560px;padding:60px 24px 90px}
     .vc-grid{grid-template-columns:repeat(2,1fr)}
     section{padding:70px 0}
@@ -622,12 +714,13 @@
       <a href="#funds" data-i18n="nav-funds">Investors</a>
       <a href="#rounds" data-i18n="nav-rounds">Roadmap</a>
       <a href="#organizers" data-i18n="nav-org">Organizers</a>
-      <a href="#pricing" data-i18n="nav-tickets">Tickets</a>
+      <a href="#audience" data-i18n="nav-tickets">Tickets</a>
       <a href="#faq">FAQ</a>
+      <a href="https://www.conviction.vn/vi" target="_blank" rel="noopener">Conviction 2026 <span class="arr">↗</span></a>
     </div>
     <div class="nav-actions">
       <button class="btn btn-ghost lang-btn" id="langBtn" type="button" aria-label="Switch language">VI</button>
-      <a href="#pricing" class="btn btn-org" data-reg="startup" data-i18n="nav-reg">Register <span class="arr">→</span></a>
+      <a href="/startup" class="btn btn-org" data-i18n="nav-reg">Register <span class="arr">→</span></a>
     </div>
   </div>
 </nav>
@@ -644,15 +737,15 @@
         <span class="pill" data-i18n="hero-pill"><span class="ldot"></span>Applications now open</span>
         <h1>Fund the <em>Future</em></h1>
         <div class="slogan">AI Builders <b>×</b> Investors</div>
-        <p data-i18n="hero-p">A real-deal fundraising arena for AI startups — pitch live in front of 20+ Vietnamese &amp; international investment funds, with the finale on the Conviction stage.</p>
+        <p data-i18n="hero-p">A real-deal fundraising arena for AI startups — learn from 20+ Vietnamese &amp; international funds and experienced founders on 14.08, then fundraise live on the Conviction stage on 15.08.</p>
         <div class="btns">
-          <a href="#pricing" class="btn btn-org btn-lg" data-reg="startup" data-i18n="hero-btn-reg">Register to attend <span class="arr">→</span></a>
+          <a href="/startup" class="btn btn-org btn-lg" data-i18n="hero-btn-reg">Register to attend <span class="arr">→</span></a>
           <a href="#rounds" class="btn btn-ghost btn-lg" data-i18n="hero-btn-rounds">View roadmap</a>
         </div>
       </div>
 
       <div class="tile t-cd">
-        <div class="lbl" data-i18n="cd-lbl">Countdown to the Audition — 08.08.2026</div>
+        <div class="lbl" data-i18n="cd-lbl">Countdown to Demo Day — 14.08.2026</div>
         <div class="cd-row">
           <div class="cd-cell"><b data-cd="d">--</b><span data-i18n="cd-d">Days</span></div>
           <span class="cd-sep">:</span>
@@ -677,7 +770,7 @@
 
       <div class="tile t-stat">
         <div class="num"><i>$</i>1M</div>
-        <div class="cap2" data-i18n="stat-3">Maximum ticket size per deal</div>
+        <div class="cap2" data-i18n="stat-3">Max fund ticket size per deal</div>
       </div>
 
     </div>
@@ -737,13 +830,6 @@
           <div>
             <h5>Conviction 2026</h5>
             <span data-i18n="conv-desc">Large-scale tech event — home of the Grand Finale</span>
-          </div>
-        </a>
-        <a class="partner-tile" href="https://integriumllc.com" target="_blank" rel="noopener">
-          <img src="logos/pt-integrium.png" alt="Integrium LLC">
-          <div>
-            <h5>Integrium LLC</h5>
-            <span data-i18n="integrium-desc">Professional financial advisory</span>
           </div>
         </a>
       </div>
@@ -808,7 +894,7 @@
       <span class="sec-no">03</span>
       <h2 class="title" data-i18n="s3-title">Participating <em>Investors</em></h2>
     </div>
-    <p class="lead rv rv-d1" data-i18n="s3-lead">20+ VC funds, corporate VCs and angel investors from Vietnam &amp; abroad — hearing pitches live and considering deals with ticket sizes up to $1M.</p>
+    <p class="lead rv rv-d1" data-i18n="s3-lead">20+ VC funds, corporate VCs and angel investors from Vietnam &amp; abroad — meeting startups directly and considering deals with ticket sizes up to $1M.</p>
 
     <div class="vc-grid rv rv-d2">
       <div class="vc-tile"><div class="vc-logo"><span class="vc-word">ARYON</span></div><div class="vc-name">Aryon</div></div>
@@ -833,23 +919,23 @@
       <span class="sec-no">04</span>
       <h2 class="title" data-i18n="s4-title">Fundraising shouldn't be a <em>lonely journey</em></h2>
     </div>
-    <p class="lead rv rv-d1" data-i18n="s4-lead">Startups get end-to-end support from before the pitch until after the program — 4 steps by your side.</p>
+    <p class="lead rv rv-d1" data-i18n="s4-lead">Startups get end-to-end support from before the event until after the program — 4 steps by your side.</p>
 
     <div class="why-rows rv rv-d2">
       <div class="wrow">
         <span class="no">B1</span>
-        <h3 data-i18n="w1-h">Pitch deck coaching</h3>
+        <h3 data-i18n="w1-h">Pitch deck advisory</h3>
         <p data-i18n="w1-p">1-on-1 mentors help you build and refine an investor-ready pitch deck — from storytelling and metrics to valuation.</p>
       </div>
       <div class="wrow">
         <span class="no">B2</span>
-        <h3 data-i18n="w2-h">Pitch to VCs at the Audition</h3>
-        <p data-i18n="w2-p">Take the stage and pitch live before 20+ Vietnamese &amp; international funds — real feedback, real chances to close a deal.</p>
+        <h3 data-i18n="w2-h">Learn from VCs at Demo Day</h3>
+        <p data-i18n="w2-p">Join the guidance session on 14.08 — experienced investors &amp; founders share real-world lessons and give direct feedback on your AI product.</p>
       </div>
       <div class="wrow">
         <span class="no">B3</span>
         <h3 data-i18n="w3-h">Pitch at the Conviction finale</h3>
-        <p data-i18n="w3-p">Winning startups step onto the finale stage at Conviction in front of 60,000 attendees — reach a startup could hardly create on its own.</p>
+        <p data-i18n="w3-p">Standout startups from Demo Day step onto the finale stage at Conviction in front of 50,000 attendees to pitch for funding — reach a startup could hardly create on its own.</p>
       </div>
       <div class="wrow">
         <span class="no">B4</span>
@@ -860,28 +946,29 @@
   </div>
 </section>
 
-<!-- ROUND 1: AUDITION -->
+<!-- ROUND 1: DEMO DAY -->
 <section id="rounds" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="sec-no">05</span>
-      <h2 class="title" data-i18n="s5-title">Round 1 — <em>Audition</em></h2>
+      <h2 class="title" data-i18n="s5-title">Day 1 — <em>Demo Day</em></h2>
     </div>
-    <p class="lead rv rv-d1" data-i18n="s5-lead">Where every startup begins: apply, get approved by the organizers and take the stage to pitch before the investor panel.</p>
+    <p class="lead rv rv-d1" data-i18n="s5-lead">Where every startup begins: apply, get approved by the organizers and join a guidance session where experienced investors &amp; founders share what it takes to raise at the finale.</p>
 
     <div class="stage hot rv rv-d1">
       <span class="big-ghost">01</span>
       <div>
         <span class="round-tag" data-i18n="r1-tag">● Applications open</span>
-        <h3 data-i18n="r1-h">Take the stage — pitch to 20+ funds</h3>
-        <p data-i18n="r1-p">Every approved startup gets a live pitch slot before the investor panel. Applications stay open until the Audition on 08.08.2026 — apply early to get more prep time with your mentor.</p>
+        <h3 data-i18n="r1-h">Demo Day — guidance &amp; fundraising experience sharing</h3>
+        <p data-i18n="r1-p">Startups demo their AI products, get financial insights shared with them alongside a 1-on-1 Metric Clinic, and hear experienced investors &amp; founders share real-world lessons — getting ready for the finale on 15.08. The registration deadline is 11.08.2026.</p>
         <div class="stage-chips">
-          <span class="s-chip" data-i18n="r1-chip1"><b>20+</b> funds on the panel</span>
-          <span class="s-chip" data-i18n="r1-chip2">Pitch deck support + <b>1-on-1</b> coaching</span>
+          <span class="s-chip" data-i18n="r1-chip1"><b>20+</b> funds sharing experience</span>
+          <span class="s-chip" data-i18n="r1-chip0"><b>60+</b> startups demo their AI products</span>
+          <span class="s-chip" data-i18n="r1-chip2">Guidance + <b>1-on-1</b> advisory</span>
         </div>
       </div>
       <div class="side">
-        <div class="stage-date">08.08<small>2026</small></div>
+        <div class="stage-date">14.08<small>2026</small></div>
         <div class="stage-venue">
           <span class="pin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></span>
           <div data-i18n="r1-venue"><b>SIHUB — Saigon Innovation Hub</b>123 Truong Dinh Street, Xuan Hoa Ward, Ho Chi Minh City</div>
@@ -904,18 +991,18 @@
       <span class="sec-no">06</span>
       <h2 class="title" data-i18n="s6-title">Final Round — <em>Grand Finale</em></h2>
     </div>
-    <p class="lead rv rv-d1" data-i18n="s6-lead">The ultimate destination: Audition winners compete on Conviction's main stage.</p>
+    <p class="lead rv rv-d1" data-i18n="s6-lead">The ultimate destination: standout startups from Demo Day pitch for funding on Conviction's main stage.</p>
 
     <div class="stage final rv rv-d1">
       <span class="big-ghost">02</span>
       <div>
-        <span class="round-tag" data-i18n="r2-tag">🏆 Main stage — Conviction</span>
-        <h3 data-i18n="r2-h">Shine in front of 60,000 people</h3>
-        <p data-i18n="r2-p">The Grand Finale takes place within Conviction at THISO MALL SALA, Thu Duc City — where your startup appears before Vietnam's largest tech community and connects directly with funds toward an investment round.</p>
+        <span class="round-tag" data-i18n="r2-tag">Main stage — Conviction</span>
+        <h3 data-i18n="r2-h">Shine in front of 50,000 people</h3>
+        <p data-i18n="r2-p">The Grand Finale takes place within Conviction at THISO MALL SALA, Thu Duc City — where your startup appears before a tech community of tens of thousands of expected attendees and connects directly with funds toward an investment round.</p>
         <div class="stage-chips">
-          <span class="s-chip" data-i18n="r2-chip1"><b>60,000</b> Conviction attendees</span>
+          <span class="s-chip" data-i18n="r2-chip1"><b>50,000</b> Conviction attendees</span>
           <span class="s-chip" data-i18n="r2-chip2">Coverage on <b>20+</b> media channels</span>
-          <span class="s-chip" data-i18n="r2-chip3">Prizes &amp; investor connections</span>
+          <span class="s-chip" data-i18n="r2-chip3">Awards &amp; investor connections</span>
         </div>
       </div>
       <div class="side">
@@ -923,6 +1010,47 @@
         <div class="stage-venue">
           <span class="pin"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></span>
           <div data-i18n="r2-venue"><b>THISO MALL SALA — inside Conviction</b>10 Mai Chi Tho Street, Thu Thiem Ward, Thu Duc City, Ho Chi Minh City</div>
+        </div>
+        <figure class="stage-venue-photo">
+          <img src="img/cv-venue.jpg" alt="THISO MALL SALA — Grand Finale venue" loading="lazy">
+          <figcaption data-i18n="fp-venue">THISO MALL SALA, Thu Thiem — the Grand Finale venue</figcaption>
+        </figure>
+      </div>
+      <div class="finale-stats">
+        <a class="fstat fstat-link" href="https://www.conviction.vn/vi/speakers" target="_blank" rel="noopener"><b>150+</b><span data-i18n="fs-1">Speakers</span></a>
+        <div class="fstat"><b>26K+</b><span data-i18n="fs-2">Registrations</span></div>
+        <div class="fstat"><b>100+</b><span data-i18n="fs-3">Exhibitors &amp; businesses</span></div>
+        <div class="fstat"><b>65M</b><span data-i18n="fs-4">Impressions (National TV, OOH, top press, KOLs…)</span></div>
+      </div>
+      <div class="finale-photos">
+        <figure class="fphoto">
+          <img src="img/cv-stage.jpg" alt="Conviction main stage keynote" loading="lazy">
+          <figcaption data-i18n="fp-1"><b>Main stage keynote</b> — 26,000+ attendees in 2025</figcaption>
+        </figure>
+        <figure class="fphoto">
+          <img src="img/cv-panel.jpg" alt="Speakers panel with industry leaders" loading="lazy">
+          <figcaption data-i18n="fp-2"><b>Speakers &amp; panels</b> with industry leaders</figcaption>
+        </figure>
+        <figure class="fphoto">
+          <img src="img/cv-expo.jpg" alt="Expo area and brand booths" loading="lazy">
+          <figcaption data-i18n="fp-3"><b>Expo &amp; brand booths</b> — 100+ exhibitors</figcaption>
+        </figure>
+        <figure class="fphoto">
+          <img src="img/cv-selfie.jpg" alt="Community at the check-in zone" loading="lazy">
+          <figcaption data-i18n="fp-4"><b>Community</b> &amp; check-in zone</figcaption>
+        </figure>
+      </div>
+      <div class="finale-media">
+        <span class="fm-label" data-i18n="fm-label">As featured on — <b>36+</b> press articles</span>
+        <div class="fm-logos">
+          <span>VTV Money</span>
+          <span>VnExpress</span>
+          <span>ZNews</span>
+          <span>CafeF</span>
+          <span>Lao Động</span>
+          <span>NLD</span>
+          <span>24h</span>
+          <span>VietnamNet</span>
         </div>
       </div>
     </div>
@@ -934,80 +1062,108 @@
   <div class="wrap">
     <div class="sec-head rv">
       <span class="sec-no">07</span>
-      <h2 class="title" data-i18n="s7-title">Startup Ticket — <em>pitch-slot confirmation fee</em></h2>
+      <h2 class="title" data-i18n="s7-title">Startup — <em>participation form</em></h2>
     </div>
-    <p class="lead rv rv-d1" data-i18n="s7-lead">Registered startups are <b style="color:var(--org-2)">reviewed and invited</b> by the organizers. The ticket is not a pay-to-play fee — it is a <b style="color:var(--org-2)">confirmation fee</b> to hold your pitch slot and secure your commitment.</p>
+    <p class="lead rv rv-d1" data-i18n="s7-lead">Fill in the participation form below — the organizers <b style="color:var(--org-2)">review and invite</b> approved startups, then you <b style="color:var(--org-2)">confirm your slot</b> before the deadline.</p>
 
-    <div class="prices">
-      <div class="ticket dead rv">
-        <span class="stamp" data-i18n="tk1-stamp">CLOSED</span>
-        <span class="t-flag gray" data-i18n="tk1-flag">Ended 12.07</span>
-        <div class="t-name">Startup · Early Bird</div>
-        <div class="t-amt">$99</div>
-        <div class="t-note" data-i18n="tk1-note">Early-bird confirmation fee — now closed</div>
-        <div class="tear"></div>
-        <ul class="t-list">
-          <li class="x"><span class="chk off">✓</span><span data-i18n="tk1-li1">Pitch slot at the Audition round</span></li>
-          <li class="x"><span class="chk off">✓</span><span data-i18n="tk1-li2">1-on-1 pitch deck coaching</span></li>
-          <li class="x"><span class="chk off">✓</span><span data-i18n="tk1-li3">Post-program support</span></li>
-        </ul>
-        <button class="btn btn-dead" disabled data-i18n="tk1-btn">Registration closed</button>
+    <div class="reg-split rv rv-d1">
+      <div class="reg-how">
+        <div class="how-step"><em>1</em><div><h4 data-i18n="how1-h">Fill in the form — 3 minutes</h4><p data-i18n="how1-p">Startup info, fundraising stage, a short product description and your pitch deck link (can be added later).</p></div></div>
+        <div class="how-step"><em>2</em><div><h4 data-i18n="how2-h">Organizers review</h4><p data-i18n="how2-p">The organizers review every application and reply by email within 48 hours.</p></div></div>
+        <div class="how-step"><em>3</em><div><h4 data-i18n="how3-h">Confirm your slot</h4><p data-i18n="how3-p">Confirm before 11.08.2026 to lock your slot — this activates pitch deck support and 1-on-1 sessions with a mentor.</p></div></div>
+        <div class="how-note" data-i18n="how-note">Not sure your startup fits? Submit the form anyway — the organizers read every application and will point you to the right track.</div>
+        <a href="/startup" target="_blank" rel="noopener" class="btn btn-ghost" style="width:max-content" data-i18n="how-deck">Read the full Startup brief first ↗</a>
       </div>
-
-      <div class="ticket live rv rv-d1">
-        <span class="t-flag hot" data-i18n="tk2-flag">Confirmations open</span>
-        <div class="t-name">Startup Package</div>
-        <div class="t-amt">$149</div>
-        <div class="t-note" data-i18n="tk2-note">For approved startups — confirmations open until the Audition on 08.08.2026</div>
-        <div class="invite-note" data-i18n="tk2-invite">Pitch slots are reserved for startups approved through the application form. The $149 fee confirms your commitment — it holds your pitch slot and activates the 1-on-1 support program.</div>
+      <div class="ticket live">
+        <div style="text-align:center">
+          <span class="t-flag hot" style="position:static;display:inline-block;margin-bottom:16px" data-i18n="tk2-flag">Confirmations open</span>
+          <div class="t-name" data-i18n="tk1-name">Registration deadline</div>
+          <div class="t-amt date">11.08.2026</div>
+          <div class="t-note" data-i18n="tk1-note">Deadline to confirm your slot — apply below</div>
+        </div>
         <div class="tear"></div>
         <ul class="t-list">
-          <li><span class="chk">✓</span><span data-i18n="tk2-li1">Guaranteed pitch slot at the Audition round</span></li>
-          <li><span class="chk">✓</span><span data-i18n="tk2-li2">1-on-1 pitch deck &amp; fundraising strategy coaching</span></li>
-          <li><span class="chk">✓</span><span data-i18n="tk2-li3">Pitch to 20+ funds — ticket sizes up to $1M</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tk2-li1">Guaranteed slot at Demo Day 14.08</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tk2-li2">1-on-1 pitch deck &amp; fundraising strategy advisory</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tk2-li3">Connect directly with 20+ funds — ticket sizes up to $1M</span></li>
           <li><span class="chk">✓</span><span data-i18n="tk2-li4">A shot at the Grand Finale at Conviction</span></li>
           <li><span class="chk">✓</span><span data-i18n="tk2-li5">Media coverage &amp; Due Diligence support after the program</span></li>
         </ul>
-        <a href="#" class="btn btn-org btn-lg" data-reg="startup" data-i18n="tk2-btn">Confirm your slot — $149 <span class="arr">→</span></a>
+        <div class="invite-note" data-i18n="tk2-invite">Slots are reserved for startups approved through the application form. Confirming your slot secures your commitment — it holds your place and activates the 1-on-1 support program.</div>
+        <a href="#" class="btn btn-org btn-lg" data-reg="startup" data-i18n="tk2-btn" style="margin-top:20px">Fill in the participation form <span class="arr">→</span></a>
       </div>
-
     </div>
   </div>
-</section>
+</section><!-- /pricing -->
 
 <!-- 08 VÉ AUDIENCE -->
 <section id="audience" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="sec-no">08</span>
-      <h2 class="title" data-i18n="s8-title"><em>Audience</em> Ticket — watch &amp; join the ride</h2>
+      <h2 class="title" data-i18n="s8-title"><em>Tickets</em> — watch the finale at Conviction</h2>
     </div>
 
-    <div class="aud-split">
-      <div class="rv rv-d1">
-        <p class="aud-welcome" data-i18n="aud-welcome">Fund the Future <b>welcomes young people</b> and <b>startup communities</b> to watch live: hear startups pitch before the investor panel, learn how investors ask questions, and soak in the atmosphere of the finale at Conviction.</p>
-        <div class="aud-tags">
-          <span class="aud-tag" data-i18n="aud-tag1">🎓 Students &amp; startup-loving young people</span>
-          <span class="aud-tag" data-i18n="aud-tag2">🚀 Startup &amp; builder communities</span>
-          <span class="aud-tag" data-i18n="aud-tag3">🤝 Future founders seeking inspiration</span>
-          <span class="aud-tag" data-i18n="aud-tag4">💡 Anyone into investing &amp; tech</span>
-        </div>
+    <div class="rv rv-d1">
+      <p class="aud-welcome" style="max-width:760px" data-i18n="aud-welcome">The Fund the Future Grand Finale happens right on the Conviction 2026 stage — so your event ticket <b>is a Conviction ticket</b>. Pick a tier below and complete your booking on Conviction's official ticket page.</p>
+      <div class="aud-tags">
+        <span class="aud-tag" data-i18n="aud-tag1">Students &amp; startup-loving young people</span>
+        <span class="aud-tag" data-i18n="aud-tag2">Startup &amp; builder communities</span>
+        <span class="aud-tag" data-i18n="aud-tag3">Future founders seeking inspiration</span>
+        <span class="aud-tag" data-i18n="aud-tag4">Anyone into investing &amp; tech</span>
       </div>
+    </div>
 
-      <div class="ticket aud rv rv-d2">
-        <span class="t-flag hot" data-i18n="tk3-flag">On sale now</span>
-        <div class="t-name">Audience Pass</div>
-        <div class="t-amt">$7</div>
-        <div class="t-note" data-i18n="tk3-note">One ticket — the full journey alongside the startups</div>
+    <div class="tix-grid">
+      <!-- FREE -->
+      <div class="ticket rv rv-d1">
+        <span class="t-flag gray" data-i18n="tkf-flag">Free entry</span>
+        <div class="t-name">Free</div>
+        <div class="t-amt">$0</div>
+        <div class="t-note" data-i18n="tkf-note">Full 2-day access to Conviction 2026</div>
         <div class="tear"></div>
         <ul class="t-list">
-          <li><span class="chk">✓</span><span data-i18n="tk3-li1">Watch startups pitch live at the Audition 08.08</span></li>
-          <li><span class="chk">✓</span><span data-i18n="tk3-li2">Attend the Grand Finale at Conviction 15.08</span></li>
-          <li><span class="chk">✓</span><span data-i18n="tk3-li3">Connect with founders, builders &amp; investors</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tkf-li1">Entry to both event days</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tkf-li2">Access to the expo &amp; brand booths</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tkf-li3">Watch the Fund the Future Grand Finale live</span></li>
         </ul>
-        <a href="#" class="btn btn-org btn-lg" style="width:100%;margin-top:auto" data-reg="audience" data-i18n="tk3-btn">Buy Audience ticket — $7 <span class="arr">→</span></a>
+        <a href="https://www.conviction.vn/vi/ticket" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-i18n="tkf-btn">Get Free ticket — $0 <span class="arr">↗</span></a>
+      </div>
+
+      <!-- PRO -->
+      <div class="ticket live rv rv-d2">
+        <span class="t-flag hot" data-i18n="tkp-flag">Most popular</span>
+        <div class="t-name">Pro</div>
+        <div class="t-amt">$99</div>
+        <div class="t-note" data-i18n="tkp-note">Includes a premium Conviction gift set</div>
+        <div class="tear"></div>
+        <ul class="t-list">
+          <li><span class="chk">✓</span><span data-i18n="tkp-li1">All Free-ticket benefits</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tkp-li2">Priority check-in &amp; priority seating</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tkp-li3">Press conference access</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tkp-li4">Drinks served throughout the main event</span></li>
+        </ul>
+        <a href="https://www.conviction.vn/vi/ticket" target="_blank" rel="noopener" class="btn btn-org btn-lg" data-i18n="tkp-btn">Buy Pro ticket — $99 <span class="arr">↗</span></a>
+      </div>
+
+      <!-- PLATINUM -->
+      <div class="ticket rv rv-d3">
+        <span class="t-flag gray" data-i18n="tkpl-flag">VIP</span>
+        <div class="t-name">Platinum</div>
+        <div class="t-amt">$608</div>
+        <div class="t-note" data-i18n="tkpl-note">The complete VIP experience</div>
+        <div class="tear"></div>
+        <ul class="t-list">
+          <li><span class="chk">✓</span><span data-i18n="tkpl-li1">All Pro-ticket benefits</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tkpl-li2">Luncheon &amp; guest party</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tkpl-li3">VIP speaker lounge access</span></li>
+          <li><span class="chk">✓</span><span data-i18n="tkpl-li4">Network with speakers &amp; VIP guests</span></li>
+        </ul>
+        <a href="https://www.conviction.vn/vi/ticket" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-i18n="tkpl-btn">Buy Platinum — $608 <span class="arr">↗</span></a>
       </div>
     </div>
+
+    <p class="tix-foot rv" data-i18n="tix-foot">Payment &amp; e-tickets are handled directly on the official Conviction 2026 ticket page.</p>
   </div>
 </section>
 
@@ -1020,14 +1176,14 @@
     </div>
 
     <div class="faq rv rv-d1">
-      <div class="fq"><button class="fq-q"><span class="fq-no">Q1</span><span class="txt" data-i18n="q1">Can I still buy the $99 Early Bird ticket?</span><span class="fq-ic">+</span></button>
-        <div class="fq-a"><p data-i18n="a1">Unfortunately, Early Bird ended on 12.07.2026. You can still confirm your slot with the $149 Startup Package — with the full set of participation benefits.</p></div></div>
+      <div class="fq"><button class="fq-q"><span class="fq-no">Q1</span><span class="txt" data-i18n="q1">How do I confirm my slot?</span><span class="fq-ic">+</span></button>
+        <div class="fq-a"><p data-i18n="a1">Once the organizers approve your application, you confirm your slot before the 11.08.2026 deadline to lock it in — this activates your 1-on-1 support program and guarantees your place at Demo Day.</p></div></div>
       <div class="fq"><button class="fq-q"><span class="fq-no">Q2</span><span class="txt" data-i18n="q2">What do I get right after registering?</span><span class="fq-ic">+</span></button>
-        <div class="fq-a"><p data-i18n="a2">A guaranteed pitch slot at the Audition on 08.08.2026, plus pitch deck support and a 1-on-1 mentoring session before the event.</p></div></div>
+        <div class="fq-a"><p data-i18n="a2">A guaranteed slot at Demo Day on 14.08.2026, plus preparation support and a 1-on-1 mentoring session before the event.</p></div></div>
       <div class="fq"><button class="fq-q"><span class="fq-no">Q3</span><span class="txt" data-i18n="q3">Is it too late to apply now?</span><span class="fq-ic">+</span></button>
-        <div class="fq-a"><p data-i18n="a3">Not at all! Applications stay open until the Audition on 08.08.2026. Apply early to get more prep time with your mentor.</p></div></div>
+        <div class="fq-a"><p data-i18n="a3">Not at all! The registration deadline is 11.08.2026. Apply early to get more prep time with your mentor.</p></div></div>
       <div class="fq"><button class="fq-q"><span class="fq-no">Q4</span><span class="txt" data-i18n="q4">How do I get into the Grand Finale?</span><span class="fq-ic">+</span></button>
-        <div class="fq-a"><p data-i18n="a4">Winning startups from the Audition compete in the finale on 15.08.2026, held within Conviction with 60,000 attendees.</p></div></div>
+        <div class="fq-a"><p data-i18n="a4">Standout startups from Demo Day are selected to pitch for funding at the finale on 15.08.2026, held within Conviction with 50,000 attendees.</p></div></div>
       <div class="fq"><button class="fq-q"><span class="fq-no">Q5</span><span class="txt" data-i18n="q5">Who is on the investor panel?</span><span class="fq-ic">+</span></button>
         <div class="fq-a"><p data-i18n="a5">20+ Vietnamese and international funds — including VCs, corporate VCs and angel investors active across Southeast Asia.</p></div></div>
       <div class="fq"><button class="fq-q"><span class="fq-no">Q6</span><span class="txt" data-i18n="q6">What media benefits do winners get?</span><span class="fq-ic">+</span></button>
@@ -1040,8 +1196,8 @@
 <section style="padding-top:0">
   <div class="cta rv">
     <h2 data-i18n="cta-h">Ready to <em>raise?</em></h2>
-    <p data-i18n="cta-p">Hold your pitch slot at Fund the Future today — make 08.08 the day your AI startup takes off.</p>
-    <a href="#pricing" class="btn btn-org btn-lg" data-reg="startup" data-i18n="cta-btn">Register to attend <span class="arr">→</span></a>
+    <p data-i18n="cta-p">Hold your slot at Fund the Future today — make 14–15.08 the days your AI startup takes off.</p>
+    <a href="/startup" class="btn btn-org btn-lg" data-i18n="cta-btn">Register to attend <span class="arr">→</span></a>
   </div>
 </section>
 
@@ -1050,7 +1206,8 @@
   <div class="modal">
     <button class="m-close" type="button" aria-label="Close">✕</button>
     <h3 id="stTitle" data-i18n="st-title">Register — Startup Package</h3>
-    <p class="sub" data-i18n="st-sub">For AI startups that want to pitch for funding at the Audition on 08.08.2026 — the organizers review and reply by email within 48 hours.</p>
+    <p class="sub" data-i18n="st-sub">For AI startups joining Demo Day on 14.08.2026 to prepare for fundraising at the finale — the organizers review and reply by email within 48 hours.</p>
+    <p class="sub" style="margin-top:-16px"><a href="/startup" target="_blank" rel="noopener" style="color:var(--org-2);font-weight:600" data-i18n="st-deck">New to the program? Read the Startup brief in a new tab ↗</a></p>
 
     <form data-gform="startup">
       <div class="f-grid">
@@ -1094,9 +1251,10 @@
     </form>
 
     <div class="f-ok">
-      <div class="big">🚀</div>
+      <div class="big">✓</div>
       <h3 data-i18n="st-ok-h">Application received!</h3>
-      <p data-i18n="st-ok-p">Thank you! The organizers will review and email you instructions to confirm your pitch slot within 48 hours — remember to check your Spam/Promotions folders too.</p>
+      <p data-i18n="st-ok-p">Thank you! The organizers will review and email you instructions to confirm your slot within 48 hours — remember to check your Spam/Promotions folders too.</p>
+      <p style="margin-top:14px"><a href="/startup" target="_blank" rel="noopener" style="color:var(--org-2);font-weight:600" data-i18n="st-ok-deck">Meanwhile, read the Startup brief to prepare ↗</a></p>
     </div>
   </div>
 </div>
@@ -1138,7 +1296,7 @@
     </form>
 
     <div class="f-ok">
-      <div class="big">🎟️</div>
+      <div class="big">✓</div>
       <h3 data-i18n="au-ok-h">Booking received!</h3>
       <p data-i18n="au-ok-p">Thank you! The organizers will email payment instructions and your e-ticket within 24 hours — remember to check your Spam/Promotions folders too.</p>
     </div>
@@ -1147,7 +1305,7 @@
 
 <footer>
   <div class="foot">
-    <small data-i18n="foot-copy">© Fund the Future 2026 · AI Builders × Investors · Organized by <a href="https://snappp.ai" target="_blank" rel="noopener">Snappp.AI</a> &amp; THE EDGE · Audition 08.08 @ SIHUB, 123 Truong Dinh · Finale 15.08 @ THISO MALL SALA within <a href="https://www.conviction.vn/en" target="_blank" rel="noopener">Conviction</a></small>
+    <small data-i18n="foot-copy">© Fund the Future 2026 · AI Builders × Investors · Organized by <a href="https://snappp.ai" target="_blank" rel="noopener">Snappp.AI</a> &amp; THE EDGE · Demo Day 14.08 @ SIHUB, 123 Truong Dinh · Finale 15.08 @ THISO MALL SALA within <a href="https://www.conviction.vn/en" target="_blank" rel="noopener">Conviction</a> · Operated by Fresgen AI Co., Ltd. under The Edge Alliance brand · Fund the Future is a knowledge-sharing &amp; investor-connection program — all investment decisions rest solely with the funds; the organizers never receive or hold any investment money.</small>
     <div class="foot-r">
       <a href="#" aria-label="GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .3.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
       <a href="#" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM0 8h5v16H0V8Zm7.5 0h4.8v2.2h.1c.7-1.3 2.3-2.6 4.7-2.6 5 0 6 3.3 6 7.6V24h-5v-7.6c0-1.8 0-4.1-2.5-4.1s-2.9 2-2.9 4V24h-5V8Z"/></svg></a>
@@ -1172,16 +1330,16 @@ var I18N_VI = {
   'nav-reg': 'Đăng ký <span class="arr">→</span>',
 
   'hero-pill': '<span class="ldot"></span>Đang mở đơn đăng ký',
-  'hero-p': 'Sân gọi vốn thực chiến cho startup AI — pitch trực tiếp trước 20+ quỹ đầu tư Việt Nam &amp; quốc tế, chung kết trên sân khấu Conviction.',
+  'hero-p': 'Sân gọi vốn thực chiến cho startup AI — ngày 14.08 học hỏi kinh nghiệm từ 20+ quỹ đầu tư Việt Nam &amp; quốc tế cùng các founder dày dạn, ngày 15.08 gọi vốn trực tiếp trên sân khấu Conviction.',
   'hero-btn-reg': 'Đăng ký tham dự <span class="arr">→</span>',
   'hero-btn-rounds': 'Xem lộ trình',
 
-  'cd-lbl': 'Đếm ngược tới Audition — 08.08.2026',
+  'cd-lbl': 'Đếm ngược tới Demo Day — 14.08.2026',
   'cd-d': 'Ngày', 'cd-h': 'Giờ', 'cd-m': 'Phút', 'cd-s': 'Giây',
 
   'stat-1': 'Startup đã đăng ký tham gia',
   'stat-2': 'Quỹ đầu tư Việt Nam &amp; quốc tế',
-  'stat-3': 'Ticket size tối đa mỗi thương vụ',
+  'stat-3': 'Quy mô ticket các quỹ mỗi thương vụ',
 
   's1-title': '<em>Ban tổ chức</em>',
   's1-lead': 'Fund the Future được kiến tạo bởi những đơn vị tiên phong về AI và cộng đồng tài chính – quản trị doanh nghiệp tại Việt Nam.',
@@ -1198,94 +1356,125 @@ var I18N_VI = {
   'tier-media': 'Đối tác truyền thông — Media Partners',
   'sihub-desc': 'Trung tâm khởi nghiệp đổi mới sáng tạo TP.HCM',
   'conv-desc': 'Sự kiện công nghệ quy mô lớn — nơi diễn ra vòng chung kết',
-  'integrium-desc': 'Tư vấn tài chính chuyên nghiệp',
 
   's3-title': '<em>Nhà đầu tư</em> tham dự',
-  's3-lead': '20+ quỹ đầu tư VC, corporate VC và angel investors từ Việt Nam &amp; quốc tế — trực tiếp nghe pitch và xem xét đầu tư, ticket size lên đến $1M.',
+  's3-lead': '20+ quỹ đầu tư VC, corporate VC và angel investors từ Việt Nam &amp; quốc tế — trực tiếp gặp gỡ startup và xem xét đầu tư, ticket size lên đến $1M.',
   'vc-note': 'Danh sách quỹ đang tiếp tục được cập nhật',
 
   's4-title': 'Gọi vốn không nên là <em>hành trình đơn độc</em>',
-  's4-lead': 'Startup được hỗ trợ trọn vẹn từ trước khi pitch cho đến sau chương trình — 4 bước đồng hành cùng bạn.',
+  's4-lead': 'Startup được hỗ trợ trọn vẹn từ trước sự kiện cho đến sau chương trình — 4 bước đồng hành cùng bạn.',
   'w1-h': 'Tư vấn pitch deck',
   'w1-p': 'Cố vấn 1-1 giúp xây dựng và tinh chỉnh pitch deck chuẩn nhà đầu tư — từ storytelling, số liệu đến định giá.',
-  'w2-h': 'Pitch với VC tại Audition',
-  'w2-p': 'Lên sân khấu pitch trực tiếp trước 20+ quỹ đầu tư Việt Nam &amp; quốc tế — phản hồi thật, cơ hội chốt deal thật.',
+  'w2-h': 'Học hỏi kinh nghiệm tại Demo Day',
+  'w2-p': 'Tham dự buổi hướng dẫn ngày 14.08 — nhà đầu tư &amp; founder giàu kinh nghiệm chia sẻ bài học thực chiến và phản hồi trực tiếp về sản phẩm AI của bạn.',
   'w3-h': 'Pitch ở chung kết Conviction',
-  'w3-p': 'Startup đạt giải bước lên sân khấu chung kết trong sự kiện Conviction trước 60.000 người tham dự — độ phủ mà startup khó tự tạo ra.',
+  'w3-p': 'Startup nổi bật từ Demo Day bước lên sân khấu chung kết trong sự kiện Conviction trước 50.000 người tham dự để gọi vốn — độ phủ mà startup khó tự tạo ra.',
   'w4-h': 'Hỗ trợ sau chương trình',
   'w4-p': 'Truyền thông trên hệ thống kênh Conviction &amp; 20+ media partners, follow-up meeting với các quỹ quan tâm và hỗ trợ Due Diligence để đi đến vòng rót vốn.',
 
-  's5-title': 'Vòng 1 — <em>Audition</em>',
-  's5-lead': 'Điểm khởi đầu của mọi startup: đăng ký, được BTC xét duyệt và bước lên sân khấu pitch trước hội đồng quỹ đầu tư.',
+  's5-title': 'Ngày 1 — <em>Demo Day</em>',
+  's5-lead': 'Điểm khởi đầu của mọi startup: đăng ký, được BTC xét duyệt và tham dự buổi hướng dẫn, chia sẻ kinh nghiệm từ nhà đầu tư &amp; founder dày dạn — chuẩn bị cho ngày 15.08.',
   'r1-tag': '● Đang mở đơn đăng ký',
-  'r1-h': 'Lên sân khấu, pitch trước 20+ quỹ',
-  'r1-p': 'Mỗi startup được xét duyệt đều có suất pitch trực tiếp trước hội đồng quỹ đầu tư. Cổng đăng ký mở đến trước ngày Audition 08.08.2026 — đăng ký sớm để có nhiều thời gian chuẩn bị cùng mentor.',
-  'r1-chip1': '<b>20+</b> quỹ ngồi ghế hội đồng',
-  'r1-chip2': 'Hỗ trợ pitch deck + tư vấn <b>1-1</b>',
+  'r1-h': 'Demo Day — buổi hướng dẫn, chia sẻ kinh nghiệm gọi vốn',
+  'r1-p': 'Startup demo sản phẩm AI, được chia sẻ kiến thức tài chính kèm Metric Clinic 1-1 và lắng nghe nhà đầu tư, founder giàu kinh nghiệm chia sẻ bài học thực chiến — sẵn sàng cho chung kết 15.08. Hạn chót đăng ký: 11.08.2026.',
+  'r1-chip1': '<b>20+</b> quỹ tham dự chia sẻ kinh nghiệm',
+  'r1-chip0': '<b>60+</b> startup demo sản phẩm AI',
+  'r1-chip2': 'Hướng dẫn + tư vấn <b>1-1</b>',
   'r1-venue': '<b>SIHUB — Saigon Innovation Hub</b>123 Đường Trương Định, Phường Xuân Hòa, TP. Hồ Chí Minh',
 
   's6-title': 'Vòng chung kết — <em>Grand Finale</em>',
-  's6-lead': 'Đích đến cao nhất: các startup đạt giải Audition tranh tài trên sân khấu chính của Conviction.',
-  'r2-tag': '🏆 Sân khấu chính — Conviction',
-  'r2-h': 'Toả sáng trước 60.000 người',
-  'r2-p': 'Vòng chung kết tổ chức trong khuôn khổ sự kiện Conviction tại THISO MALL SALA, TP. Thủ Đức — nơi startup của bạn xuất hiện trước cộng đồng công nghệ lớn nhất Việt Nam và kết nối trực tiếp với các quỹ để tiến tới vòng đầu tư.',
-  'r2-chip1': '<b>60.000</b> người tham dự Conviction',
+  's6-lead': 'Đích đến cao nhất: các startup nổi bật từ Demo Day gọi vốn trên sân khấu chính của Conviction.',
+  'r2-tag': 'Sân khấu chính — Conviction',
+  'r2-h': 'Toả sáng trước 50.000 người',
+  'r2-p': 'Vòng chung kết tổ chức trong khuôn khổ sự kiện Conviction tại THISO MALL SALA, TP. Thủ Đức — nơi startup của bạn xuất hiện trước cộng đồng công nghệ quy mô hàng chục nghìn người tham dự dự kiến và kết nối trực tiếp với các quỹ để tiến tới vòng đầu tư.',
+  'r2-chip1': '<b>50.000</b> người tham dự Conviction',
   'r2-chip2': 'Truyền thông <b>20+</b> kênh media',
-  'r2-chip3': 'Giải thưởng &amp; kết nối đầu tư',
+  'r2-chip3': 'Danh vị &amp; kết nối đầu tư',
   'r2-venue': '<b>THISO MALL SALA — trong sự kiện Conviction</b>Số 10 Đường Mai Chí Thọ, Phường Thủ Thiêm, TP. Thủ Đức, TP. Hồ Chí Minh',
+  'fp-venue': 'THISO MALL SALA, Thủ Thiêm — nơi diễn ra vòng chung kết',
+  'fp-1': '<b>Keynote sân khấu chính</b> — 26.000+ lượt tham dự năm 2025',
+  'fp-2': '<b>Diễn giả &amp; panel</b> cùng lãnh đạo đầu ngành',
+  'fp-3': '<b>Khu triển lãm &amp; booth thương hiệu</b> — 100+ exhibitors',
+  'fp-4': '<b>Cộng đồng</b> &amp; khu check-in',
+  'fs-1': 'Diễn giả',
+  'fs-2': 'Lượt đăng ký',
+  'fs-3': 'Đơn vị Triển lãm &amp; Doanh nghiệp',
+  'fs-4': 'Lượt hiển thị (Truyền hình Quốc gia, Quảng cáo ngoài trời, Báo chí hàng đầu, KOLs…)',
+  'fm-label': 'Được đưa tin bởi — <b>36+</b> bài báo',
 
-  's7-title': 'Vé Startup — <em>phí xác nhận suất pitch</em>',
-  's7-lead': 'Startup đăng ký sẽ được BTC <b style="color:var(--org-2)">xét duyệt và mời</b> tham dự. Phí vé không phải chi phí mua suất — đây là <b style="color:var(--org-2)">phí xác nhận</b> để giữ suất pitch và đảm bảo cam kết tham gia.',
-  'tk1-stamp': 'ĐÃ ĐÓNG',
-  'tk1-flag': 'Kết thúc 12.07',
-  'tk1-note': 'Phí xác nhận tham gia đợt sớm — đã đóng cổng',
-  'tk1-li1': 'Suất pitch tại vòng Audition',
-  'tk1-li2': 'Tư vấn pitch deck 1-1',
-  'tk1-li3': 'Hỗ trợ sau chương trình',
-  'tk1-btn': 'Hết hạn đăng ký',
+  's7-title': 'Startup — <em>form tham dự</em>',
+  's7-lead': 'Điền form tham dự bên dưới — BTC <b style="color:var(--org-2)">xét duyệt và mời</b> startup phù hợp, sau đó bạn <b style="color:var(--org-2)">xác nhận suất tham dự</b> trước hạn chót.',
+  'tk1-flag': 'Sắp đóng cổng đăng ký',
+  'tk1-name': 'Hạn chót đăng ký',
+  'tk1-note': 'Hạn xác nhận suất tham dự — điền form bên dưới',
   'tk2-flag': 'Đang nhận xác nhận',
-  'tk2-note': 'Dành cho startup được duyệt tham dự — mở xác nhận đến trước ngày Audition 08.08.2026',
-  'tk2-invite': 'Suất pitch dành cho startup đã được BTC xét duyệt qua đơn đăng ký. Phí $149 là phí xác nhận cam kết tham gia — giữ suất pitch của bạn và kích hoạt chương trình hỗ trợ 1-1.',
-  'tk2-li1': 'Suất pitch đảm bảo tại vòng Audition',
+  'tk2-name': 'Gói Startup',
+  'tk2-invite': 'Suất tham dự dành cho startup đã được BTC xét duyệt qua đơn đăng ký. Xác nhận suất là bước cam kết tham gia — giữ chỗ của bạn và kích hoạt chương trình hỗ trợ 1-1.',
+  'tk2-li1': 'Suất tham dự đảm bảo tại Demo Day 14.08',
   'tk2-li2': 'Tư vấn pitch deck &amp; chiến lược gọi vốn 1-1',
-  'tk2-li3': 'Pitch trước 20+ quỹ — ticket size đến $1M',
+  'tk2-li3': 'Kết nối trực tiếp 20+ quỹ — ticket size đến $1M',
   'tk2-li4': 'Cơ hội vào chung kết tại Conviction',
   'tk2-li5': 'Truyền thông &amp; hỗ trợ Due Diligence sau chương trình',
-  'tk2-btn': 'Xác nhận tham gia — $149 <span class="arr">→</span>',
+  'tk2-btn': 'Điền form tham dự <span class="arr">→</span>',
+  'how1-h': 'Điền form — 3 phút',
+  'how1-p': 'Thông tin startup, giai đoạn gọi vốn, mô tả ngắn sản phẩm và link pitch deck (có thể bổ sung sau).',
+  'how2-h': 'BTC xét duyệt',
+  'how2-p': 'BTC xem xét từng đơn đăng ký và phản hồi qua email trong vòng 48 giờ.',
+  'how3-h': 'Xác nhận suất tham dự',
+  'how3-p': 'Xác nhận trước 11.08.2026 để chốt suất — kích hoạt hỗ trợ pitch deck và tư vấn 1-1 cùng mentor.',
+  'how-note': 'Chưa chắc startup của bạn có phù hợp? Cứ gửi form — BTC đọc từng đơn và sẽ hướng dẫn bạn hướng tham gia phù hợp.',
+  'how-deck': 'Đọc hồ sơ chi tiết cho Startup trước ↗',
+  'st-deck': 'Mới biết chương trình? Đọc hồ sơ Startup ở tab mới ↗',
+  'st-ok-deck': 'Trong lúc chờ, đọc hồ sơ Startup để chuẩn bị ↗',
 
-  's8-title': 'Vé <em>Audience</em> — đến xem &amp; đồng hành',
-  'aud-welcome': 'Fund the Future <b>chào đón các bạn trẻ</b> và <b>các cộng đồng khởi nghiệp</b> đến xem trực tiếp: nghe các startup pitch trước hội đồng quỹ đầu tư, học cách nhà đầu tư đặt câu hỏi, và hoà mình vào không khí của vòng chung kết tại Conviction.',
-  'aud-tag1': '🎓 Sinh viên &amp; bạn trẻ yêu khởi nghiệp',
-  'aud-tag2': '🚀 Cộng đồng startup &amp; builder',
-  'aud-tag3': '🤝 Founder tương lai tìm cảm hứng',
-  'aud-tag4': '💡 Người quan tâm đầu tư &amp; công nghệ',
-  'tk3-flag': 'Đang mở bán',
-  'tk3-note': 'Một tấm vé — trọn vẹn hành trình cùng các startup',
-  'tk3-li1': 'Nghe startup pitch trực tiếp tại Audition 08.08',
-  'tk3-li2': 'Tham dự vòng chung kết tại Conviction 15.08',
-  'tk3-li3': 'Kết nối cộng đồng founder, builder &amp; nhà đầu tư',
-  'tk3-btn': 'Mua vé Audience — $7 <span class="arr">→</span>',
+  's8-title': '<em>Vé tham dự</em> — xem chung kết tại Conviction',
+  'aud-welcome': 'Vòng chung kết Fund the Future diễn ra ngay trên sân khấu Conviction 2026 — nên vé tham dự sự kiện <b>chính là vé Conviction</b>. Chọn hạng vé bên dưới và hoàn tất đặt vé trên trang vé chính thức của Conviction.',
+  'aud-tag1': 'Sinh viên &amp; bạn trẻ yêu khởi nghiệp',
+  'aud-tag2': 'Cộng đồng startup &amp; builder',
+  'aud-tag3': 'Founder tương lai tìm cảm hứng',
+  'aud-tag4': 'Người quan tâm đầu tư &amp; công nghệ',
+  'tkf-flag': 'Miễn phí',
+  'tkf-note': 'Tham dự trọn 02 ngày Conviction 2026',
+  'tkf-li1': 'Vào cửa cả 02 ngày sự kiện',
+  'tkf-li2': 'Tham quan khu triển lãm &amp; gian hàng thương hiệu',
+  'tkf-li3': 'Xem trực tiếp chung kết Fund the Future',
+  'tkf-btn': 'Nhận vé Free — $0 <span class="arr">↗</span>',
+  'tkp-flag': 'Được chọn nhiều nhất',
+  'tkp-note': 'Kèm bộ quà tặng cao cấp từ Conviction',
+  'tkp-li1': 'Toàn bộ quyền lợi vé Free',
+  'tkp-li2': 'Check-in ưu tiên &amp; chỗ ngồi ưu tiên',
+  'tkp-li3': 'Tham dự họp báo',
+  'tkp-li4': 'Đồ uống phục vụ xuyên suốt sự kiện chính',
+  'tkp-btn': 'Mua vé Pro — $99 <span class="arr">↗</span>',
+  'tkpl-flag': 'VIP',
+  'tkpl-note': 'Trải nghiệm VIP trọn vẹn nhất',
+  'tkpl-li1': 'Toàn bộ quyền lợi vé Pro',
+  'tkpl-li2': 'Tiệc trưa &amp; tiệc khách mời',
+  'tkpl-li3': 'Khu vực VIP dành cho diễn giả',
+  'tkpl-li4': 'Kết nối diễn giả &amp; khách mời VIP',
+  'tkpl-btn': 'Mua vé Platinum — $608 <span class="arr">↗</span>',
+  'tix-foot': 'Thanh toán &amp; nhận vé điện tử thực hiện trực tiếp trên trang vé chính thức của Conviction 2026.',
 
   'faq-title': 'Câu hỏi <em>thường gặp</em>',
-  'q1': 'Vé Early Bird $99 còn mua được không?',
-  'a1': 'Rất tiếc, Early Bird đã kết thúc từ ngày 12.07.2026. Bạn vẫn xác nhận tham gia được với Startup Package $149 — đầy đủ toàn bộ quyền lợi tham dự.',
+  'q1': 'Làm sao để xác nhận suất tham dự?',
+  'a1': 'Sau khi được BTC duyệt đơn, bạn xác nhận suất trước hạn chót 11.08.2026 để giữ chỗ — kích hoạt chương trình hỗ trợ 1-1 và đảm bảo vị trí tại Demo Day 14.08.',
   'q2': 'Đăng ký xong tôi được gì ngay?',
-  'a2': 'Một suất pitch đảm bảo tại vòng Audition ngày 08.08.2026, kèm hỗ trợ pitch deck và buổi tư vấn 1-1 với mentor trước sự kiện.',
+  'a2': 'Một suất tham dự đảm bảo tại Demo Day ngày 14.08.2026, kèm hỗ trợ chuẩn bị và buổi tư vấn 1-1 với mentor trước sự kiện.',
   'q3': 'Bây giờ nộp đơn còn kịp không?',
-  'a3': 'Còn! Cổng đăng ký mở đến trước vòng Audition 08.08.2026. Đăng ký sớm để có nhiều thời gian chuẩn bị cùng mentor.',
+  'a3': 'Còn! Hạn chót đăng ký là 11.08.2026. Đăng ký sớm để có nhiều thời gian chuẩn bị cùng mentor.',
   'q4': 'Làm sao để vào vòng chung kết?',
-  'a4': 'Các startup đạt giải tại Audition sẽ tranh tài ở chung kết ngày 15.08.2026, tổ chức trong sự kiện Conviction với 60.000 người tham dự.',
+  'a4': 'Các startup nổi bật tại Demo Day sẽ được chọn để gọi vốn ở chung kết ngày 15.08.2026, tổ chức trong sự kiện Conviction với 50.000 người tham dự.',
   'q5': 'Hội đồng đầu tư gồm những ai?',
   'a5': '20+ quỹ đầu tư Việt Nam và quốc tế — bao gồm VC, corporate VC và angel investors hoạt động tích cực tại Đông Nam Á.',
   'q6': 'Quyền lợi truyền thông khi đạt giải gồm gì?',
   'a6': 'Truyền thông trên hệ thống kênh Conviction và mạng lưới 20+ media partners, cùng chứng nhận và kết nối đầu tư sau chương trình.',
 
   'cta-h': 'Sẵn sàng <em>gọi vốn?</em>',
-  'cta-p': 'Giữ suất pitch tại Fund the Future ngay hôm nay — biến 08.08 thành ngày startup AI của bạn cất cánh.',
+  'cta-p': 'Giữ suất tham dự tại Fund the Future ngay hôm nay — biến 14–15.08 thành hai ngày startup AI của bạn cất cánh.',
   'cta-btn': 'Đăng ký tham dự <span class="arr">→</span>',
 
   'st-title': 'Đăng ký Startup Package',
-  'st-sub': 'Dành cho startup AI muốn pitch gọi vốn tại vòng Audition 08.08.2026 — BTC xét duyệt và phản hồi qua email trong vòng 48 giờ.',
+  'st-sub': 'Dành cho startup AI tham dự Demo Day 14.08.2026 để chuẩn bị gọi vốn tại chung kết 15.08 — BTC xét duyệt và phản hồi qua email trong vòng 48 giờ.',
   'f-rep-label': 'Họ tên người đại diện <b>*</b>',
   'f-name-label': 'Họ tên <b>*</b>',
   'f-name-ph': 'Nguyễn Văn A',
@@ -1304,7 +1493,7 @@ var I18N_VI = {
   'st-submit': 'Gửi đăng ký <span class="arr">→</span>',
   'f-privacy-st': 'Thông tin chỉ dùng cho việc xét duyệt &amp; liên hệ của BTC Fund the Future.',
   'st-ok-h': 'Đã nhận đăng ký!',
-  'st-ok-p': 'Cảm ơn bạn. BTC sẽ xét duyệt và gửi email hướng dẫn xác nhận suất pitch trong vòng 48 giờ — nhớ kiểm tra cả hộp thư Spam/Promotions.',
+  'st-ok-p': 'Cảm ơn bạn. BTC sẽ xét duyệt và gửi email hướng dẫn xác nhận suất tham dự trong vòng 48 giờ — nhớ kiểm tra cả hộp thư Spam/Promotions.',
 
   'au-title': 'Đặt vé Audience — $7',
   'au-sub': 'Đến xem startup pitch trực tiếp và tham dự vòng chung kết tại Conviction — BTC sẽ gửi hướng dẫn thanh toán &amp; vé điện tử qua email.',
@@ -1318,7 +1507,7 @@ var I18N_VI = {
   'au-ok-h': 'Đã nhận đặt vé!',
   'au-ok-p': 'Cảm ơn bạn. BTC sẽ gửi email hướng dẫn thanh toán và vé điện tử trong vòng 24 giờ — nhớ kiểm tra cả hộp thư Spam/Promotions.',
 
-  'foot-copy': '© Fund the Future 2026 · AI Builders × Investors · Tổ chức bởi <a href="https://snappp.ai" target="_blank" rel="noopener">Snappp.AI</a> &amp; THE EDGE · Audition 08.08 @ SIHUB, 123 Trương Định · Chung kết 15.08 @ THISO MALL SALA trong khuôn khổ <a href="https://www.conviction.vn/en" target="_blank" rel="noopener">Conviction</a>'
+  'foot-copy': '© Fund the Future 2026 · AI Builders × Investors · Tổ chức bởi <a href="https://snappp.ai" target="_blank" rel="noopener">Snappp.AI</a> &amp; THE EDGE · Demo Day 14.08 @ SIHUB, 123 Trương Định · Chung kết 15.08 @ THISO MALL SALA trong khuôn khổ <a href="https://www.conviction.vn/en" target="_blank" rel="noopener">Conviction</a> · Vận hành bởi Công ty TNHH Fresgen AI dưới thương hiệu The Edge Alliance · Fund the Future là chương trình chia sẻ kiến thức &amp; kết nối đầu tư — quyết định đầu tư thuộc toàn quyền các quỹ; Ban Tổ chức không tiếp nhận hay nắm giữ bất kỳ khoản tiền đầu tư nào.'
 };
 
 // chuỗi động dùng trong JS (trạng thái gửi form, thông báo lỗi)
@@ -1374,9 +1563,9 @@ window.FTF_LANG = 'en';
   if(saved === 'vi') apply('vi');
 })();
 
-// ---- countdown to Audition 08.08.2026 (mọi vị trí [data-cd], nhún nhẹ khi đổi số) ----
+// ---- countdown to Demo Day 14.08.2026 (mọi vị trí [data-cd], nhún nhẹ khi đổi số) ----
 (function(){
-  var target = new Date('2026-08-08T09:00:00+07:00').getTime();
+  var target = new Date('2026-08-14T09:00:00+07:00').getTime();
   var els = {
     d: document.querySelectorAll('[data-cd="d"]'),
     h: document.querySelectorAll('[data-cd="h"]'),
