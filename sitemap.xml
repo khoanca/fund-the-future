@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://theedgealliance.com/</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theedgealliance.com/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://theedgealliance.com/vi/"/>
+  </url>
+  <url>
+    <loc>https://theedgealliance.com/vi/</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://theedgealliance.com/vi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theedgealliance.com/"/>
+  </url>
+  <url>
+    <loc>https://theedgealliance.com/vi/index.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://theedgealliance.com/vi/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theedgealliance.com/"/>
+  </url>
+  <url>
+    <loc>https://theedgealliance.com/agenda</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theedgealliance.com/agenda"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://theedgealliance.com/vi/agenda"/>
+  </url>
+  <url>
+    <loc>https://theedgealliance.com/the-le.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://theedgealliance.com/the-le.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theedgealliance.com/"/>
+  </url>
+  <url>
+    <loc>https://theedgealliance.com/bgk</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://theedgealliance.com/bgk"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theedgealliance.com/bgk-en"/>
+  </url>
+  <url>
+    <loc>https://theedgealliance.com/bgk-en</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theedgealliance.com/bgk-en"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://theedgealliance.com/bgk"/>
+  </url>
+  <url>
+    <loc>https://theedgealliance.com/community</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://theedgealliance.com/community"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theedgealliance.com/community-en"/>
+  </url>
+  <url>
+    <loc>https://theedgealliance.com/community-en</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theedgealliance.com/community-en"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://theedgealliance.com/community"/>
+  </url>
+  <url>
+    <loc>https://theedgealliance.com/thu-moi</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://theedgealliance.com/thu-moi"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://theedgealliance.com/"/>
+  </url>
+</urlset>

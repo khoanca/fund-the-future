@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ban Giám Khảo & Cộng Đồng — Fund the Future</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0b0a09">
+<meta name="description" content="Hội đồng đánh giá VC · PE · Angel · Community và 22 cộng đồng Facebook đồng hành cùng Fund the Future — AI Builders × Investors.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://theedgealliance.com/bgk">
+<meta property="og:site_name" content="Fund the Future">
+<meta property="og:title" content="Ban Giám Khảo & Cộng Đồng — Fund the Future">
+<meta property="og:description" content="Hội đồng đánh giá VC · PE · Angel · Community và 22 cộng đồng Facebook đồng hành cùng Fund the Future.">
+<meta property="og:image" content="https://theedgealliance.com/img/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a09;
+    --tile:#141210;
+    --tile-2:#1b1815;
+    --line:rgba(255,255,255,.08);
+    --line-2:rgba(255,255,255,.15);
+    --ink:#f5f1ea;
+    --muted:#9b968d;
+    --dim:#5d5950;
+    --org:#ff5c00;
+    --org-2:#ff8a3c;
+    --org-3:#ff3800;
+    --glow:rgba(255,92,0,.35);
+    --grad:linear-gradient(115deg,var(--org-2),var(--org-3));
+    --r:22px;
+    --disp:'Unbounded',sans-serif;
+    --body:'Be Vietnam Pro',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  ::selection{background:var(--org);color:#000}
+  body{
+    font-family:var(--body);background:var(--bg);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:var(--disp);font-weight:600}
+
+  /* nhiễu hạt film phủ toàn trang */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* nền chuyển động */
+  .bg-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .bg-fx::before{
+    content:"";position:absolute;inset:-60px;opacity:.55;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:30px 30px;
+    animation:gridDrift 60s linear infinite;
+  }
+  @keyframes gridDrift{to{transform:translate(30px,30px)}}
+  .bg-blob{position:absolute;border-radius:50%;filter:blur(90px);will-change:transform}
+  .bg-b1{
+    width:560px;height:560px;top:-16%;left:-10%;
+    background:radial-gradient(circle,rgba(255,92,0,.17),transparent 65%);
+    animation:blob1 26s ease-in-out infinite;
+  }
+  .bg-b2{
+    width:480px;height:480px;top:34%;right:-14%;
+    background:radial-gradient(circle,rgba(255,56,0,.14),transparent 65%);
+    animation:blob2 32s ease-in-out infinite;
+  }
+  @keyframes blob1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(110px,70px) scale(1.15)}}
+  @keyframes blob2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-90px,-80px) scale(.9)}}
+
+  /* NAV */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,10,9,.75);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:1180px;margin:0 auto;padding:0 20px;height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.02em;display:flex;align-items:center;gap:11px}
+  .brand-dot{
+    width:12px;height:12px;border-radius:50%;background:var(--org);
+    box-shadow:0 0 0 4px rgba(255,92,0,.2), 0 0 18px var(--glow);
+    animation:beacon 2.4s ease-in-out infinite;
+  }
+  @keyframes beacon{0%,100%{box-shadow:0 0 0 4px rgba(255,92,0,.2),0 0 14px var(--glow)}50%{box-shadow:0 0 0 7px rgba(255,92,0,.08),0 0 26px var(--glow)}}
+  .nav-links{display:flex;gap:26px}
+  .nav-links a{font-size:13px;font-weight:500;color:var(--muted);transition:.2s}
+  .nav-links a:hover{color:var(--org-2)}
+
+  /* HERO */
+  .hero{padding:130px 0 20px;text-align:left}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--org-2);
+    border:1px solid rgba(255,92,0,.35);border-radius:100px;padding:7px 16px;margin-bottom:22px;
+    background:rgba(255,92,0,.06);
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--org);box-shadow:0 0 10px var(--glow)}
+  .hero h1{font-size:clamp(30px,5.5vw,54px);line-height:1.08;letter-spacing:-.01em}
+  .hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);font-size:15.5px;margin-top:16px;max-width:640px}
+  .hero .stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .stat{
+    background:var(--tile);border:1px solid var(--line);border-radius:14px;padding:12px 20px;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .stat b{font-family:var(--disp);font-size:20px;color:var(--org-2)}
+  .stat span{font-size:12.5px;color:var(--muted)}
+
+  /* SECTION */
+  section{padding:56px 0}
+  .sec-head{margin-bottom:30px}
+  .sec-kicker{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--org-2);margin-bottom:10px}
+  .sec-head h2{font-size:clamp(22px,3.4vw,32px);letter-spacing:-.01em}
+  .sec-head p{color:var(--muted);font-size:14px;margin-top:8px;max-width:620px}
+
+  /* JUDGES GRID */
+  .j-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+  .j-card{
+    background:var(--tile);border:1px solid var(--line);border-radius:var(--r);
+    padding:14px 14px 18px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;
+    transition:.25s;
+  }
+  .j-card:hover{border-color:rgba(255,92,0,.4);transform:translateY(-3px);background:var(--tile-2)}
+  .j-media{position:relative;width:100%;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:var(--tile-2)}
+  .j-photo{
+    width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;
+  }
+  .ava{
+    width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+    font-family:var(--disp);font-weight:700;font-size:clamp(34px,4vw,46px);color:#0a0500;
+    background:var(--grad);
+  }
+  .j-card:nth-child(3n) .ava{background:linear-gradient(115deg,#ffb36b,#ff5c00)}
+  .j-card:nth-child(3n+1) .ava{background:linear-gradient(115deg,#ff8a3c,#d92e00)}
+  .j-logo-chip{
+    position:absolute;right:8px;bottom:8px;
+    background:rgba(11,10,9,.82);backdrop-filter:blur(6px);
+    border:1px solid var(--line-2);border-radius:10px;padding:6px 9px;
+    display:flex;align-items:center;
+  }
+  .j-logo{height:20px;max-width:88px;object-fit:contain;filter:brightness(1.4)}
+  .j-name{font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:0}
+  .j-org{color:var(--muted);font-size:12.5px;margin-top:3px;min-height:1.2em}
+  .tag{
+    display:inline-block;align-self:flex-start;
+    font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--org-2);background:rgba(255,92,0,.09);
+    border:1px solid rgba(255,92,0,.35);border-radius:6px;padding:3px 10px;
+  }
+  .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .tag-wait{
+    color:var(--muted);background:rgba(255,255,255,.04);
+    border-color:var(--line-2);
+  }
+  .j-dim{opacity:.42;filter:grayscale(.85)}
+  .j-dim:hover{opacity:.75;filter:grayscale(.3)}
+
+  /* COMMUNITY LIST */
+  .c-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+  .c-row{
+    display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:center;
+    background:var(--tile);border:1px solid var(--line);border-radius:16px;padding:16px 18px;
+    transition:.22s;
+  }
+  .c-row:hover{border-color:rgba(255,92,0,.4);background:var(--tile-2);transform:translateY(-2px)}
+  .c-num{
+    font-family:var(--disp);font-weight:600;font-size:13px;color:var(--dim);
+    font-variant-numeric:tabular-nums;transition:.22s;
+  }
+  .c-row:hover .c-num{color:var(--org-2)}
+  .c-name{font-weight:600;font-size:14.5px;letter-spacing:-.01em}
+  .c-admin{display:block;color:var(--muted);font-size:12.5px;font-weight:400;margin-top:1px}
+  .c-admin b{color:var(--dim);font-weight:500}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:34px 0 44px;margin-top:30px}
+  .foot{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .foot .brand{font-size:12px}
+  .foot p{color:var(--dim);font-size:12px;letter-spacing:.08em}
+
+  @media (max-width:640px){
+    .nav-links{display:none}
+    .hero{padding-top:104px}
+    section{padding:40px 0}
+  }
+</style>
+</head>
+<body>
+<div class="bg-fx">
+  <div class="bg-blob bg-b1"></div>
+  <div class="bg-blob bg-b2"></div>
+</div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/"><span class="brand-dot"></span>FUND THE FUTURE</a>
+    <div class="nav-links">
+      <a href="#judges">Giám Khảo</a>
+      <a href="#judges-observer">Dự Thính</a>
+      <a href="#communities">Cộng Đồng</a>
+      <a href="/agenda">Agenda</a>
+      <a href="/bgk-en">EN</a>
+      <a href="/">Trang chủ</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Danh sách chính thức</div>
+    <h1>Ban Giám Khảo <em>&amp;</em> Cộng Đồng Đồng Hành</h1>
+    <p>Hội đồng đánh giá quy tụ các quỹ đầu tư VC · PE · Angel · Community cùng <span class="comm-count">22</span> cộng đồng Facebook về AI, startup &amp; công nghệ lan tỏa sự kiện Fund the Future — AI Builders × Investors.</p>
+    <div class="stats">
+      <div class="stat"><b id="stat-ok">—</b><span>giám khảo chính thức</span></div>
+      <div class="stat"><b id="stat-wait">—</b><span>giám khảo dự thính</span></div>
+      <div class="stat"><b class="comm-count">—</b><span>cộng đồng Facebook</span></div>
+      <div class="stat"><b>VC · PE · Angel</b><span>&amp; Community</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="judges">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">Hội đồng đánh giá</div>
+      <h2>Giám Khảo Chính Thức</h2>
+      <p>Các nhà đầu tư và chuyên gia đã xác nhận tham dự — trực tiếp chấm điểm, phản biện và kết nối vốn cho startup tại vòng pitch.</p>
+    </div>
+    <div class="j-grid" id="j-grid-ok"></div>
+  </div>
+</section>
+
+<section id="judges-observer">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">Đang chờ xác nhận</div>
+      <h2>Giám Khảo Dự Thính</h2>
+      <p>Các nhà đầu tư được mời tham dự với vai trò dự thính, quan sát và kết nối.</p>
+    </div>
+    <div class="j-grid" id="j-grid-wait"></div>
+  </div>
+</section>
+
+<section id="communities">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">Cộng đồng Facebook · Truyền thông</div>
+      <h2>Cộng Đồng Tham Dự</h2>
+      <p><span class="comm-count">22</span> cộng đồng AI, developer, startup &amp; marketing đồng hành lan tỏa sự kiện tới hàng trăm nghìn thành viên.</p>
+    </div>
+    <div class="c-grid" id="c-grid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="/"><span class="brand-dot"></span>FUND THE FUTURE</a>
+    <p>DANH SÁCH CHÍNH THỨC · AI BUILDERS × INVESTORS</p>
+  </div>
+</footer>
+
+<script>
+// [tên, vai trò, tổ chức, logo (nếu có trong /logos), ảnh chân dung (nếu có), đã confirm]
+const judges=[
+ ["Tesa Tesanovic","Advisor","Agile Dynamics","","img/judges/tesa-tesanovic.jpg",true],
+ ["Edward Lim","CM","BLOCK71 Vietnam (NUS Enterprise)","logos/vc-block71.png","img/judges/edward-lim.jpg",true],
+ ["Jeffrey Paine","VC","Golden Gate Ventures","logos/vc-goldengate.png","img/judges/jeffrey-paine.jpg",true],
+ ["Andrew Nhân","M&A","Eureka","logos/vc-eureka.png","img/judges/andrew-nhan.jpg",false],
+ ["Vy Lê","GP","Do Ventures","logos/vc-doventures.png","img/judges/vy-le.jpg",true],
+ ["TS. Trần Quý","Founder","VIIFM","","img/judges/tran-quy.jpg",true],
+ ["Lương Hưởng","PE","Maples Capital","","img/judges/luong-huong.jpg",true],
+ ["Jordan Phạm","Nhà nước","NIC — Trung tâm Đổi mới sáng tạo Quốc gia","logos/sp-nic.png","img/judges/jordan-pham.jpg",true],
+ ["Nguyễn Thục Khoa","Community","Eric Capital","","img/judges/nguyen-thuc-khoa.jpg",true],
+ ["Trần Duy Khiêm","CM","Expara Ventures","","img/judges/tran-duy-khiem.jpg",true],
+ ["Sky Hoàng","Founder","IEC","","img/judges/sky-hoang.jpg",false],
+ ["Lê Nguyên","Rep","Taiwania Capital","","img/judges/le-nguyen.jpg",true],
+ ["Lucas","Investor","Equitix Investing","","img/judges/lucas-equitix.jpg",true],
+ ["Giovanni Zangani","PE","Maestro Equity Partners","","img/judges/giovanni-zangani.jpg",false],
+ ["Phạm Ngọc Huy","VC","Lotte Ventures","logos/vc-lotte.png","img/judges/pham-ngoc-huy.jpg",false],
+ ["Eric Ngo","VC","Touchstone Partners","","img/judges/eric-ngo.jpg",false],
+ ["Hà Vĩnh Duy","Community","Do Ventures & CTO","","",false],
+ ["Nguyễn Ngọc Nam (Stephan Nam)","Angel Investor","","","img/judges/stephan-nam.jpg",false],
+ ["Châu Lê Minh","PE","Maples Capital","","img/judges/chau-le-minh.jpg",false],
+ ["Nguyễn Xuân Đông","VC","VIC Partners","logos/vc-vic.png","img/judges/nguyen-xuan-dong.png",true],
+ ["Tùng Mai Lê","VC","Q Eye","","img/judges/tung-mai-le.jpg",false],
+ ["Nguyễn Tùng Giang","Community","GBehub","","img/judges/nguyen-tung-giang.jpg",false],
+ ["Laura","Managing Partner","GenAI Fund","logos/vc-genai.png","img/judges/laura-genai.jpg",false],
+ ["Mã Thanh Danh","PE","KIDO Group","","img/judges/ma-thanh-danh.jpg",false]
+];
+
+// [cộng đồng, quản trị viên]
+const communities=[
+ ["Claude Code Việt Nam / Chill cùng AI","Phan Đông Giang"],
+ ["Dev x AI Việt Nam","Bùi Văn Nguyện"],
+ ["AI Research Insider","Tuấn Trung"],
+ ["N8n AI Automation Việt Nam","Giáp Đức Thắng"],
+ ["SDVN — Cộng Đồng AI Art","Lê Công Thoại"],
+ ["VN Startup Community","Trần Bá Thìn"],
+ ["Táo Khởi Nghiệp","Phi Hoàng Long"],
+ ["BeginGuru","Hai H Nguyen"],
+ ["Tìm Kiếm Cofounder VN","Anh Tuan"],
+ ["Founder Up","Hoang Le"],
+ ["VCCA - NextGen","Tuấn Lê"],
+ ["Future Builder","Nguyễn Minh Hải"],
+ ["Deep Tech Founder","David Triệu"],
+ ["CAIO Network Vietnam","Hà Kiền Lâm"],
+ ["Founder X","Trần Hoàng Quân"],
+ ["Antigravity 2.0","Minh Đỗ"],
+ ["JuNo Okyo J2Team","Mạnh Tuấn"],
+ ["ShopX Community","Chris Koh"],
+ ["Build Stuff SG","Ky Nam Nguyen"],
+ ["CSMO Vietnam","Nguyễn Lưu Thanh Minh"],
+ ["AI Edtech Founder","Hoang Anh Nguyen"],
+ ["UAN Vietnam","Bui Quang Tinh Tu"],
+ ["AI Content Creator Vietnam","Huỳnh Xuân Tùng"],
+ ["NghienAI",""]
+];
+
+function initials(name){
+  const parts=name.replace(/^TS\.\s*/,'').trim().split(/\s+/);
+  if(parts.length===1) return parts[0].slice(0,2).toUpperCase();
+  return (parts[0][0]+parts[parts.length-1][0]).toUpperCase();
+}
+
+function jCard(j,dim){
+  const logo=j[3]?`<span class="j-logo-chip"><img class="j-logo" src="${j[3]}" alt="${j[2]}" loading="lazy"></span>`:'';
+  const org=j[2]?`<div class="j-org">${j[2]}</div>`:'<div class="j-org">Nhà đầu tư độc lập</div>';
+  const media=j[4]
+    ?`<img class="j-photo" src="${j[4]}" alt="${j[0]}" loading="lazy">`
+    :`<div class="ava">${initials(j[0])}</div>`;
+  return `<div class="j-card${dim?' j-dim':''}">
+    <div class="j-media">${media}${logo}</div>
+    <div><div class="j-name">${j[0]}</div>${org}</div>
+    <div class="tags"><span class="tag">${j[1]}</span></div>
+  </div>`;
+}
+const jOk=judges.filter(j=>j[5]), jWait=judges.filter(j=>!j[5]);
+document.getElementById('j-grid-ok').innerHTML=jOk.map(j=>jCard(j,false)).join('');
+document.getElementById('j-grid-wait').innerHTML=jWait.map(j=>jCard(j,false)).join('');
+document.getElementById('stat-ok').textContent=jOk.length;
+document.getElementById('stat-wait').textContent=jWait.length;
+
+document.getElementById('c-grid').innerHTML=communities.map((c,i)=>
+  `<div class="c-row">
+    <span class="c-num">${String(i+1).padStart(2,'0')}</span>
+    <span><span class="c-name">${c[0]}</span>
+    ${c[1]?`<span class="c-admin"><b>Admin</b> · ${c[1]}</span>`:''}</span>
+  </div>`
+).join('');
+document.querySelectorAll('.comm-count').forEach(el=>el.textContent=communities.length);
+</script>
+</body>
+</html>
