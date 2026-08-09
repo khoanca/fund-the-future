@@ -57,7 +57,7 @@ Tạo file `FACTS.md` ở gốc repo, nội dung lấy từ `index.html` hiện 
 - Địa điểm 1: SIHUB — Saigon Innovation Hub, 123 Trương Định, Phường Xuân Hòa, TP.HCM
 - Địa điểm 2: THISO MALL SALA, 10 Mai Chí Thọ, Phường Thủ Thiêm, TP. Thủ Đức, TP.HCM
 - Đơn vị tổ chức: Fresgen AI Co., Ltd. (thương hiệu The Edge Alliance), Snappp.AI; phối hợp SIHUB
-- Các URL chính: `/`, `/agenda`, `/the-le.html`, `/bgk`, `/community`, `/thu-moi`, link đăng ký startup, link mua vé
+- Các URL chính: `/`, `/agenda`, `/cr`, `/bgk`, `/community`, `/thu-moi`, link đăng ký startup, link mua vé
 - Mô tả 2–3 câu về sự kiện (VI + EN) — dùng lại meta description hiện có
 
 **Nghiệm thu:** được người phụ trách duyệt nội dung trước khi các task khác dùng.
@@ -81,7 +81,7 @@ File markdown cho AI crawler đọc, theo chuẩn [llmstxt.org](https://llmstxt.
 
 ## Pages
 - [Agenda](https://theedgealliance.com/agenda): ...
-- [Rules / Thể lệ](https://theedgealliance.com/the-le.html): ...
+- [Rules / Thể lệ](https://theedgealliance.com/cr): ...
 - [Judges / BGK](https://theedgealliance.com/bgk): ...
 ```
 

@@ -4,7 +4,7 @@
 ## Main Pages
 - [Homepage](https://theedgealliance.com/): Fund the Future 2026 — AI Builders × Investors. Main event landing page with hero, countdown, organizers, partners, investors, roadmap, tickets, and FAQ.
 - [Agenda](https://theedgealliance.com/agenda): Full event agenda for 14–15 August 2026 — Demo Day and Grand Finale schedule.
-- [Competition Rules](https://theedgealliance.com/the-le.html): Rules and regulations for the Fund the Future 2026 competition (Vietnamese).
+- [Competition Rules](https://theedgealliance.com/cr): Rules and regulations for the Fund the Future 2026 competition (Vietnamese).
 - [Startup Registration](https://theedgealliance.com/startup): Startup brief and registration page — slide deck for AI startups applying to Demo Day on 14.08.2026.
 - [Sponsorship Proposal (VI)](https://theedgealliance.com/sponsor): Sponsorship proposal deck (Vietnamese) — partnership opportunities for Fund the Future × Conviction 2026.
 - [Sponsorship Proposal (EN)](https://theedgealliance.com/sponsor-en): Sponsorship proposal deck (English) — partnership opportunities for Fund the Future × Conviction 2026.
@@ -31,7 +31,7 @@
 ## Trang chính (Vietnamese)
 - [Trang chủ](https://theedgealliance.com/): Fund the Future 2026 — AI Builders × Investors. Trang đích chính với hero, đếm ngược, ban tổ chức, đối tác, nhà đầu tư, lộ trình, vé và FAQ.
 - [Agenda](https://theedgealliance.com/agenda): Lịch trình đầy đủ ngày 14–15 tháng 8 năm 2026 — Demo Day và Chung kết.
-- [Thể lệ cuộc thi](https://theedgealliance.com/the-le.html): Thể lệ cuộc thi Fund the Future 2026.
+- [Thể lệ cuộc thi](https://theedgealliance.com/cr): Thể lệ cuộc thi Fund the Future 2026.
 - [Đăng ký Startup](https://theedgealliance.com/startup): Hồ sơ và trang đăng ký cho startup AI tham dự Demo Day 14.08.2026.
 - [Hồ sơ mời tài trợ](https://theedgealliance.com/sponsor): Hồ sơ mời tài trợ — cơ hội đồng hành cùng Fund the Future × Conviction 2026.
 - [Ban Giám Khảo](https://theedgealliance.com/bgk): Ban Giám Khảo & Cộng Đồng.
