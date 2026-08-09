@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tạo mã vé cộng đồng — Fund the Future</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0b0a09;--tile:#141210;--tile-2:#1b1815;--line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.15);
+        --ink:#f5f1ea;--muted:#9b968d;--dim:#5d5950;--org:#ff5c00;--org-2:#ff8a3c;--glow:rgba(255,92,0,.35);
+        --disp:'Unbounded',sans-serif;--body:'Be Vietnam Pro',sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+  h1{font-family:var(--disp);font-weight:700;font-size:clamp(20px,3.4vw,28px)}
+  h1 em{font-style:normal;color:var(--org-2)}
+  .lede{color:var(--muted);font-size:13.5px;margin-top:10px}
+  .panel{background:var(--tile);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:26px}
+  .panel h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--org-2);margin-bottom:16px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px}
+  .field input{
+    width:100%;background:var(--tile-2);border:1px solid var(--line-2);border-radius:10px;
+    color:var(--ink);font-family:var(--body);font-size:14px;padding:11px 13px;outline:none;
+  }
+  .field input:focus{border-color:var(--org)}
+  .row2{display:grid;grid-template-columns:1fr 140px;gap:10px}
+  .btn{
+    cursor:pointer;border:none;background:var(--org);color:#0a0500;font-family:var(--body);font-weight:600;
+    font-size:14px;border-radius:11px;padding:12px 20px;transition:.2s;width:100%;
+  }
+  .btn:hover{background:var(--org-2)}
+  .btn:disabled{opacity:.5;cursor:wait}
+  .msg{margin-top:12px;font-size:13px;padding:11px 13px;border-radius:10px;display:none}
+  .msg.ok{display:block;background:rgba(60,200,90,.1);border:1px solid rgba(60,200,90,.35);color:#8fe0a8}
+  .msg.err{display:block;background:rgba(255,60,40,.1);border:1px solid rgba(255,60,40,.35);color:#ff9a8a}
+  .result{margin-top:14px;background:var(--tile-2);border:1px solid var(--line-2);border-radius:12px;padding:16px;display:none}
+  .result.on{display:block}
+  .result .code{font-family:var(--disp);font-size:26px;font-weight:800;color:var(--org-2);letter-spacing:.06em}
+  .result .link{margin-top:8px;font-size:13px;color:var(--muted);word-break:break-all}
+  .copybtn{margin-top:10px;cursor:pointer;border:1px solid var(--line-2);background:transparent;color:var(--ink);
+    font-size:12.5px;font-weight:600;border-radius:8px;padding:7px 12px}
+  .copybtn:hover{border-color:var(--org)}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+  th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  .bar{height:6px;background:var(--tile-2);border-radius:3px;overflow:hidden;margin-top:4px}
+  .bar i{display:block;height:100%;background:var(--org)}
+  .full{color:#ff9a8a}
+  .gate{max-width:360px;margin:80px auto}
+</style>
+</head>
+<body>
+<div class="wrap" id="gateWrap">
+  <div class="gate panel">
+    <h2>Nội bộ · Ban Tổ Chức</h2>
+    <div class="field">
+      <label>Mật khẩu</label>
+      <input type="password" id="pass" placeholder="••••••••">
+    </div>
+    <button class="btn" id="btnEnter">Vào trang tạo mã</button>
+    <div class="msg err" id="gateErr">Sai mật khẩu.</div>
+  </div>
+</div>
+
+<div class="wrap" id="mainWrap" style="display:none">
+  <h1>Tạo <em>mã vé</em> theo cộng đồng</h1>
+  <p class="lede">Mỗi cộng đồng một mã riêng + số vé giới hạn (quota) do anh đặt trước.
+     Gửi link kèm mã cho admin cộng đồng — khách vào link, điền tên là nhận vé, hết quota tự khoá.</p>
+
+  <div class="panel">
+    <h2>Tạo mã mới</h2>
+    <div class="field row2">
+      <div>
+        <label>Tên cộng đồng</label>
+        <input type="text" id="fCommunity" placeholder="Dev x AI Việt Nam">
+      </div>
+      <div>
+        <label>Số vé (quota)</label>
+        <input type="text" id="fQuota" inputmode="numeric" placeholder="5">
+      </div>
+    </div>
+    <div class="field">
+      <label>Ghi chú (không bắt buộc)</label>
+      <input type="text" id="fNote" placeholder="Admin: Bùi Văn Nguyện">
+    </div>
+    <button class="btn" id="btnCreate">+ Tạo mã</button>
+    <div class="msg err" id="createErr"></div>
+    <div class="result" id="result">
+      <div>Mã cho <b id="rCommunity"></b></div>
+      <div class="code" id="rCode"></div>
+      <div class="link" id="rLink"></div>
+      <button class="copybtn" id="btnCopy">⧉ Copy link</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Đã tạo (<span id="cnt">0</span>)</h2>
+    <table>
+      <thead><tr><th>Cộng đồng</th><th>Mã</th><th>Đã nhận / Quota</th><th></th></tr></thead>
+      <tbody id="tbl"></tbody>
+    </table>
+  </div>
+</div>
+
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+  const sb = createClient('https://vjviwsrjpdqpkydgqrlg.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqdml3c3JqcGRxcGt5ZGdxcmxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4Njk1NzksImV4cCI6MjA5NDQ0NTU3OX0.CbYjMGL4pjRnWDgYvaBw9fQCeaO1Gzt6Y7l7b38_KPY');
+  const $ = id => document.getElementById(id);
+  const SITE = 'https://theedgealliance.com';
+  let PASS = '';
+
+  $('btnEnter').addEventListener('click', enter);
+  $('pass').addEventListener('keydown', e => { if(e.key === 'Enter') enter(); });
+  async function enter(){
+    PASS = $('pass').value;
+    const { error } = await sb.rpc('ve_list_codes', { p_passphrase: PASS });
+    if(error){ $('gateErr').style.display = 'block'; return; }
+    $('gateWrap').style.display = 'none';
+    $('mainWrap').style.display = '';
+    refresh();
+  }
+
+  $('btnCreate').addEventListener('click', async () => {
+    const community = $('fCommunity').value.trim();
+    const quota = parseInt($('fQuota').value, 10);
+    const note = $('fNote').value.trim() || null;
+    $('createErr').style.display = 'none';
+    if(!community){ $('createErr').textContent = 'Nhập tên cộng đồng.'; $('createErr').style.display = 'block'; return; }
+    if(!quota || quota <= 0){ $('createErr').textContent = 'Nhập số vé hợp lệ.'; $('createErr').style.display = 'block'; return; }
+    $('btnCreate').disabled = true;
+    const { data, error } = await sb.rpc('ve_create_code', { p_passphrase: PASS, p_community: community, p_quota: quota, p_note: note });
+    $('btnCreate').disabled = false;
+    if(error){ $('createErr').textContent = error.message; $('createErr').style.display = 'block'; return; }
+    const link = `${SITE}/ve?c=${data}`;
+    $('rCommunity').textContent = community;
+    $('rCode').textContent = data;
+    $('rLink').textContent = link;
+    $('result').classList.add('on');
+    $('btnCopy').onclick = () => navigator.clipboard.writeText(link).then(() => { $('btnCopy').textContent = '✓ Đã copy'; setTimeout(() => $('btnCopy').textContent = '⧉ Copy link', 1500); });
+    $('fCommunity').value = ''; $('fQuota').value = ''; $('fNote').value = '';
+    refresh();
+  });
+
+  async function refresh(){
+    const { data, error } = await sb.rpc('ve_list_codes', { p_passphrase: PASS });
+    if(error) return;
+    $('cnt').textContent = data.length;
+    $('tbl').innerHTML = data.map(r => {
+      const pct = Math.min(100, Math.round(r.claimed / r.quota * 100));
+      const full = r.claimed >= r.quota;
+      return `<tr>
+        <td>${r.community}</td>
+        <td><b>${r.code}</b></td>
+        <td style="min-width:140px">
+          <span class="${full ? 'full' : ''}">${r.claimed} / ${r.quota}</span>
+          <div class="bar"><i style="width:${pct}%;${full ? 'background:#ff5c3c' : ''}"></i></div>
+        </td>
+        <td><button class="copybtn" data-link="${SITE}/ve?c=${r.code}">⧉ Copy link</button></td>
+      </tr>`;
+    }).join('');
+    $('tbl').querySelectorAll('.copybtn').forEach(b => b.addEventListener('click', () => {
+      navigator.clipboard.writeText(b.dataset.link);
+      b.textContent = '✓ Đã copy'; setTimeout(() => b.textContent = '⧉ Copy link', 1500);
+    }));
+  }
+</script>
+</body>
+</html>

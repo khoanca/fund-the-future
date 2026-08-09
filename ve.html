@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vé mời cộng đồng — Fund the Future × Conviction 2026</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --bg:#0b0a09;--tile:#141210;--tile-2:#1b1815;--line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.15);
+    --ink:#f5f1ea;--muted:#9b968d;--dim:#5d5950;--org:#ff5c00;--org-2:#ff8a3c;--org-3:#ff3800;
+    --glow:rgba(255,92,0,.35);--conv:#f4c430;--grad:linear-gradient(115deg,var(--org-2),var(--org-3));
+    --disp:'Unbounded',sans-serif;--body:'Be Vietnam Pro',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--body);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:480px;margin:0 auto;padding:32px 18px 70px}
+  .brand{font-family:var(--disp);font-weight:700;font-size:12.5px;letter-spacing:.02em;display:flex;align-items:center;gap:10px;margin-bottom:22px}
+  .brand-dot{width:11px;height:11px;border-radius:50%;background:var(--org);box-shadow:0 0 0 4px rgba(255,92,0,.2),0 0 16px var(--glow)}
+  h1{font-family:var(--disp);font-weight:700;font-size:clamp(21px,5vw,26px);letter-spacing:-.01em}
+  h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .lede{color:var(--muted);font-size:13.5px;margin-top:10px}
+
+  .panel{background:var(--tile);border:1px solid var(--line);border-radius:20px;padding:22px;margin-top:22px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px}
+  .field input{
+    width:100%;background:var(--tile-2);border:1px solid var(--line-2);border-radius:11px;
+    color:var(--ink);font-family:var(--body);font-size:14.5px;padding:12px 14px;outline:none;transition:.2s;
+  }
+  .field input:focus{border-color:var(--org);box-shadow:0 0 0 3px rgba(255,92,0,.15)}
+  .btn{
+    cursor:pointer;border:none;background:var(--org);color:#0a0500;font-family:var(--body);font-weight:600;
+    font-size:14.5px;border-radius:12px;padding:14px 22px;width:100%;transition:.2s;
+  }
+  .btn:hover{background:var(--org-2)}
+  .btn:disabled{opacity:.5;cursor:wait}
+  .btn-ghost{background:transparent;box-shadow:inset 0 0 0 1px var(--line-2);color:var(--ink);margin-top:10px}
+  .btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--org);color:var(--org-2)}
+  .state{text-align:center;padding:30px 10px;color:var(--muted);font-size:13.5px}
+  .state b{display:block;color:var(--ink);font-family:var(--disp);font-size:17px;margin-bottom:8px}
+  .quota-note{font-size:12px;color:var(--dim);margin-top:12px;text-align:center}
+  .err{color:#ff9a8a;font-size:12.5px;margin-top:10px;display:none}
+
+  /* ===== VÉ ===== */
+  #ticketBox{width:100%;margin-top:22px;display:none}
+  #ticketFrame{width:100%;overflow:hidden}
+  #ticketScale{transform-origin:top left}
+  .tk{
+    width:1000px;height:420px;position:relative;overflow:hidden;border-radius:26px;
+    background:#0b0a09;color:#f5f1ea;font-family:var(--body);
+  }
+  .tk::before{
+    content:"";position:absolute;inset:-40px;opacity:.5;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1.5px,transparent 1.5px);background-size:36px 36px;
+  }
+  .tk-b1{position:absolute;width:420px;height:420px;top:-160px;left:-120px;border-radius:50%;filter:blur(90px);
+    background:radial-gradient(circle,rgba(255,92,0,.3),transparent 65%)}
+  .tk-b2{position:absolute;width:380px;height:380px;bottom:-160px;right:260px;border-radius:50%;filter:blur(90px);
+    background:radial-gradient(circle,rgba(255,56,0,.22),transparent 65%)}
+  .tk-main{position:absolute;inset:0;display:flex;z-index:2}
+  .tk-l{flex:1;padding:38px 34px;display:flex;flex-direction:column}
+  .tk-eyebrow{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:var(--org-2);display:flex;align-items:center;gap:11px}
+  .tk-eyebrow::before{content:"";width:32px;height:2px;background:var(--org)}
+  .tk-title{margin-top:16px;font-family:var(--disp);font-weight:800;font-size:44px;line-height:1.05}
+  .tk-title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .tk-slogan{margin-top:8px;font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .tk-name{margin-top:auto;font-family:var(--disp);font-weight:700;font-size:30px;color:var(--ink);line-height:1.15}
+  .tk-comm{margin-top:6px;font-size:15px;color:var(--org-2);font-weight:600}
+  .tk-meta{margin-top:16px;font-size:13px;color:var(--muted);line-height:1.5}
+  .tk-meta b{color:var(--ink)}
+  .tk-r{
+    width:300px;flex:none;position:relative;padding:30px 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    background:linear-gradient(160deg,rgba(255,92,0,.14),rgba(12,10,8,.9));border-left:1px solid rgba(255,255,255,.08);
+  }
+  .tk-qr{background:#fff;border-radius:14px;padding:12px;line-height:0}
+  .tk-qr canvas{display:block;width:150px;height:150px}
+  .tk-code{font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:.14em;color:var(--conv)}
+  .tk-tag{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:center}
+  .tk-brandrow{position:absolute;left:34px;bottom:20px;display:flex;align-items:center;gap:16px;z-index:2}
+  .tk-brandrow .bl{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:700;font-size:12.5px;color:var(--ink)}
+  .tk-brandrow .bl img{height:22px}
+  .tk-brandrow .bl.conv{color:var(--conv)}
+  .tk-brandrow .sep{width:1px;height:16px;background:rgba(255,255,255,.2)}
+
+  .next{margin-top:18px}
+  .next .card2{background:var(--tile);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+  .next h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--org-2);margin-bottom:10px}
+  .next p{font-size:13px;color:var(--muted);line-height:1.55}
+  .next .steps{margin:10px 0 4px;padding-left:20px;font-size:13px;color:var(--muted);line-height:1.6}
+  .next .steps li{margin-bottom:5px}
+  .next .steps b{color:var(--ink)}
+  .next .deadline{margin-top:8px;font-size:12.5px}
+  .next .deadline b{color:var(--org-2)}
+  .next .willy{
+    display:inline-flex;align-items:center;gap:10px;margin:12px 0;font-family:var(--disp);font-weight:800;cursor:pointer;
+    font-size:15px;letter-spacing:.08em;color:var(--conv);background:rgba(244,196,48,.1);
+    border:1.5px solid rgba(244,196,48,.4);border-radius:10px;padding:8px 16px;transition:.2s;
+  }
+  .next .willy:hover{background:rgba(244,196,48,.18)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><span class="brand-dot"></span>FUND THE FUTURE × CONVICTION 2026</div>
+
+  <div id="loadState" class="panel state">Đang kiểm tra mã mời…</div>
+
+  <div id="invalidState" class="panel state" style="display:none">
+    <b>Link không hợp lệ</b>
+    Link vé cần có mã mời từ admin cộng đồng của bạn. Vui lòng liên hệ admin để lấy link chính xác.
+  </div>
+
+  <div id="fullState" class="panel state" style="display:none">
+    <b>Cộng đồng <span id="fullComm"></span> đã hết vé</b>
+    Vé dành cho cộng đồng này đã được nhận đủ. Liên hệ admin cộng đồng hoặc Ban Tổ Chức Fund the Future để biết thêm.
+  </div>
+
+  <div id="formState" style="display:none">
+    <h1>Vé mời <em>Fund the Future</em></h1>
+    <p class="lede">Cộng đồng <b id="fComm"></b> được Fund the Future tặng vé mời tham dự.
+       Điền thông tin bên dưới để nhận vé.</p>
+    <div class="panel">
+      <div class="field">
+        <label>Họ và tên</label>
+        <input type="text" id="fName" placeholder="Nguyễn Văn A" maxlength="60">
+      </div>
+      <div class="field">
+        <label>Email nhận vé</label>
+        <input type="email" id="fEmail" placeholder="ban@email.com" maxlength="120">
+      </div>
+      <div class="field">
+        <label>Cộng đồng</label>
+        <input type="text" id="fCommunity" maxlength="80">
+      </div>
+      <button class="btn" id="btnClaim">🎟 Nhận vé</button>
+      <div class="err" id="claimErr"></div>
+      <p class="quota-note" id="quotaNote"></p>
+    </div>
+  </div>
+
+  <div id="ticketBox">
+    <div id="ticketFrame">
+    <div id="ticketScale">
+      <div class="tk" id="tk">
+        <div class="tk-b1"></div><div class="tk-b2"></div>
+        <div class="tk-main">
+          <div class="tk-l">
+            <div class="tk-eyebrow">Vé mời tham dự</div>
+            <div class="tk-title">Fund the<br><em>Future</em></div>
+            <div class="tk-slogan">AI Builders × Investors</div>
+            <div class="tk-name" id="tkName">—</div>
+            <div class="tk-comm" id="tkComm">—</div>
+            <div class="tk-meta"><b>14–15.08.2026</b> · ThiskyHall Sala, TP.HCM<br>Trong khuôn khổ Conviction 2026</div>
+          </div>
+          <div class="tk-r">
+            <div class="tk-qr" id="tkQr"></div>
+            <div class="tk-code" id="tkCode">——————</div>
+            <div class="tk-tag">Mã xác nhận</div>
+          </div>
+        </div>
+        <div class="tk-brandrow">
+          <span class="bl conv"><img src="img/conviction-mark.png" alt="Conviction 2026">CONVICTION</span>
+          <span class="sep"></span>
+          <span class="bl">SNAPPP AI</span>
+          <span class="sep"></span>
+          <span class="bl">THE EDGE ALLIANCE</span>
+        </div>
+      </div>
+    </div>
+    </div>
+    <button class="btn" id="btnDownload" style="margin-top:16px">⬇ Lưu ảnh vé</button>
+
+    <div class="next">
+      <div class="card2">
+        <h3>Bước cuối — hoàn tất đăng ký chính thức</h3>
+        <p>Vé trên là <b>thẻ xác nhận</b> giữ chỗ. Để nhận vé điện tử chính thức (miễn phí, kèm quà vào cửa),
+           bấm nút dưới đây — <b>tên và email của bạn đã được điền sẵn</b> trên Luma. Bạn chỉ cần:</p>
+        <ol class="steps">
+          <li>Chọn <b>ngày tham dự</b> (14/08, 15/08 hoặc cả hai)</li>
+          <li>Nhập mã mời <b>Willy</b> ở ô "Invitation code / Mã mời"</li>
+          <li>Tích đồng ý điều khoản → bấm "Yêu cầu tham gia" và xác minh email theo hướng dẫn của Luma</li>
+        </ol>
+        <p class="deadline">Hạn hoàn tất: <b>13.08.2026</b>. Vé sẽ được gửi về đúng email bạn vừa nhập.</p>
+        <div class="willy" id="willyChip" role="button" tabindex="0" title="Bấm để copy mã">Mã mời: Willy ⧉</div>
+        <a class="btn btn-ghost" id="lumaBtn" href="https://luma.com/ydvhq4is" target="_blank" rel="noopener">Đăng ký trên Luma ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+  const sb = createClient('https://vjviwsrjpdqpkydgqrlg.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqdml3c3JqcGRxcGt5ZGdxcmxnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4Njk1NzksImV4cCI6MjA5NDQ0NTU3OX0.CbYjMGL4pjRnWDgYvaBw9fQCeaO1Gzt6Y7l7b38_KPY');
+  const $ = id => document.getElementById(id);
+  const show = id => ['loadState','invalidState','fullState','formState'].forEach(i => $(i).style.display = i === id ? '' : 'none');
+
+  const code = new URLSearchParams(location.search).get('c');
+  let info = null;
+
+  async function init(){
+    if(!code){ show('invalidState'); return; }
+    const { data, error } = await sb.rpc('ve_code_info', { p_code: code });
+    const row = data && data[0];
+    if(error || !row || !row.community){ show('invalidState'); return; }
+    info = row;
+    if(row.remaining <= 0){ $('fullComm').textContent = row.community; show('fullState'); return; }
+    $('fComm').textContent = row.community;
+    $('fCommunity').value = row.community;
+    $('quotaNote').textContent = `Còn ${row.remaining} / ${row.quota} vé cho cộng đồng này.`;
+    show('formState');
+  }
+  init();
+
+  $('btnClaim').addEventListener('click', async () => {
+    const name = $('fName').value.trim();
+    const email = $('fEmail').value.trim();
+    const community = $('fCommunity').value.trim();
+    $('claimErr').style.display = 'none';
+    const fail = m => { $('claimErr').textContent = m; $('claimErr').style.display = 'block'; };
+    if(name.length < 2) return fail('Nhập họ tên đầy đủ.');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail('Nhập email hợp lệ — vé chính thức sẽ gửi về email này.');
+    $('btnClaim').disabled = true; $('btnClaim').textContent = 'Đang xử lý…';
+    const { data, error } = await sb.rpc('ve_claim', { p_code: code, p_name: name, p_community: community, p_email: email });
+    $('btnClaim').disabled = false; $('btnClaim').textContent = '🎟 Nhận vé';
+    if(error){
+      fail(error.message === 'hết vé' ? 'Rất tiếc, vừa hết vé.'
+         : error.message === 'email không hợp lệ' ? 'Nhập email hợp lệ — vé chính thức sẽ gửi về email này.'
+         : 'Có lỗi xảy ra, thử lại giúp mình.');
+      return;
+    }
+    renderTicket(name, community, data[0].claim_id, email);
+  });
+
+  // link Luma điền sẵn tên + email (Luma chỉ nhận prefill 2 trường này qua URL)
+  function lumaLink(name, email){
+    const p = new URLSearchParams({ name, email });
+    return 'https://luma.com/ydvhq4is?' + p.toString();
+  }
+
+  function renderTicket(name, community, claimId, email){
+    $('lumaBtn').href = lumaLink(name, email);
+    $('willyChip').onclick = () => navigator.clipboard?.writeText('Willy').then(() => {
+      const el = $('willyChip'); el.textContent = '✓ Đã copy mã Willy';
+      setTimeout(() => el.textContent = 'Mã mời: Willy ⧉', 1500);
+    });
+    $('formState').style.display = 'none';
+    $('tkName').textContent = name;
+    $('tkComm').textContent = community;
+    $('tkCode').textContent = code;
+    $('ticketBox').style.display = 'block';
+    $('tkQr').innerHTML = '';
+    new QRCode($('tkQr'), { text: `FTF2026|${code}|${claimId}`, width: 150, height: 150, colorDark: '#0b0a09', colorLight: '#ffffff' });
+    fitTicket();
+  }
+
+  function fitTicket(){
+    const s = Math.min(1, $('ticketFrame').clientWidth / 1000);
+    $('ticketScale').style.transform = 'scale(' + s + ')';
+    $('ticketFrame').style.height = (420 * s) + 'px';
+  }
+  window.addEventListener('resize', () => { if($('ticketBox').style.display !== 'none') fitTicket(); });
+
+  $('btnDownload').addEventListener('click', async () => {
+    const btn = $('btnDownload');
+    btn.textContent = 'Đang tạo ảnh…'; btn.disabled = true;
+    const scaleEl = document.getElementById('ticketScale');
+    const prev = scaleEl.style.transform;
+    try{
+      await document.fonts.ready;
+      scaleEl.style.transform = 'none';
+      const canvas = await html2canvas(document.getElementById('tk'), { backgroundColor: '#0b0a09', scale: 2, useCORS: true,
+        onclone: doc => { doc.querySelectorAll('.tk-title em').forEach(el => { el.style.background = 'none'; el.style.webkitTextFillColor = '#ff6a1e'; el.style.color = '#ff6a1e'; }); } });
+      const a = document.createElement('a');
+      a.href = canvas.toDataURL('image/png');
+      a.download = 've-fund-the-future-' + $('tkName').textContent.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/gi,'d').replace(/[^a-z0-9]+/gi,'-').toLowerCase() + '.png';
+      a.click();
+    }catch(e){ alert('Không tạo được ảnh, chụp màn hình vé giúp mình nhé.'); }
+    finally{ scaleEl.style.transform = prev; btn.textContent = '⬇ Lưu ảnh vé'; btn.disabled = false; }
+  });
+</script>
+</body>
+</html>
