@@ -1,6 +1,13 @@
 {
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/the-le", "destination": "/cr", "permanent": true },
+    { "source": "/the-le.html", "destination": "/cr", "permanent": true }
+  ],
   "rewrites": [
+    { "source": "/cr", "destination": "/cr.html" },
+    { "source": "/cham-diem", "destination": "/cham-diem.html" },
+    { "source": "/scoring", "destination": "/cham-diem.html" },
     { "source": "/sponsor", "destination": "/slide-proposal.html" },
     { "source": "/sponsor-en", "destination": "/slide-proposal-en.html" },
     { "source": "/judge", "destination": "/slide-judges.html" },
@@ -14,6 +21,10 @@
     { "source": "/community", "destination": "/community.html" },
     { "source": "/community-en", "destination": "/community-en.html" },
     { "source": "/thu-moi", "destination": "/thu-moi.html" },
+    { "source": "/invitation-create", "destination": "/thu-moi.html" },
+    { "source": "/thu-moi-bgk", "destination": "/thu-moi-bgk.html" },
+    { "source": "/ve", "destination": "/ve.html" },
+    { "source": "/ve-admin", "destination": "/ve-admin.html" },
     { "source": "/agenda", "destination": "/agenda.html" }
   ]
 }

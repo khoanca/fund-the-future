@@ -154,64 +154,71 @@
   .c-slogan{margin-top:24px;font-size:21px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
   .c-slogan b{color:var(--org)}
 
-  /* khối khách mời — bên phải, canh lề phải, đóng khung để nổi bật trên nền ảnh */
+  /* khối khách mời — khung vuông viền liền, không trang trí góc */
   .c-guest{
-    position:relative;margin-top:auto;align-self:flex-end;display:flex;flex-direction:column;align-items:flex-end;
-    text-align:right;max-width:720px;
+    position:relative;align-self:flex-start;display:flex;flex-direction:column;align-items:flex-start;
+    text-align:left;width:fit-content;max-width:720px;
     background:linear-gradient(135deg,rgba(255,92,0,.14),rgba(14,11,9,.74) 45%);
-    border:1.5px solid rgba(255,138,60,.5);border-radius:24px;
-    padding:38px 44px;
+    border:2px solid rgba(255,138,60,.55);border-radius:12px;
+    padding:34px 40px;
     box-shadow:0 24px 70px rgba(0,0,0,.5), inset 0 0 50px rgba(255,92,0,.05);
   }
-  /* viền kép mảnh bên trong + ngoặc góc cam kiểu thiệp mời */
-  .c-guest::before{content:"";position:absolute;inset:10px;border:1px solid rgba(255,255,255,.09);border-radius:15px;pointer-events:none}
-  .c-guest::after{
-    content:"";position:absolute;top:-2px;right:-2px;width:56px;height:56px;pointer-events:none;
-    border-top:3px solid var(--org-2);border-right:3px solid var(--org-2);border-top-right-radius:24px;
+  .c-invite{font-size:15px;font-weight:600;color:var(--org-3);letter-spacing:.32em;text-transform:uppercase}
+  .c-name{margin-top:14px;font-family:var(--disp);font-weight:700;font-size:45px;line-height:1.14;color:var(--ink);max-width:680px}
+  /* chức danh — trong khung, ngay dưới tên, màu đỏ */
+  .c-role{
+    margin-top:12px;text-align:left;max-width:660px;
+    font-family:var(--disp);font-size:24px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--org-3);
   }
-  .c-guest .cnr{
-    position:absolute;bottom:-2px;left:-2px;width:56px;height:56px;pointer-events:none;
-    border-bottom:3px solid var(--org-2);border-left:3px solid var(--org-2);border-bottom-left-radius:24px;
-  }
-  .c-invite{font-size:15px;font-weight:600;color:var(--muted);letter-spacing:.32em;text-transform:uppercase}
-  .c-name{margin-top:14px;font-family:var(--disp);font-weight:700;font-size:60px;line-height:1.12;color:var(--ink);max-width:680px}
-  .c-role{margin-top:12px;font-size:21px;font-weight:600;color:var(--org-2);max-width:640px}
-  .c-role span{color:var(--muted);font-weight:500}
+  /* vai trò tham dự — dòng vàng phía trên khung tên */
   .c-badge{
-    margin-top:16px;display:inline-flex;align-items:center;gap:10px;
-    font-size:14px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--org-2);background:rgba(255,92,0,.08);
-    border:1.5px solid rgba(255,138,60,.45);border-radius:999px;padding:9px 22px;
+    margin-top:auto;margin-bottom:16px;align-self:flex-start;
+    font-family:var(--disp);font-size:30px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--conv);text-shadow:0 2px 14px rgba(0,0,0,.9), 0 0 30px rgba(0,0,0,.75);
   }
-  .c-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--org);box-shadow:0 0 10px var(--glow);flex:none}
 
-  /* chip thông tin — viên thuốc bo tròn, một hàng ngang dưới cùng bên phải */
-  .c-chips{margin-top:28px;margin-bottom:52px;align-self:flex-end;display:flex;flex-direction:row;flex-wrap:wrap;gap:16px;justify-content:flex-end}
+  /* chip thông tin — khung vuông bo nhẹ, một hàng ngang dưới cùng bên phải */
+  .c-chips{margin-top:26px;margin-bottom:70px;align-self:flex-start;display:flex;flex-direction:row;flex-wrap:wrap;gap:16px;justify-content:flex-start}
   .c-chip{
-    display:inline-flex;align-items:center;gap:12px;max-width:920px;
+    display:inline-flex;flex-direction:column;align-items:flex-start;gap:12px;max-width:920px;
     font-size:20px;font-weight:600;color:var(--ink);line-height:1.3;white-space:nowrap;
-    background:rgba(255,92,0,.09);border:1.5px solid rgba(255,92,0,.4);border-radius:999px;padding:13px 26px;
+    background:rgba(255,92,0,.09);border:2px solid rgba(255,92,0,.45);border-radius:10px;padding:16px 28px;
   }
+  .c-chip .seg{display:inline-flex;align-items:center;gap:12px}
+  .c-chip .vr{height:1.5px;align-self:stretch;background:rgba(255,255,255,.2);flex:none}
   .c-chip b{font-weight:700;color:var(--org-2)}
   .c-chip b.gold{color:var(--conv)}
   .c-chip .dot{width:11px;height:11px;border-radius:50%;background:var(--org);box-shadow:0 0 16px var(--glow);flex:none}
+  .c-chip .dot.gold{background:var(--conv);box-shadow:0 0 16px rgba(244,196,48,.5)}
 
-  /* hàng logo đơn vị tổ chức — dải đen mờ full-width ngăn cách chân poster, logo canh giữa */
+  /* hàng logo đơn vị tổ chức — nằm trên đầu thiệp */
   .c-brandrow{
-    position:absolute;left:0;right:0;bottom:0;
-    display:flex;align-items:center;justify-content:center;gap:30px;
-    padding:26px 80px 28px;
-    background:rgba(8,6,5,.8);border-top:1px solid rgba(255,255,255,.1);
+    margin-bottom:36px;display:flex;align-items:center;gap:24px;
   }
   .c-brandrow .bl{
-    display:inline-flex;align-items:center;gap:14px;white-space:nowrap;
-    font-family:var(--disp);font-weight:700;font-size:20px;letter-spacing:.04em;color:var(--ink);line-height:1.15;
+    display:inline-flex;align-items:center;gap:12px;white-space:nowrap;
+    font-family:var(--disp);font-weight:700;font-size:18px;letter-spacing:.04em;color:var(--ink);line-height:1.15;
   }
-  .c-brandrow .bl img{height:38px;display:block}
+  .c-brandrow .bl img{height:32px;display:block}
   .c-brandrow .bl.conv{color:var(--conv)}
   .c-brandrow .bl i{font-style:normal;color:var(--org)}
-  .c-brandrow .bl .two{font-size:16px;letter-spacing:.09em;line-height:1.3}
-  .c-brandrow .bsep{width:1.5px;height:36px;background:rgba(255,255,255,.22);flex:none}
+  .c-brandrow .bl .two{font-size:14px;letter-spacing:.09em;line-height:1.3}
+  .c-brandrow .bsep{width:1.5px;height:30px;background:rgba(255,255,255,.22);flex:none}
+
+  /* dải quỹ đầu tư dưới chân thiệp */
+  .c-funds{
+    position:absolute;left:0;right:0;bottom:0;
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+    padding:20px 60px 24px;
+    background:rgba(8,6,5,.45);border-top:1px solid rgba(255,255,255,.1);
+  }
+  .c-funds .lbl{
+    font-family:var(--disp);font-size:13px;font-weight:600;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  .c-funds .fl{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 30px}
+  .c-funds .fl img{height:32px;width:auto;max-width:150px;object-fit:contain;display:block;opacity:.92}
 
   /* ===== chế độ chỉnh bố cục — kéo thả & phóng to thu nhỏ ===== */
   .drg{transform-origin:top left}
@@ -233,6 +240,22 @@
   }
   .ebtn:hover{border-color:var(--org);color:var(--org-2)}
   .ebtn:disabled{opacity:.4;cursor:default}
+
+  /* ===== hộp kết quả: ảnh đã tạo, bấm lưu hoặc nhấn giữ để lưu trên điện thoại ===== */
+  .modal{
+    position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;
+    background:rgba(5,4,3,.86);padding:24px;overflow:auto;
+  }
+  .modal.on{display:flex}
+  .modal-in{
+    background:var(--tile);border:1px solid var(--line);border-radius:var(--r);padding:20px;
+    max-width:460px;width:100%;text-align:center;
+  }
+  .modal-in h3{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--org-2);margin-bottom:14px}
+  .modal-in img{width:100%;height:auto;border-radius:12px;display:block;margin-bottom:14px;border:1px solid var(--line)}
+  .modal-in .hint{margin:0 0 14px}
+  .modal-row{display:flex;gap:10px}
+  .modal-row .btn{margin:0}
 </style>
 </head>
 <body>
@@ -322,7 +345,7 @@
         </div>
       </div>
 
-      <button class="btn btn-org" id="btnDownload">⬇ Tải thư mời (PNG)</button>
+      <button class="btn btn-org" id="btnDownload">🖼 Tạo ảnh thư mời</button>
       <button class="btn btn-ghost" id="btnReset">Nhập lại</button>
       <p class="hint">File xuất ra 1080×1350px dọc (4:5) — chuẩn đăng Facebook, Zalo, Instagram.</p>
     </div>
@@ -352,22 +375,6 @@
             <div class="c-photo hide drg" data-k="photo" id="cPhoto"><img id="cPhotoImg" alt=""></div>
 
             <div class="c-in">
-              <div class="c-eyebrow drg" data-k="eyebrow">Thư mời tham dự</div>
-              <h2 class="c-title drg" data-k="title">Fund the<br><em>Future</em></h2>
-              <div class="c-slogan drg" data-k="slogan">AI Builders <b>×</b> Investors</div>
-
-              <div class="c-guest drg" data-k="guest">
-                <span class="cnr"></span>
-                <div class="c-invite drg" data-k="invite">Trân trọng kính mời</div>
-                <div class="c-name drg" data-k="name" id="cName">Ông Nguyễn Văn A</div>
-                <div class="c-role drg" data-k="role" id="cRole">CEO <span>· Công ty ABC</span></div>
-                <div class="c-badge drg" data-k="badge" id="cBadge">Khách mời danh dự</div>
-              </div>
-
-              <div class="c-chips">
-                <div class="c-chip drg" data-k="chip1"><span class="dot"></span><span><b id="cDateB">Thứ Bảy 15.08</b><span id="cDateR"> · Đón khách 13:00</span> · <b class="gold" id="cEvB">The Hot Seat</b><span id="cEvR"> · THISO MALL SALA</span></span></div>
-              </div>
-
               <div class="c-brandrow drg" data-k="brand">
                 <span class="bl conv"><img src="img/conviction-mark.png" alt="Conviction 2026"><span>CONVICTION</span></span>
                 <span class="bsep"></span>
@@ -375,12 +382,59 @@
                 <span class="bsep"></span>
                 <span class="bl"><span class="two">THE EDGE<br>ALLIANCE</span></span>
               </div>
+
+              <div class="c-eyebrow drg" data-k="eyebrow">Thư mời tham dự</div>
+              <h2 class="c-title drg" data-k="title">Fund the<br><em>Future</em></h2>
+              <div class="c-slogan drg" data-k="slogan">AI Builders <b>×</b> Investors</div>
+
+              <div class="c-badge drg" data-k="badge" id="cBadge">Khách mời danh dự</div>
+              <div class="c-guest drg" data-k="guest">
+                <div class="c-invite drg" data-k="invite">Trân trọng kính mời</div>
+                <div class="c-name drg" data-k="name" id="cName">Ông Nguyễn Văn A</div>
+                <div class="c-role drg" data-k="role" id="cRole">CEO · Công ty ABC</div>
+              </div>
+
+              <div class="c-chips">
+                <div class="c-chip drg" data-k="chip1">
+                  <span class="seg"><span class="dot"></span><span><b id="cDateB">Thứ Bảy 15.08</b><span id="cDateR"> · Đón khách 13:00</span></span></span>
+                  <span class="vr"></span>
+                  <span class="seg"><span class="dot gold"></span><span><b class="gold" id="cEvB">The Hot Seat</b><span id="cEvR"> · THISO MALL SALA</span></span></span>
+                </div>
+              </div>
+
+              <div class="c-funds drg" data-k="funds">
+                <div class="lbl">Quỹ đầu tư đồng hành</div>
+                <div class="fl">
+                  <img src="logos/w/vc-block71.png" alt="BLOCK71 Vietnam">
+                  <img src="logos/w/vc-goldengate.png" alt="Golden Gate Ventures">
+                  <img src="logos/w/vc-doventures.png" alt="Do Ventures">
+                  <img src="logos/w/vc-eureka.png" alt="Eureka">
+                  <img src="logos/w/vc-lotte.png" alt="Lotte Ventures">
+                  <img src="logos/w/vc-vic.png" alt="VIC Partners">
+                  <img src="logos/w/vc-genai.png" alt="GenAI Fund">
+                  <img src="logos/w/sp-nic.png" alt="NIC">
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <button class="btn btn-org" id="btnDownload2" style="max-width:340px">🖼 Tạo ảnh thư mời</button>
       <div class="stage-note">Xem trước — thư mời cập nhật trực tiếp khi bạn nhập thông tin</div>
     </div>
+  </div>
+</div>
+
+<div class="modal" id="outModal">
+  <div class="modal-in">
+    <h3>Ảnh thư mời đã tạo xong</h3>
+    <img id="outImg" alt="Thư mời">
+    <p class="hint">Bấm <b>Lưu ảnh</b> để tải về máy. Trên điện thoại, có thể nhấn giữ vào ảnh rồi chọn “Lưu ảnh”.</p>
+    <div class="modal-row">
+      <a class="btn btn-org" id="btnSaveImg" download>⬇ Lưu ảnh</a>
+      <button class="btn btn-ghost" id="btnCloseModal" type="button" style="margin-top:0">Đóng</button>
+    </div>
+    <button class="btn btn-ghost" id="btnShareImg" type="button" style="display:none">↗ Chia sẻ</button>
   </div>
 </div>
 
@@ -412,15 +466,10 @@
 
     const role = $('fRole').value.trim(), co = $('fCompany').value.trim();
     const roleEl = $('cRole');
-    if(role || co){
+    const full = role + (role && co ? ' · ' : '') + co;
+    if(full){
       roleEl.style.display = '';
-      roleEl.innerHTML = '';
-      roleEl.appendChild(document.createTextNode(role || ''));
-      if(co){
-        const s = document.createElement('span');
-        s.textContent = (role ? ' · ' : '') + co;
-        roleEl.appendChild(s);
-      }
+      roleEl.textContent = full;
     } else roleEl.style.display = 'none';
 
     const badge = $('fBadge').value;
@@ -579,10 +628,14 @@
   $('btnResetLayout').addEventListener('click', resetLayout);
   select(null);
 
-  // tải PNG
-  $('btnDownload').addEventListener('click', async () => {
-    const btn = $('btnDownload');
-    btn.textContent = 'Đang tạo ảnh…'; btn.disabled = true;
+  // tải PNG — dùng chung cho nút trong form và nút dưới khung xem trước
+  const DL_BTNS = [
+    {id:'btnDownload',  label:'🖼 Tạo ảnh thư mời'},
+    {id:'btnDownload2', label:'🖼 Tạo ảnh thư mời'}
+  ];
+  async function downloadCard(){
+    const btns = DL_BTNS.map(b => $(b.id));
+    btns.forEach(b => { b.textContent = 'Đang tạo ảnh…'; b.disabled = true; });
     const prevTransform = cardScale.style.transform;
     try{
       await document.fonts.ready;
@@ -602,18 +655,43 @@
           });
         }
       });
-      const a = document.createElement('a');
       const name = $('fName').value.trim().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/gi,'d').replace(/[^a-z0-9]+/gi,'-').toLowerCase() || 'khach-moi';
-      a.download = 'thu-moi-' + name + '-' + day().file + '.png';
-      a.href = canvas.toDataURL('image/png');
-      a.click();
+      const file = 'thu-moi-' + name + '-' + day().file + '.png';
+      const url = canvas.toDataURL('image/png');
+      // hiện ảnh vừa tạo để xem lại rồi mới lưu (điện thoại có thể nhấn giữ vào ảnh để lưu)
+      $('outImg').src = url;
+      $('btnSaveImg').href = url;
+      $('btnSaveImg').download = file;
+      $('outModal').classList.add('on');
+      setupShare(canvas, file);
     }catch(err){
       alert('Không tạo được ảnh, vui lòng thử lại. (' + err.message + ')');
     }finally{
       cardScale.style.transform = prevTransform;
-      btn.textContent = '⬇ Tải thư mời (PNG)'; btn.disabled = false;
+      DL_BTNS.forEach(b => { $(b.id).textContent = b.label; $(b.id).disabled = false; });
     }
+  }
+  DL_BTNS.forEach(b => $(b.id).addEventListener('click', downloadCard));
+
+  // đóng hộp kết quả
+  $('btnCloseModal').addEventListener('click', () => $('outModal').classList.remove('on'));
+  $('outModal').addEventListener('click', ev => {
+    if(ev.target === $('outModal')) $('outModal').classList.remove('on');
   });
+
+  // chia sẻ thẳng sang Zalo / Messenger… nếu máy hỗ trợ (chủ yếu trên điện thoại)
+  function setupShare(canvas, filename){
+    const btn = $('btnShareImg');
+    btn.style.display = 'none';
+    if(!navigator.canShare) return;
+    canvas.toBlob(blob => {
+      if(!blob) return;
+      const f = new File([blob], filename, {type:'image/png'});
+      if(!navigator.canShare({files:[f]})) return;
+      btn.style.display = '';
+      btn.onclick = () => navigator.share({files:[f], title:'Thư mời Fund the Future'}).catch(() => {});
+    }, 'image/png');
+  }
 
   // nhập lại
   $('btnReset').addEventListener('click', () => {
