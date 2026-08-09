@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>__NAME__</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a09;--ink:#f5f1ea;--org:#ff5c00;--org-2:#ff8a3c;--org-3:#ff3800;
+    --glow:rgba(255,92,0,.35);--conv:#f4c430;
+    --grad:linear-gradient(115deg,var(--org-2),var(--org-3));
+    --disp:'Unbounded',sans-serif;--body:'Be Vietnam Pro',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#0b0a09}
+  body{font-family:var(--body);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.6}
+
+  .card{
+    width:1080px;height:1350px;position:relative;overflow:hidden;
+    background:#0b0a09;color:#f5f1ea;font-family:var(--body);text-align:left;
+  }
+  /* hạt nhiễu film + lưới chấm — giữ nguyên nhận diện sự kiện */
+  .card::before{
+    content:"";position:absolute;inset:-60px;opacity:.5;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1.5px,transparent 1.5px);
+    background-size:44px 44px;
+  }
+  .c-blob{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none}
+  .c-b1{width:480px;height:480px;top:-180px;left:-150px;background:radial-gradient(circle,rgba(255,92,0,.28),transparent 65%)}
+  .c-b2{width:430px;height:430px;bottom:-150px;right:-120px;background:radial-gradient(circle,rgba(255,56,0,.24),transparent 65%)}
+  .c-glow{
+    position:absolute;width:900px;height:900px;right:-180px;top:170px;
+    background:radial-gradient(circle,rgba(255,92,0,.14),transparent 62%);border-radius:50%;
+  }
+  .c-ghost{position:absolute;left:250px;top:225px;width:700px;opacity:.34;z-index:1}
+  .c-deco .floor{
+    position:absolute;right:-40px;bottom:100px;width:700px;height:190px;border-radius:50%;
+    background:radial-gradient(ellipse,rgba(255,92,0,.22),transparent 65%);filter:blur(12px);z-index:1;
+  }
+
+  /* ảnh khách mời đã tách nền — canh phải, chân chạm dải logo */
+  .c-photo{position:absolute;z-index:2}
+  .c-photo img{
+    width:100%;height:100%;object-fit:fill;display:block;
+    filter:drop-shadow(0 26px 70px rgba(0,0,0,.6));
+  }
+  .c-photo.fade img{
+    -webkit-mask-image:linear-gradient(to bottom,#000 68%,rgba(0,0,0,.55) 86%,transparent 100%);
+    mask-image:linear-gradient(to bottom,#000 68%,rgba(0,0,0,.55) 86%,transparent 100%);
+  }
+  /* không có ảnh — khối chữ được phép tràn rộng hơn */
+  .card.no-photo .c-name,.card.no-photo .c-guest{max-width:900px}
+
+  .c-in{position:absolute;inset:0;z-index:3;padding:76px 76px 0;display:flex;flex-direction:column;align-items:flex-start}
+  .c-eyebrow{font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:.3em;text-transform:uppercase;color:var(--org-2);display:flex;align-items:center;gap:15px}
+  .c-eyebrow::before{content:"";width:44px;height:2px;background:var(--org);flex:none}
+  .c-title{margin-top:24px;font-family:var(--disp);font-weight:800;font-size:86px;line-height:1.04;letter-spacing:-.015em}
+  .c-title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .c-slogan{margin-top:22px;font-size:20px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ink)}
+  .c-slogan b{color:var(--org)}
+
+  .c-status{
+    margin-top:auto;margin-bottom:18px;max-width:660px;
+    font-family:var(--disp);font-size:27px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--conv);text-shadow:0 2px 14px rgba(0,0,0,.92),0 0 30px rgba(0,0,0,.8);
+  }
+  .c-guest{
+    position:relative;display:flex;flex-direction:column;align-items:flex-start;
+    width:fit-content;max-width:660px;
+    background:linear-gradient(135deg,rgba(74,28,4,.95),rgba(12,10,8,.96) 48%);
+    backdrop-filter:blur(10px);
+    border:2px solid rgba(255,138,60,.6);border-radius:24px;padding:34px 40px;
+    box-shadow:0 24px 70px rgba(0,0,0,.6),inset 0 0 50px rgba(255,92,0,.05);
+  }
+  .c-guest::before{content:"";position:absolute;inset:11px;border:1px solid rgba(255,255,255,.12);border-radius:15px}
+  .c-guest::after{
+    content:"";position:absolute;top:-2px;left:-2px;width:64px;height:64px;
+    border-top:3px solid var(--org-2);border-left:3px solid var(--org-2);border-top-left-radius:24px;
+  }
+  .c-guest .cnr{
+    position:absolute;bottom:-2px;right:-2px;width:64px;height:64px;
+    border-bottom:3px solid var(--org-2);border-right:3px solid var(--org-2);border-bottom-right-radius:24px;
+  }
+  .c-invite{font-size:15px;font-weight:600;color:var(--org-3);letter-spacing:.32em;text-transform:uppercase}
+  .c-name{margin-top:12px;font-family:var(--disp);font-weight:700;font-size:__NS__px;line-height:1.14;color:var(--ink);max-width:600px}
+  .c-role{
+    margin-top:12px;font-size:21px;font-weight:600;letter-spacing:.01em;
+    color:var(--muted-ink,#cfc8bb);max-width:600px;line-height:1.35;
+  }
+  .c-role b{color:var(--org-2);font-weight:700}
+
+  /* chừa 132px cho dải logo dán đáy thiệp — nếu ít hơn, dòng địa điểm sẽ bị che */
+  .c-chips{margin-top:24px;margin-bottom:132px;display:flex;flex-wrap:wrap;gap:16px}
+  .c-chip{
+    display:inline-flex;flex-direction:column;align-items:flex-start;gap:11px;
+    font-size:19px;font-weight:600;color:var(--ink);line-height:1.3;white-space:nowrap;
+    background:linear-gradient(135deg,rgba(58,22,3,.92),rgba(12,10,8,.94));
+    backdrop-filter:blur(10px);
+    border:2px solid rgba(255,92,0,.5);border-radius:10px;padding:15px 26px;
+  }
+  .c-chip .seg{display:inline-flex;align-items:center;gap:12px}
+  .c-chip .vr{height:1.5px;align-self:stretch;background:rgba(255,255,255,.2);flex:none}
+  .c-chip b{font-weight:700;color:var(--org-2)}
+  .c-chip b.gold{color:var(--conv)}
+  .c-chip .dot{width:11px;height:11px;border-radius:50%;background:var(--org);box-shadow:0 0 16px var(--glow);flex:none}
+  .c-chip .dot.gold{background:var(--conv);box-shadow:0 0 16px rgba(244,196,48,.5)}
+
+  .c-brandrow{
+    position:absolute;left:0;right:0;bottom:0;z-index:4;
+    display:flex;align-items:center;justify-content:center;gap:30px;
+    padding:24px 76px 26px;background:rgba(8,6,5,.86);border-top:1px solid rgba(255,255,255,.12);
+  }
+  .c-brandrow .bl{
+    display:inline-flex;align-items:center;gap:14px;white-space:nowrap;
+    font-family:var(--disp);font-weight:700;font-size:20px;letter-spacing:.04em;color:var(--ink);line-height:1.15;
+  }
+  .c-brandrow .bl img{height:38px;display:block}
+  .c-brandrow .bl.conv{color:var(--conv)}
+  .c-brandrow .bl i{font-style:normal;color:var(--org)}
+  .c-brandrow .bl .two{font-size:16px;letter-spacing:.09em;line-height:1.3}
+  .c-brandrow .bsep{width:1.5px;height:36px;background:rgba(255,255,255,.22);flex:none}
+</style>
+</head>
+<body>
+<div class="card __NOPHOTO__" id="card">
+  <div class="c-blob c-b1"></div>
+  <div class="c-blob c-b2"></div>
+  <div class="c-glow"></div>
+  <img class="c-ghost" src="__ROOT__/img/ghost-2026.png" alt="">
+  <div class="c-deco"><span class="floor"></span></div>
+
+  __PHOTO__
+
+  <div class="c-in">
+    <div class="c-eyebrow">Thư mời tham dự</div>
+    <h2 class="c-title">Fund the<br><em>Future</em></h2>
+    <div class="c-slogan">AI Builders <b>×</b> Investors</div>
+
+    <div class="c-status">__BADGE__</div>
+    <div class="c-guest">
+      <span class="cnr"></span>
+      <div class="c-invite">Trân trọng kính mời</div>
+      <div class="c-name">__NAME__</div>
+      <div class="c-role">__ROLE__</div>
+    </div>
+
+    <div class="c-chips">
+      <div class="c-chip">
+        <span class="seg"><span class="dot"></span><span><b>__DATE__</b> · Đón khách __TIME__</span></span>
+        <span class="vr"></span>
+        <span class="seg"><span class="dot gold"></span><span><b class="gold">__EVENT__</b> · __VENUE__</span></span>
+      </div>
+    </div>
+
+    <div class="c-brandrow">
+      <span class="bl conv"><img src="__ROOT__/img/conviction-mark.png" alt="Conviction 2026"><span>CONVICTION</span></span>
+      <span class="bsep"></span>
+      <span class="bl"><span>SNAPPP <i>AI</i></span></span>
+      <span class="bsep"></span>
+      <span class="bl"><span class="two">THE EDGE<br>ALLIANCE</span></span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

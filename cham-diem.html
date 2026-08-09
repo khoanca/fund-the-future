@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thang điểm &amp; quy chế chấm — Fund the Future 2026</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<meta name="description" content="Thang điểm và quy chế chấm chính thức Fund the Future 2026 — Vòng loại Audition 14.08 tại SIHUB và Chung kết The Hot Seat 15.08 tại Conviction.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a09;
+    --tile:#141210;
+    --tile-2:#1b1815;
+    --line:rgba(255,255,255,.08);
+    --line-2:rgba(255,255,255,.15);
+    --ink:#f5f1ea;
+    --muted:#9b968d;
+    --dim:#5d5950;
+    --org:#ff5c00;
+    --org-2:#ff8a3c;
+    --org-3:#ff3800;
+    --conv:#f4c430;
+    --ok:#5fd39a;
+    --bad:#ff6b6b;
+    --glow:rgba(255,92,0,.35);
+    --grad:linear-gradient(115deg,var(--org-2),var(--org-3));
+    --r:22px;
+    --disp:'Unbounded',sans-serif;
+    --body:'Be Vietnam Pro',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  ::selection{background:var(--org);color:#000}
+  body{
+    font-family:var(--body);background:var(--bg);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:var(--disp);font-weight:600}
+
+  body::after{
+    content:"";position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .bg-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .bg-fx::before{
+    content:"";position:absolute;inset:-60px;opacity:.55;
+    background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:30px 30px;
+    animation:gridDrift 60s linear infinite;
+  }
+  @keyframes gridDrift{to{transform:translate(30px,30px)}}
+  .bg-blob{position:absolute;border-radius:50%;filter:blur(90px);will-change:transform}
+  .bg-b1{width:560px;height:560px;top:-16%;left:-10%;background:radial-gradient(circle,rgba(255,92,0,.17),transparent 65%);animation:blob1 26s ease-in-out infinite}
+  .bg-b2{width:480px;height:480px;top:34%;right:-14%;background:radial-gradient(circle,rgba(255,56,0,.14),transparent 65%);animation:blob2 32s ease-in-out infinite}
+  @keyframes blob1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(110px,70px) scale(1.15)}}
+  @keyframes blob2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-90px,-80px) scale(.9)}}
+
+  /* ===== NAV ===== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,10,9,.75);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:900px;margin:0 auto;padding:0 20px;height:66px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.02em;display:flex;align-items:center;gap:11px}
+  .brand i{font-style:normal;color:var(--org)}
+  .brand-dot{
+    width:12px;height:12px;border-radius:50%;background:var(--org);
+    box-shadow:0 0 0 4px rgba(255,92,0,.2), 0 0 18px var(--glow);
+    animation:beacon 2.4s ease-in-out infinite;
+  }
+  @keyframes beacon{0%,100%{box-shadow:0 0 0 4px rgba(255,92,0,.2),0 0 14px var(--glow)}50%{box-shadow:0 0 0 7px rgba(255,92,0,.08),0 0 26px var(--glow)}}
+  .nav-links{display:flex;gap:22px}
+  .nav-links a{font-size:13px;font-weight:500;color:var(--muted);transition:.2s}
+  .nav-links a:hover{color:var(--org-2)}
+  @media(max-width:760px){.nav-links{display:none}}
+
+  /* ===== HERO ===== */
+  .hero{padding:130px 0 26px;text-align:center}
+  .hero .kicker{
+    display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--org-2);
+    border:1px solid rgba(255,92,0,.35);border-radius:999px;padding:9px 20px;margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(30px,6vw,52px);font-weight:800;line-height:1.15}
+  .hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p{color:var(--muted);font-size:15px;max-width:640px;margin:16px auto 0}
+  .hero .meta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .hero .meta span{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    background:var(--tile);border:1px solid var(--line-2);border-radius:999px;padding:10px 18px;
+  }
+  .hero .meta svg{color:var(--org);flex:none}
+
+  /* ===== ARTICLES ===== */
+  .doc{padding:22px 0 10px}
+  .art{
+    background:var(--tile);border:1px solid var(--line);border-radius:var(--r);
+    padding:26px 30px;margin-bottom:16px;transition:border-color .25s;
+  }
+  .art:hover{border-color:rgba(255,92,0,.3)}
+  .art-head{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;flex-wrap:wrap}
+  .art-head .no{font-family:var(--disp);font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--org);white-space:nowrap}
+  .art-head h2{font-size:clamp(16px,2.6vw,20px);font-weight:700}
+  .art p{color:var(--muted);font-size:14.5px;margin-bottom:9px}
+  .art p b, .art li b{color:var(--ink);font-weight:600}
+  .art ul{list-style:none;margin-top:4px}
+  .art li{position:relative;padding-left:20px;color:var(--muted);font-size:14.5px;margin-bottom:8px}
+  .art li::before{content:"";position:absolute;left:2px;top:10px;width:7px;height:7px;border-radius:2px;background:var(--org);opacity:.8}
+  .art .sub{font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--org-2);font-weight:700;margin:20px 0 10px}
+  .art .sub:first-of-type{margin-top:4px}
+  .art.fin{border-color:rgba(244,196,48,.28)}
+  .art.fin .art-head .no{color:var(--conv)}
+  .art.fin li::before{background:var(--conv)}
+  .art.fin .sub{color:var(--conv)}
+
+  /* section divider */
+  .dayhead{display:flex;align-items:center;gap:14px;margin:34px 0 16px}
+  .dayhead .tag{
+    font-family:var(--disp);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+    color:#0a0500;background:var(--org);border-radius:999px;padding:8px 16px;white-space:nowrap;
+  }
+  .dayhead.fin .tag{background:var(--conv)}
+  .dayhead h2{font-size:clamp(17px,3vw,23px);font-weight:800;line-height:1.25}
+  .dayhead .ln{flex:1;height:1px;background:var(--line)}
+  @media(max-width:640px){.dayhead .ln{display:none}}
+
+  /* ===== SCALE (mức điểm) ===== */
+  .scale{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+  @media(max-width:860px){.scale{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.scale{grid-template-columns:1fr}}
+  .sc{background:var(--tile-2);border:1px solid var(--line);border-radius:14px;padding:15px}
+  .sc .r{font-family:var(--disp);font-size:17px;font-weight:800;color:var(--org)}
+  .sc b{display:block;font-size:12.5px;color:var(--ink);margin-top:7px}
+  .sc p{font-size:11.5px;color:var(--muted);margin:6px 0 0;line-height:1.5}
+  .sc.s1 .r{color:#ff9d5c}.sc.s2 .r{color:#ffb066}
+  .sc.s4 .r{color:#c9a37a}.sc.s5 .r{color:var(--bad)}
+
+  /* ===== RUBRIC ROWS ===== */
+  .rub{background:var(--tile-2);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:12px}
+  .rub-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+  .rub-top .n{font-family:var(--disp);font-size:12px;font-weight:800;color:var(--org)}
+  .rub-top h3{font-size:15px;font-weight:700;flex:1;min-width:180px}
+  .pill{
+    font-family:var(--disp);font-size:12px;font-weight:800;letter-spacing:.04em;
+    color:var(--org-2);border:1px solid rgba(255,92,0,.4);border-radius:999px;padding:5px 13px;white-space:nowrap;
+  }
+  .art.fin .rub-top .n{color:var(--conv)}
+  .art.fin .pill{color:var(--conv);border-color:rgba(244,196,48,.4)}
+  .rub .q{font-size:13.5px;color:var(--muted);margin-bottom:12px}
+  .rub .q b{color:var(--ink)}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:640px){.duo{grid-template-columns:1fr}}
+  .hi,.lo{border-radius:12px;padding:12px 14px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+  .hi{background:rgba(95,211,154,.06);border:1px solid rgba(95,211,154,.22)}
+  .lo{background:rgba(255,107,107,.05);border:1px solid rgba(255,107,107,.2)}
+  .hi u,.lo u{
+    display:block;text-decoration:none;font-family:var(--disp);font-size:10px;font-weight:800;
+    letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px;
+  }
+  .hi u{color:var(--ok)}
+  .lo u{color:var(--bad)}
+
+  /* weight bar total */
+  .total{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(140deg,rgba(255,92,0,.1),var(--tile-2) 60%);
+    border:1px solid rgba(255,92,0,.3);border-radius:14px;padding:14px 20px;margin-top:4px;
+  }
+  .art.fin .total{background:linear-gradient(140deg,rgba(244,196,48,.09),var(--tile-2) 60%);border-color:rgba(244,196,48,.3)}
+  .total span{font-size:13px;font-weight:600;color:var(--muted)}
+  .total b{font-family:var(--disp);font-size:19px;font-weight:800;color:var(--org)}
+  .art.fin .total b{color:var(--conv)}
+
+  /* formula */
+  .fx{
+    background:var(--tile-2);border:1px solid var(--line-2);border-radius:14px;padding:16px 18px;margin:12px 0;
+    font-family:var(--disp);font-size:13px;font-weight:600;color:var(--ink);text-align:center;line-height:1.7;
+  }
+  .fx small{display:block;font-family:var(--body);font-size:12px;font-weight:400;color:var(--muted);margin-top:8px;letter-spacing:0}
+  .fx i{font-style:normal;color:var(--org-2)}
+
+  /* highlight card */
+  .note{
+    background:linear-gradient(140deg,rgba(255,92,0,.1),var(--tile) 60%);
+    border:1px solid rgba(255,92,0,.35);border-radius:var(--r);padding:22px 26px;margin-bottom:16px;
+  }
+  .note h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--org-2);margin-bottom:10px}
+  .note p{color:var(--muted);font-size:14px;margin-bottom:6px}
+  .note b{color:var(--ink)}
+  .note ul{list-style:none;margin-top:6px}
+  .note li{position:relative;padding-left:20px;color:var(--muted);font-size:14px;margin-bottom:7px}
+  .note li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:2px;background:var(--org);opacity:.85}
+
+  /* penalty chips */
+  .pen{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  @media(max-width:720px){.pen{grid-template-columns:1fr}}
+  .pn{background:var(--tile-2);border:1px solid var(--line);border-radius:14px;padding:15px 16px}
+  .pn .v{font-family:var(--disp);font-size:18px;font-weight:800;color:var(--bad)}
+  .pn b{display:block;font-size:12.5px;color:var(--ink);margin-top:6px}
+  .pn p{font-size:11.5px;color:var(--muted);margin:5px 0 0;line-height:1.5}
+
+  /* awards */
+  .awd{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  @media(max-width:640px){.awd{grid-template-columns:1fr}}
+  .aw{background:var(--tile-2);border:1px solid rgba(244,196,48,.2);border-radius:14px;padding:16px 18px}
+  .aw b{display:block;font-size:13.5px;color:var(--ink);margin-bottom:5px}
+  .aw p{font-size:12.5px;color:var(--muted);margin:0;line-height:1.55}
+  .aw.top{grid-column:1/-1;border-color:rgba(244,196,48,.45);background:linear-gradient(140deg,rgba(244,196,48,.09),var(--tile-2) 60%)}
+  .aw .k{font-family:var(--disp);font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--conv);display:block;margin-bottom:7px}
+
+  /* ===== SCORE SHEET ===== */
+  .sheet{background:#fff;color:#111;border-radius:16px;padding:26px 28px;margin-top:16px}
+  .sheet h3{font-family:var(--disp);font-size:16px;font-weight:800;color:#111;margin-bottom:4px}
+  .sheet .sh-sub{font-size:12px;color:#666;margin-bottom:16px}
+  .sh-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-bottom:16px}
+  @media(max-width:600px){.sh-fields{grid-template-columns:1fr}}
+  .sh-fields div{font-size:12px;color:#333;border-bottom:1px solid #ccc;padding-bottom:7px}
+  .sh-fields div b{font-weight:700;color:#111}
+  table.sh{width:100%;border-collapse:collapse;font-size:12px}
+  table.sh th,table.sh td{border:1px solid #d5d5d5;padding:8px 9px;text-align:left;vertical-align:top}
+  table.sh th{background:#f3f3f3;font-weight:700;color:#111;font-size:11px;letter-spacing:.03em;text-transform:uppercase}
+  table.sh td.c{text-align:center;width:64px;color:#888}
+  table.sh tr.sum td{background:#faf3ec;font-weight:700;color:#111}
+  .sh-note{font-size:11px;color:#666;margin-top:12px;line-height:1.6}
+  .sh-sign{display:flex;justify-content:space-between;gap:20px;margin-top:22px;font-size:11.5px;color:#555}
+  .sh-sign div{text-align:center;flex:1;border-top:1px solid #bbb;padding-top:7px}
+
+  /* ===== FOOTER ===== */
+  .foot{padding:40px 0 60px;text-align:center}
+  .foot .line{height:1px;background:var(--line);margin-bottom:30px}
+  .foot p{color:var(--dim);font-size:13px;margin-bottom:20px}
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;border:none;
+    font-family:var(--body);font-weight:600;font-size:13.5px;border-radius:12px;padding:13px 24px;transition:.22s;
+  }
+  .btn-org{background:var(--org);color:#0a0500}
+  .btn-org:hover{background:var(--org-2);transform:translateY(-2px);box-shadow:0 10px 30px var(--glow)}
+  .btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2)}
+  .btn-ghost:hover{box-shadow:inset 0 0 0 1px var(--org);color:var(--org-2)}
+
+  /* ===== PRINT ===== */
+  @media print{
+    body{background:#fff;color:#000}
+    body::after,.bg-fx,.nav,.hero,.foot,.no-print{display:none!important}
+    .doc{padding:0}
+    .art{display:none}
+    .art#print-sheet{display:block;background:#fff;border:none;padding:0;page-break-inside:avoid}
+    .art#print-sheet .art-head{display:none}
+    .sheet{padding:0;border-radius:0}
+    .wrap{max-width:100%;padding:0}
+  }
+</style>
+</head>
+<body>
+<div class="bg-fx"><span class="bg-blob bg-b1"></span><span class="bg-blob bg-b2"></span></div>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/"><span class="brand-dot"></span>FUND THE <i>FUTURE</i></a>
+    <div class="nav-links">
+      <a href="#chung">Nguyên tắc</a>
+      <a href="#d14">Ngày 14</a>
+      <a href="#d15">Ngày 15</a>
+      <a href="#phat">Trừ điểm</a>
+      <a href="#danh-vi">Danh vị</a>
+      <a href="#print-sheet">Phiếu chấm</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <header class="hero">
+    <span class="kicker">Tài liệu Ban Giám khảo · Fund the Future 2026</span>
+    <h1>Thang điểm &amp; <em>quy chế chấm</em></h1>
+    <p>Khung chấm điểm thống nhất cho Vòng loại Audition ngày 14.08 tại SIHUB và Chung kết “The Hot Seat” ngày 15.08 tại Conviction. Tài liệu này là căn cứ duy nhất để Ban Giám khảo cho điểm và để Ban Tổ chức tổng hợp kết quả.</p>
+    <div class="meta">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>14–15.08.2026</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>Thang 100 điểm</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>7 phút pitch + 7 phút phản biện</span>
+    </div>
+  </header>
+
+  <section class="doc">
+
+    <!-- ============ NGUYÊN TẮC CHUNG ============ -->
+    <article class="art" id="chung">
+      <div class="art-head"><span class="no">Phần I</span><h2>Nguyên tắc chấm điểm chung</h2></div>
+      <ul>
+        <li>Mỗi giám khảo chấm <b>độc lập</b>, không trao đổi điểm số với giám khảo khác trước khi nộp phiếu.</li>
+        <li>Mỗi tiêu chí được cho điểm trên <b>thang 1–10</b> (số nguyên). Điểm tiêu chí được nhân với trọng số để ra <b>tổng 100 điểm</b>.</li>
+        <li>Chấm ngay sau mỗi phần thi, nộp phiếu cho điều phối viên trước khi đội kế tiếp bắt đầu. Không sửa điểm sau khi phiếu đã nộp.</li>
+        <li>Chấm dựa trên <b>những gì đội thi thực sự trình bày và chứng minh</b> trên sân khấu — không chấm theo danh tiếng, mối quan hệ hay thông tin bên ngoài.</li>
+        <li>Giám khảo có <b>xung đột lợi ích</b> với một đội (đã đầu tư, đang đàm phán đầu tư, là cố vấn/người thân) phải khai báo với Chủ tịch hội đồng và <b>không chấm</b> đội đó; điểm đội đó tính trung bình trên các giám khảo còn lại.</li>
+        <li>Phần phản biện (Q&amp;A) là <b>một phần của bài thi</b> — câu trả lời trong Q&amp;A được tính vào tất cả các tiêu chí liên quan, không chỉ tiêu chí trình bày.</li>
+      </ul>
+
+      <div class="sub">Thang mức độ áp dụng cho mọi tiêu chí</div>
+      <div class="scale">
+        <div class="sc"><div class="r">9–10</div><b>Xuất sắc</b><p>Chuẩn quốc tế. Có bằng chứng cụ thể, thuyết phục ngay cả với giám khảo khó tính.</p></div>
+        <div class="sc s1"><div class="r">7–8</div><b>Tốt</b><p>Rõ ràng, đáng tin, còn một vài điểm cần củng cố thêm.</p></div>
+        <div class="sc s2"><div class="r">5–6</div><b>Đạt</b><p>Có ý tưởng và nền tảng, nhưng bằng chứng còn mỏng hoặc trình bày chưa sắc.</p></div>
+        <div class="sc s4"><div class="r">3–4</div><b>Yếu</b><p>Nhiều lỗ hổng lớn, chưa trả lời được câu hỏi cốt lõi của tiêu chí.</p></div>
+        <div class="sc s5"><div class="r">1–2</div><b>Chưa đạt</b><p>Không đề cập, hoặc thông tin đưa ra không đáng tin cậy.</p></div>
+      </div>
+
+      <div class="sub">Công thức tính điểm</div>
+      <div class="fx">
+        Điểm đội = <i>Σ</i> ( điểm tiêu chí <i>×</i> trọng số ) <i>−</i> điểm phạt
+        <small>Điểm cuối cùng của đội = trung bình cộng điểm của tất cả giám khảo trong hội đồng, làm tròn 2 chữ số thập phân. Nếu hội đồng có <b>từ 5 giám khảo trở lên</b>, hệ thống <b>loại 1 điểm cao nhất và 1 điểm thấp nhất</b> trước khi lấy trung bình.</small>
+      </div>
+    </article>
+
+    <!-- ============ NGÀY 14 ============ -->
+    <div class="dayhead" id="d14">
+      <span class="tag">Ngày 14.08</span>
+      <h2>Vòng loại — Demo Day &amp; Audition tại SIHUB</h2>
+      <span class="ln"></span>
+    </div>
+
+    <article class="art">
+      <div class="art-head"><span class="no">Phần II</span><h2>Thang điểm vòng loại · 6 tiêu chí / 100 điểm</h2></div>
+      <p>Vòng loại tìm ra những đội <b>đáng để đưa lên sân khấu chung kết trước 50.000 người</b>. Trọng tâm là chất lượng nền tảng: đội ngũ, chiều sâu công nghệ AI và độ thật của thị trường.</p>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">01</span><h3>Đội ngũ sáng lập</h3><span class="pill">20 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Đây có phải đội có thể thực thi được thứ họ vừa hứa trong 18 tháng tới không?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Founder có chuyên môn đúng lĩnh vực đang làm; phân vai rõ (tech / business); đã có sản phẩm chạy được; làm full-time; trả lời phản biện bằng trải nghiệm thật của mình.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Đội chỉ có ý tưởng, không có người làm kỹ thuật; tất cả đều part-time; không nói được vì sao chính họ là người phù hợp nhất với bài toán này.</div>
+        </div>
+      </div>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">02</span><h3>Sản phẩm &amp; Công nghệ AI</h3><span class="pill">25 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Phần AI ở đây là lõi giá trị hay chỉ là lớp vỏ gọi API? Sản phẩm có demo được và có rào cản gì để đối thủ không sao chép trong 6 tháng?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Demo trực tiếp chạy được; AI giải đúng một bài toán mà cách làm cũ không giải nổi; có dữ liệu riêng, workflow riêng hoặc mô hình được tinh chỉnh; nói được chi phí inference và cách kiểm soát chất lượng đầu ra.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Chỉ có slide, không demo; sản phẩm là một prompt bọc quanh mô hình có sẵn ai cũng làm được; không trả lời được câu hỏi “điều gì ngăn đối thủ làm y hệt bạn?”.</div>
+        </div>
+      </div>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">03</span><h3>Thị trường &amp; Mô hình kinh doanh</h3><span class="pill">20 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Thị trường này có đủ lớn để tạo ra một công ty đáng đầu tư, và họ kiếm tiền bằng cách nào?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Quy mô thị trường được tính từ dưới lên bằng số liệu thật; khách hàng mục tiêu cụ thể; mô hình doanh thu rõ, có đơn giá và biên lợi nhuận; nêu được lợi thế cạnh tranh so với đối thủ đích danh.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Chỉ trích một con số TAM toàn cầu từ báo cáo; “ai cũng là khách hàng”; chưa có giá bán; khẳng định “không có đối thủ”.</div>
+        </div>
+      </div>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">04</span><h3>Traction &amp; Số liệu</h3><span class="pill">15 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Có bằng chứng nào cho thấy thị trường thực sự muốn thứ này?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Có người dùng / khách hàng trả tiền; nêu được tốc độ tăng trưởng theo tháng, retention, chi phí thu hút khách; có hợp đồng, LOI hoặc pilot với doanh nghiệp thật.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Chỉ có lượt đăng ký sớm hoặc “nhiều người quan tâm”; số liệu mâu thuẫn giữa slide và phần trả lời; không tách được người dùng thật với người dùng thử miễn phí.</div>
+        </div>
+        <p class="q" style="margin:12px 0 0;font-size:12.5px">Đội <b>pre-revenue</b> không bị chấm 1 điểm mặc định: mức 5–6 dành cho đội chứng minh được nhu cầu bằng phỏng vấn khách hàng, waitlist có chất lượng hoặc pilot chưa thu phí.</p>
+      </div>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">05</span><h3>Sẵn sàng gọi vốn</h3><span class="pill">10 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Nếu một quỹ muốn xuống tiền tuần sau, đội này có sẵn sàng không?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Nêu rõ số tiền muốn gọi, định giá hoặc cấu trúc vòng, kế hoạch dùng vốn theo hạng mục và cột mốc đạt được sau 12–18 tháng; pháp nhân và cơ cấu cổ phần rõ ràng.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Không nói số tiền cần gọi; định giá không có cơ sở; “gọi vốn để phát triển sản phẩm” chung chung; cơ cấu sở hữu rối hoặc chưa có pháp nhân.</div>
+        </div>
+      </div>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">06</span><h3>Thuyết trình &amp; Phản biện</h3><span class="pill">10 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Họ có làm người nghe hiểu và tin trong 7 phút, và có giữ được bình tĩnh khi bị chất vấn không?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Đủ 4 bước bắt buộc trong đúng thời lượng; câu chuyện mạch lạc; slide sạch, dễ đọc; trả lời thẳng vào câu hỏi, thừa nhận điều chưa biết thay vì né tránh.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Đọc slide; cháy giờ ở phần giới thiệu và không kịp nói phần quan trọng; trả lời vòng vo, phòng thủ hoặc tranh cãi với giám khảo.</div>
+        </div>
+      </div>
+
+      <div class="total"><span>Tổng trọng số vòng loại</span><b>100 điểm</b></div>
+
+      <div class="sub">4 bước bắt buộc trong phần thuyết trình</div>
+      <ul>
+        <li><b>Bước 1 — Giới thiệu đội ngũ:</b> tên đội, thành viên, vai trò và lý do đến với dự án.</li>
+        <li><b>Bước 2 — Giới thiệu sản phẩm:</b> sản phẩm là gì, giải quyết vấn đề nào, cho ai.</li>
+        <li><b>Bước 3 — Ý tưởng &amp; công năng:</b> sản phẩm hoạt động ra sao, tính năng nổi bật, điểm khác biệt.</li>
+        <li><b>Bước 4 — Định hướng tương lai:</b> kế hoạch phát triển, mô hình kinh doanh, tầm nhìn dài hạn.</li>
+        <li><b>Thiếu một bước:</b> giám khảo trừ trực tiếp trong tiêu chí 06 (Thuyết trình &amp; Phản biện), không trừ vào tổng.</li>
+      </ul>
+    </article>
+
+    <article class="art">
+      <div class="art-head"><span class="no">Phần III</span><h2>Hai hội đồng song song &amp; cách chọn đội vào Chung kết</h2></div>
+      <p>Ngày 14 có <b>30 startup chia thành 2 bảng A và B</b>, mỗi bảng 15 đội, thi song song tại 2 khu vực với <b>2 hội đồng giám khảo riêng</b>. Vì hai hội đồng chấm hai nhóm đội khác nhau, điểm thô giữa hai bảng <b>không được so sánh trực tiếp</b>.</p>
+
+      <div class="sub">Quy tắc bắt buộc để hai bảng công bằng</div>
+      <ul>
+        <li><b>Chuẩn hoá theo bảng:</b> mỗi bảng xếp hạng nội bộ trước. Suất vào chung kết được chia <b>đều cho hai bảng</b> theo hạn ngạch Ban Tổ chức công bố đầu ngày.</li>
+        <li><b>Suất vớt (wildcard):</b> các suất còn lại được xét chung trên toàn bộ 30 đội bằng <b>điểm đã chuẩn hoá</b> — điểm của mỗi đội được quy đổi theo trung bình và độ lệch của chính bảng mình, để bù chênh lệch độ khó giữa hai hội đồng.</li>
+        <li><b>Không chấm chéo:</b> giám khảo hội đồng A không cho điểm đội bảng B và ngược lại.</li>
+        <li><b>Phiên hội ý chung:</b> cuối ngày, hai hội đồng họp chung để rà soát danh sách trước khi công bố; phiên này chỉ dùng để <b>kiểm tra sai sót và thống nhất danh sách</b>, không dùng để sửa điểm đã chấm.</li>
+        <li><b>Công bố:</b> danh sách đội vào Chung kết “The Hot Seat” được công bố ngay trong buổi tổng kết ngày 14.</li>
+      </ul>
+
+      <div class="note" style="margin-top:16px">
+        <h3>Xử lý khi điểm bằng nhau</h3>
+        <p>Áp dụng lần lượt theo thứ tự cho đến khi phân định được:</p>
+        <ul>
+          <li>Điểm tiêu chí <b>02 — Sản phẩm &amp; Công nghệ AI</b> cao hơn.</li>
+          <li>Điểm tiêu chí <b>04 — Traction &amp; Số liệu</b> cao hơn.</li>
+          <li>Điểm tiêu chí <b>01 — Đội ngũ sáng lập</b> cao hơn.</li>
+          <li>Số giám khảo cho điểm tổng cao hơn nhiều hơn.</li>
+          <li><b>Chủ tịch hội đồng</b> quyết định sau khi hội ý; quyết định này là cuối cùng.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- ============ NGÀY 15 ============ -->
+    <div class="dayhead fin" id="d15">
+      <span class="tag">Ngày 15.08</span>
+      <h2>Chung kết “The Hot Seat” — sân khấu Conviction 2026</h2>
+      <span class="ln"></span>
+    </div>
+
+    <article class="art fin">
+      <div class="art-head"><span class="no">Phần IV</span><h2>Thang điểm chung kết · 6 tiêu chí / 100 điểm</h2></div>
+      <p>Chung kết có <b>Ban Giám khảo hoàn toàn mới</b>, không trùng với hội đồng ngày 14. <b>Điểm ngày 14 không được cộng dồn</b> — mọi đội bước vào chung kết với điểm 0, vòng chung kết là một bài thi độc lập.</p>
+      <p>Trọng số ở chung kết dịch chuyển sang <b>khả năng thuyết phục nhà đầu tư xuống tiền</b>: câu chuyện gọi vốn, tiềm năng tăng trưởng và bản lĩnh khi bị chất vấn công khai.</p>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">01</span><h3>Câu chuyện gọi vốn &amp; sức thuyết phục</h3><span class="pill">20 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Sau 7 phút, một nhà đầu tư trong khán phòng có muốn đặt lịch gặp tuần sau không?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Vấn đề — giải pháp — cơ hội được kể liền mạch, có nhân vật và con số thật; “vì sao là bây giờ” rõ ràng; kết thúc bằng một lời mời đầu tư cụ thể.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Bài nói rời rạc, nặng thuật ngữ; dồn thời lượng vào tính năng thay vì cơ hội; kết thúc mà người nghe không biết đội cần gì.</div>
+        </div>
+      </div>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">02</span><h3>Sản phẩm &amp; lợi thế công nghệ AI</h3><span class="pill">20 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Lợi thế công nghệ này còn giữ được sau 24 tháng nữa không?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Có rào cản thật: dữ liệu độc quyền, hiệu ứng mạng lưới, quy trình đã ăn sâu vào vận hành khách hàng; chất lượng đầu ra được đo lường; đã chạy ở quy mô thật.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Lợi thế chỉ đến từ việc đi trước vài tháng; phụ thuộc hoàn toàn vào một nhà cung cấp mô hình; không kiểm soát được sai sót của AI.</div>
+        </div>
+      </div>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">03</span><h3>Quy mô thị trường &amp; khả năng tăng trưởng</h3><span class="pill">20 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Đây có thể thành công ty quy mô lớn, hay chỉ là một doanh nghiệp dịch vụ tốt?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Kênh tăng trưởng đã được kiểm chứng và lặp lại được; mô hình mở rộng ra khu vực hoặc ngành lân cận có cơ sở; kinh tế đơn vị dương hoặc có lộ trình rõ để dương.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Tăng trưởng phụ thuộc vào quan hệ cá nhân; mỗi khách hàng mới cần làm lại từ đầu; chi phí phục vụ tăng nhanh hơn doanh thu.</div>
+        </div>
+      </div>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">04</span><h3>Traction &amp; hiệu quả sử dụng vốn</h3><span class="pill">15 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Họ đã làm được bao nhiêu với nguồn lực đang có, và đồng vốn tiếp theo sẽ tạo ra kết quả gì?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Kết quả tăng trưởng ấn tượng so với số vốn và nhân sự đã dùng; kế hoạch dùng vốn gắn với cột mốc đo được; biết rõ tiền đủ dùng bao lâu.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Đã tiêu nhiều nhưng chỉ số không đổi; kế hoạch dùng vốn dồn vào chi phí cố định mà không gắn cột mốc nào.</div>
+        </div>
+      </div>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">05</span><h3>Đội ngũ &amp; khả năng thực thi</h3><span class="pill">15 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Đây có phải đội mà một quỹ sẵn sàng đồng hành 5–7 năm không?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Founder trung thực về điểm yếu và đã có kế hoạch bù đắp; đã tuyển được người giỏi; nhìn thấy tiến bộ rõ rệt so với phần trình bày ngày 14.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Phóng đại; không nhận ra rủi ro lớn nhất của chính mình; nội bộ trả lời mâu thuẫn nhau trên sân khấu.</div>
+        </div>
+      </div>
+
+      <div class="rub">
+        <div class="rub-top"><span class="n">06</span><h3>Bản lĩnh trên “ghế nóng”</h3><span class="pill">10 điểm</span></div>
+        <p class="q"><b>Câu hỏi giám khảo cần trả lời:</b> Khi bị chất vấn gắt trước hàng nghìn người, họ giữ được sự sắc bén và trung thực không?</p>
+        <div class="duo">
+          <div class="hi"><u>Điểm cao khi</u>Trả lời ngắn, thẳng, đúng trọng tâm; dùng số liệu để phản biện; nói “tôi chưa có dữ liệu, tôi sẽ gửi lại sau” khi thực sự chưa biết.</div>
+          <div class="lo"><u>Điểm thấp khi</u>Né câu hỏi, đổ lỗi, bịa số; mất bình tĩnh hoặc tranh cãi; để hết thời gian phản biện mà chưa trả lời được câu hỏi đầu tiên.</div>
+        </div>
+      </div>
+
+      <div class="total"><span>Tổng trọng số chung kết</span><b>100 điểm</b></div>
+
+      <div class="sub">Quy trình chốt kết quả chung kết</div>
+      <ul>
+        <li>Thể thức mỗi đội: <b>7 phút pitch + 7 phút phản biện</b> với Ban Giám khảo Chung kết.</li>
+        <li>Điểm đội = trung bình cộng điểm các giám khảo, loại 1 điểm cao nhất và 1 điểm thấp nhất nếu hội đồng có từ 5 giám khảo trở lên.</li>
+        <li>Sau lượt thi cuối, Ban Giám khảo <b>hội ý kín</b> để rà soát bảng điểm và chốt danh sách vinh danh.</li>
+        <li>Thứ tự phân định khi bằng điểm: tiêu chí <b>01</b> → tiêu chí <b>03</b> → tiêu chí <b>06</b> → quyết định của Chủ tịch Ban Giám khảo Chung kết.</li>
+        <li>Kết quả được công bố và trao danh vị trực tiếp trên sân khấu chính; <b>quyết định của Ban Giám khảo là cuối cùng</b>.</li>
+      </ul>
+    </article>
+
+    <!-- ============ TRỪ ĐIỂM ============ -->
+    <article class="art" id="phat">
+      <div class="art-head"><span class="no">Phần V</span><h2>Quy tắc thời gian &amp; trừ điểm</h2></div>
+      <p>Ban Tổ chức rung chuông khi phần thi <b>còn 1 phút</b> và khi <b>hết giờ</b>. Điểm phạt do <b>điều phối viên ghi nhận</b> và trừ vào tổng điểm sau khi đã tính trung bình các giám khảo — giám khảo không tự trừ trong phiếu chấm.</p>
+      <div class="pen">
+        <div class="pn"><div class="v">−1</div><b>Mỗi 30 giây vượt giờ</b><p>Áp dụng sau 30 giây ân hạn kể từ chuông hết giờ. Tối đa trừ 5 điểm.</p></div>
+        <div class="pn"><div class="v">−5</div><b>Vượt quá 2 phút</b><p>Điều phối viên dừng phần thuyết trình và chuyển sang phần phản biện.</p></div>
+        <div class="pn"><div class="v">−3</div><b>Vắng mặt lượt gọi</b><p>Không có mặt sau 2 lần gọi tên. Vắng mặt hoàn toàn được xem là bỏ cuộc ở vòng thi đó.</p></div>
+      </div>
+      <ul style="margin-top:14px">
+        <li>Các đội có mặt tại khu vực chờ <b>tối thiểu 5 phút</b> trước lượt thi của mình.</li>
+        <li>Sự cố kỹ thuật do Ban Tổ chức gây ra (mất điện, lỗi máy chiếu, lỗi âm thanh) <b>không tính vào thời gian thi</b> và không bị trừ điểm.</li>
+        <li>Số liệu bị phát hiện <b>sai lệch có chủ ý</b> sẽ được báo cáo lên Chủ tịch hội đồng; đội có thể bị loại ở bất kỳ giai đoạn nào theo Điều 10 Thể lệ.</li>
+      </ul>
+    </article>
+
+    <!-- ============ DANH VỊ ============ -->
+    <article class="art fin" id="danh-vi">
+      <div class="art-head"><span class="no">Phần VI</span><h2>Cách xác định 05 danh vị vinh danh</h2></div>
+      <p>Toàn bộ danh vị được xác định trên <b>kết quả chấm ngày 15</b> và trao trực tiếp trên sân khấu chính Conviction 2026. Chương trình <b>không có giải thưởng bằng tiền mặt</b>.</p>
+      <div class="awd">
+        <div class="aw top">
+          <span class="k">Danh vị cao nhất</span>
+          <b>Top AI Startup — Fund the Future 2026</b>
+          <p>Đội có <b style="color:var(--ink)">tổng điểm chung kết cao nhất</b> sau khi áp dụng quy tắc phân định khi bằng điểm.</p>
+        </div>
+        <div class="aw">
+          <b>Best AI Product &amp; Technology</b>
+          <p>Điểm tiêu chí <b style="color:var(--ink)">02 — Sản phẩm &amp; lợi thế công nghệ AI</b> cao nhất.</p>
+        </div>
+        <div class="aw">
+          <b>Best Growth &amp; Traction</b>
+          <p>Điểm cộng gộp tiêu chí <b style="color:var(--ink)">03 và 04</b> cao nhất.</p>
+        </div>
+        <div class="aw">
+          <b>Best Founding Team</b>
+          <p>Điểm tiêu chí <b style="color:var(--ink)">05 — Đội ngũ &amp; khả năng thực thi</b> cao nhất.</p>
+        </div>
+        <div class="aw">
+          <b>Investor’s Choice</b>
+          <p>Do <b style="color:var(--ink)">hội đồng quỹ đầu tư</b> bình chọn độc lập — mỗi quỹ 1 phiếu cho đội mình muốn gặp tiếp sau sự kiện.</p>
+        </div>
+      </div>
+      <ul style="margin-top:14px">
+        <li>Mỗi đội <b>chỉ nhận tối đa 1 danh vị</b>. Nếu một đội dẫn đầu nhiều hạng mục, danh vị cao nhất được giữ lại, hạng mục còn lại chuyển cho đội xếp kế tiếp.</li>
+        <li>Danh vị <b>Investor’s Choice</b> nằm ngoài quy tắc trên — một đội có thể vừa nhận danh vị theo điểm vừa được các quỹ bình chọn.</li>
+        <li>Quyết định đầu tư (nếu có) thuộc toàn quyền của từng quỹ trên cơ sở thẩm định độc lập; Ban Tổ chức chỉ đóng vai trò kết nối.</li>
+      </ul>
+    </article>
+
+    <!-- ============ PHIẾU CHẤM ============ -->
+    <article class="art" id="print-sheet">
+      <div class="art-head">
+        <span class="no">Phần VII</span><h2>Phiếu chấm điểm — bản in</h2>
+        <button class="btn btn-ghost no-print" style="margin-left:auto;padding:9px 18px;font-size:12.5px" onclick="window.print()">In phiếu chấm</button>
+      </div>
+      <p class="no-print">Mẫu phiếu dùng chung cho cả hai ngày — điều phối viên in sẵn theo số lượng giám khảo × số đội. Cột trọng số thay đổi theo ngày, xem chú thích cuối phiếu.</p>
+
+      <div class="sheet">
+        <h3>FUND THE FUTURE 2026 — PHIẾU CHẤM ĐIỂM</h3>
+        <div class="sh-sub">Ngày thi: ☐ 14.08 · Vòng loại (SIHUB)   ☐ 15.08 · Chung kết “The Hot Seat” (Conviction)</div>
+        <div class="sh-fields">
+          <div><b>Họ tên giám khảo:</b> ......................................................</div>
+          <div><b>Hội đồng / Bảng:</b> ☐ A   ☐ B   ☐ Chung kết</div>
+          <div><b>Tên startup:</b> ......................................................</div>
+          <div><b>Số thứ tự thi:</b> ...............   <b>Giờ thi:</b> ...............</div>
+        </div>
+        <table class="sh">
+          <thead>
+            <tr>
+              <th style="width:30px">#</th>
+              <th>Tiêu chí</th>
+              <th style="width:64px">Trọng số</th>
+              <th style="width:64px">Điểm 1–10</th>
+              <th style="width:70px">Quy đổi</th>
+              <th>Ghi chú của giám khảo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>01</td><td>Đội ngũ sáng lập <span style="color:#888">/ Câu chuyện gọi vốn (CK)</span></td><td class="c">20</td><td class="c"></td><td class="c"></td><td></td></tr>
+            <tr><td>02</td><td>Sản phẩm &amp; Công nghệ AI</td><td class="c">25 / 20</td><td class="c"></td><td class="c"></td><td></td></tr>
+            <tr><td>03</td><td>Thị trường &amp; Mô hình <span style="color:#888">/ Tăng trưởng (CK)</span></td><td class="c">20</td><td class="c"></td><td class="c"></td><td></td></tr>
+            <tr><td>04</td><td>Traction &amp; Số liệu</td><td class="c">15</td><td class="c"></td><td class="c"></td><td></td></tr>
+            <tr><td>05</td><td>Sẵn sàng gọi vốn <span style="color:#888">/ Đội ngũ &amp; thực thi (CK)</span></td><td class="c">10 / 15</td><td class="c"></td><td class="c"></td><td></td></tr>
+            <tr><td>06</td><td>Thuyết trình &amp; Phản biện <span style="color:#888">/ Bản lĩnh ghế nóng (CK)</span></td><td class="c">10</td><td class="c"></td><td class="c"></td><td></td></tr>
+            <tr class="sum"><td colspan="2">TỔNG ĐIỂM (thang 100)</td><td class="c">100</td><td class="c">—</td><td class="c"></td><td></td></tr>
+          </tbody>
+        </table>
+        <div class="sh-note">
+          <b>Quy đổi</b> = điểm 1–10 × trọng số ÷ 10. Ví dụ: tiêu chí 25 điểm, chấm 8 → 8 × 25 ÷ 10 = 20.<br>
+          <b>Trọng số hiển thị dạng “A / B”:</b> A áp dụng cho <b>ngày 14 (vòng loại)</b>, B áp dụng cho <b>ngày 15 (chung kết)</b>. Ký hiệu (CK) là tên tiêu chí ở vòng chung kết.<br>
+          <b>Không tự trừ điểm phạt vượt giờ</b> — điều phối viên ghi nhận và trừ vào tổng sau khi tính trung bình hội đồng.<br>
+          <b>Xung đột lợi ích:</b> ☐ Tôi có xung đột lợi ích với đội này và không chấm.
+        </div>
+        <div class="sh-sign">
+          <div>Chữ ký giám khảo</div>
+          <div>Điều phối viên nhận phiếu</div>
+          <div>Chủ tịch hội đồng</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="art">
+      <div class="art-head"><span class="no">Phần VIII</span><h2>Hiệu lực &amp; liên hệ</h2></div>
+      <ul>
+        <li>Tài liệu này chi tiết hoá <b>Điều 6 và Điều 7</b> của <a href="/cr" style="color:var(--org-2);text-decoration:underline">Thể lệ cuộc thi</a>. Khi có khác biệt về diễn giải, Thể lệ là văn bản gốc.</li>
+        <li>Ban Tổ chức có thể điều chỉnh hạn ngạch suất vào chung kết vì lý do vận hành; mọi thay đổi được công bố <b>trước khi lượt thi đầu tiên bắt đầu</b>.</li>
+        <li>Phiếu chấm gốc được Ban Tổ chức lưu trữ và <b>không công bố điểm chi tiết của từng đội</b>; đội thi có thể nhận nhận xét định tính từ Ban Giám khảo sau sự kiện.</li>
+      </ul>
+      <div class="note" style="margin:16px 0 0">
+        <h3>Liên hệ Ban Tổ chức</h3>
+        <p><b>Hotline:</b> +84 931 413 472 (Sara) · +84 918 946 757 (Amy)</p>
+        <p><b>Email:</b> contact@theedgealliance.com</p>
+      </div>
+    </article>
+
+  </section>
+
+  <footer class="foot no-print">
+    <div class="line"></div>
+    <p>— Fund the Future × Conviction 2026 • Thang điểm &amp; quy chế chấm dành cho Ban Giám khảo —</p>
+    <div class="cta">
+      <a class="btn btn-org" href="/cr">Xem thể lệ cuộc thi</a>
+      <a class="btn btn-ghost" href="/agenda">Agenda 2 ngày</a>
+      <a class="btn btn-ghost" href="/">Về trang chủ</a>
+    </div>
+  </footer>
+
+</main>
+</body>
+</html>
